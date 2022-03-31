@@ -27,7 +27,7 @@ interface LinkItemProps {
 export default function Navigation({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -71,14 +71,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     <Box
       className="Box-container"
       position="absolute"
-      width="448px"
+      width="400px"
       left=" 0px"
       top="0px"
       background="#3E4059"
       box-shadow="12px 12px 24px rgb(0 0 0 / 25%)"
       border-radius="0px 24px 24px 0px"
       transition="3s ease"
-      h="full"
+      //h="full"
       {...rest}
     >
       <img className="image-logo" src={logo} />
