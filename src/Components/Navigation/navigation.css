@@ -1,0 +1,84 @@
+.image-logo{
+    position: absolute;
+    width: 66.61px;
+    height: 42.4px;
+    left: 24px;
+    top: 24px;
+    }
+    .drawer-header{
+        position: absolute;
+    width: 126px;
+    height: 15px;
+    left: 115px;
+    top: 24px;
+    
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FFFFFF;
+    
+    }
+    .drawer-sub-header{
+        position: absolute;
+    width: 277px;
+    height: 21px;
+    left: 115px;
+    top: 45px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    /* identical to box height */
+    
+    
+    color: #FFFFFF;
+    }
+    .main-drawer-item{
+        width: 410px;
+        height: 60px;
+        border-radius: 24px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+    }
+    .main-drawer-item:hover{
+        background-color: #E79378;
+    }
+    .sub-drawer-item{
+        width: 370px;
+        height: 60px;
+        border-radius: 24px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+       
+    }
+    .sub-drawer-item:hover{
+        background-color: #E79378;
+    }
+    .footer-User-name{
+        width: 200px;
+        height: 28px;
+        left: 119px;
+        top: 942px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: #FFFFFF;
+        margin-left: 31px;
+    }
+    
+    
+    
