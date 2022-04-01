@@ -6,6 +6,7 @@ import {
   Image,
   Divider,
   Container,
+  Center
 } from "@chakra-ui/react";
 import AuthContainer from "../../Components/AuthRoute/index";
 import IPageProps from "../../Interfaces/page";
@@ -16,7 +17,6 @@ import BillLogo from "../../Assets/Icons/bill.svg";
 import BoatLogo from "../../Assets/Icons/boat.svg";
 import TimerLogo from "../../Assets/Icons/timer.svg";
 import StaffLogo from "../../Assets/Icons/staff.svg";
-import SidebarWithHeader from "./Test";
 
 const Dashboard: React.FC<IPageProps> = (props) => {
   const [user, setUser] = useState<string>("");
@@ -31,8 +31,11 @@ const Dashboard: React.FC<IPageProps> = (props) => {
 
   return (
     <AuthContainer>
-      <SidebarWithHeader>
-        <Box padding="5" maxHeight="100vh" overflowY="scroll">
+      <Navigation>
+      <Center display={'flex'} justifyContent="end">
+
+        <Box padding="5" maxHeight="100vh" overflowY="scroll"  maxW={"70%"}
+          w={'full'}>
           <Heading
             as="h2"
             size="lg"
@@ -194,7 +197,8 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             </Box>
           </SimpleGrid>
         </Box>
-      </SidebarWithHeader>
+        </Center>
+      </Navigation>
     </AuthContainer>
   );
 };
