@@ -6,7 +6,8 @@ import IPageProps from "../../Interfaces/page";
 import { getLocalStorage } from "../../utils/helpers";
 import Navigation from "../../Components/Navigation/navigation";
 import DataTable from "../../Components/Table/table";
-import { data, columns } from "./Data/data";
+// import { data, columns } from "./Data/data";
+import TabNavigation from '../../Components/TabNavigation/tabNavigation';
 
 const HomeScreen: React.FC<IPageProps> = (props) => {
   const [user, setUser] = useState<string>("");
@@ -23,7 +24,8 @@ const HomeScreen: React.FC<IPageProps> = (props) => {
     <AuthContainer>
       <Navigation>
         <Center>
-          <DataTable columns={columns} data={data} />
+          {/* <DataTable columns={columns} data={data} /> */}
+          <TabNavigation/>
         </Center>
       </Navigation>
     </AuthContainer>
