@@ -18,6 +18,7 @@ import { IconType } from "react-icons";
 import logo from '../../Assets/Img/logo.png';
 import './navigation.css'
 import Navbar from '../Navbar/navbar';
+import { useHistory } from "react-router-dom";
 
 interface LinkItemProps {
   name: string;
@@ -50,7 +51,7 @@ export default function Navigation({
       </Drawer>
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
-      <Navbar/>
+      {/* <Navbar/> */}
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
@@ -63,12 +64,24 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const history = useHistory();
+
   let parsedData = null
     let data = localStorage.getItem("firebaseData");
     if(data) {
        parsedData = JSON.parse(data)
     }
     console.log("ParsedData",parsedData.photoURL)
+
+    const handleOperationalBoats =()=>{
+      history.push('/opBoats')
+    }
+    const handleSchedules =()=>{
+      history.push('/schedules')
+    }
+    const handleStaff =()=>{
+      history.push('/staff')
+    }
   return (
     <Box className="Box-container"
       position="absolute"
@@ -99,9 +112,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Divider/>
       <Flex alignItems="center" mx="14" justifyContent="space-between">
       <div>
-      <NavItem className="sub-drawer-item">Operational Boats</NavItem>
-      <NavItem className="sub-drawer-item">Schedules</NavItem>
-      <NavItem className="sub-drawer-item">Staff</NavItem>
+      <NavItem className="sub-drawer-item" onClick={handleOperationalBoats}>Operational Boats</NavItem>
+      <NavItem className="sub-drawer-item" onClick={handleSchedules}>Schedules</NavItem>
+      <NavItem className="sub-drawer-item" onClick={handleStaff}>Staff</NavItem>
       </div>
       </Flex>
       <NavItem className="main-drawer-item">Assignments</NavItem>
