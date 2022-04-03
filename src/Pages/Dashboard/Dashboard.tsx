@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
 import {
   SimpleGrid,
   Box,
@@ -13,11 +14,9 @@ import AuthContainer from "../../Components/AuthRoute/index";
 import IPageProps from "../../Interfaces/page";
 import { getLocalStorage } from "../../utils/helpers";
 import Navigation from "../../Components/Navigation/navigation";
-import BankLogo from "../../Assets/Icons/bank.svg";
-import BillLogo from "../../Assets/Icons/bill.svg";
-import BoatLogo from "../../Assets/Icons/boat.svg";
-import TimerLogo from "../../Assets/Icons/timer.svg";
-import StaffLogo from "../../Assets/Icons/staff.svg";
+import IMAGE_PREFIX from "../../Config/image";
+
+
 
 const Dashboard: React.FC<IPageProps> = (props) => {
   const [user, setUser] = useState<string>("");
@@ -67,7 +66,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 <Heading as="h2" size="xl" color="white">
                   Way Bill Reports
                 </Heading>
-                <Image src={BillLogo} alt="Way Bill Reports" />
+                <Image src={IMAGE_PREFIX.BillIcon} alt="Way Bill Reports" />
               </Box>
               <Box
                 bg="#3E4059"
@@ -82,7 +81,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 <Heading as="h2" size="xl" color="white" marginBottom="20px">
                   Banking Reports
                 </Heading>
-                <Image src={BankLogo} alt="Banking Reports" />
+                <Image src={IMAGE_PREFIX.BankIcon} alt="Banking Reports" />
               </Box>
             </SimpleGrid>
             <Heading
@@ -110,7 +109,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 justifyContent="space-evenly"
                 height="280px"
               >
-                <Image src={BoatLogo} alt="Way Bill Reports" />
+                <Image src={IMAGE_PREFIX.BoatIcon} alt="Way Bill Reports" />
 
                 <Heading as="h2" size="lg" color="white" textAlign="center">
                   Operational Boats
@@ -126,7 +125,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 justifyContent="space-evenly"
                 height="280px"
               >
-                <Image src={TimerLogo} alt="Schedule & Timetable" />
+                <Image src={IMAGE_PREFIX.TimerIcon} alt="Schedule & Timetable" />
                 <Heading as="h2" size="lg" color="white" textAlign="center">
                   Schedule & Timetable
                 </Heading>
@@ -141,7 +140,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 justifyContent="space-evenly"
                 height="280px"
               >
-                <Image src={StaffLogo} alt="Staff" />
+                <Image src={IMAGE_PREFIX.StaffIcon} alt="Staff" />
                 <Heading as="h2" size="lg" color="white" marginBottom="20px">
                   Staff
                 </Heading>
@@ -178,7 +177,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 <Heading as="h2" size="xl" color="white">
                   Boats
                 </Heading>
-                <Image src={BoatLogo} width="300" height="94" alt="Boats" />
+                <Image src={IMAGE_PREFIX.BoatIcon} width="300" height="94" alt="Boats" />
               </Box>
               <Box
                 bg="#3E4059"
