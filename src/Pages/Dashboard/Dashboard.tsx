@@ -6,6 +6,7 @@ import {
   Image,
   Divider,
   Container,
+  Flex,
   Center
 } from "@chakra-ui/react";
 import AuthContainer from "../../Components/AuthRoute/index";
@@ -32,172 +33,171 @@ const Dashboard: React.FC<IPageProps> = (props) => {
   return (
     <AuthContainer>
       <Navigation>
-      <Center display={'flex'} justifyContent="end">
+        <Flex w={"100vw"}>
+          <Box padding="5" overflowY="scroll" maxW={"70%"}
+            w={'full'}>
+            <Heading
+              as="h2"
+              size="lg"
+              color="#E79378"
+              marginBottom="20px"
+              marginTop="5"
+            >
+              Reports :
+            </Heading>
+            <Divider
+              border="1px solid rgba(62, 64, 89, 0.4)"
+              marginBottom="20px"
+            />
+            <SimpleGrid
+              minChildWidth="300px"
+              columns={[2, null, 2]}
+              spacing="20px"
+            >
+              <Box
+                bg="#E49076"
+                display="flex"
+                borderRadius="24px"
+                flexDirection="column"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="center"
+                height="286px"
+              >
+                <Heading as="h2" size="xl" color="white">
+                  Way Bill Reports
+                </Heading>
+                <Image src={BillLogo} alt="Way Bill Reports" />
+              </Box>
+              <Box
+                bg="#3E4059"
+                display="flex"
+                flexDirection="column"
+                borderRadius="24px"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="center"
+                height="286px"
+              >
+                <Heading as="h2" size="xl" color="white" marginBottom="20px">
+                  Banking Reports
+                </Heading>
+                <Image src={BankLogo} alt="Banking Reports" />
+              </Box>
+            </SimpleGrid>
+            <Heading
+              as="h2"
+              size="lg"
+              color="#E79378"
+              marginBottom="20px"
+              marginTop="5"
+            >
+              Boats :
+            </Heading>
+            <Divider border=" 1px solid #3E405966" marginBottom="20px" />
+            <SimpleGrid
+              minChildWidth="280px"
+              columns={[2, null, 3]}
+              spacing="20px"
+            >
+              <Box
+                bg="#3E4059"
+                display="flex"
+                borderRadius="24px"
+                flexDirection="column"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="space-evenly"
+                height="280px"
+              >
+                <Image src={BoatLogo} alt="Way Bill Reports" />
 
-        <Box padding="5" maxHeight="100vh" overflowY="scroll"  maxW={"70%"}
-          w={'full'}>
-          <Heading
-            as="h2"
-            size="lg"
-            color="#E79378"
-            marginBottom="20px"
-            marginTop="5"
-          >
-            Reports :
-          </Heading>
-          <Divider
-            border="1px solid rgba(62, 64, 89, 0.4)"
-            marginBottom="20px"
-          />
-          <SimpleGrid
-            minChildWidth="300px"
-            columns={[2, null, 2]}
-            spacing="20px"
-          >
-            <Box
-              bg="#E49076"
-              display="flex"
-              borderRadius="24px"
-              flexDirection="column"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="center"
-              height="286px"
+                <Heading as="h2" size="lg" color="white" textAlign="center">
+                  Operational Boats
+                </Heading>
+              </Box>
+              <Box
+                bg="#3E4059"
+                display="flex"
+                borderRadius="24px"
+                flexDirection="column"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="space-evenly"
+                height="280px"
+              >
+                <Image src={TimerLogo} alt="Schedule & Timetable" />
+                <Heading as="h2" size="lg" color="white" textAlign="center">
+                  Schedule & Timetable
+                </Heading>
+              </Box>
+              <Box
+                bg="#3E4059"
+                display="flex"
+                flexDirection="column"
+                borderRadius="24px"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="space-evenly"
+                height="280px"
+              >
+                <Image src={StaffLogo} alt="Staff" />
+                <Heading as="h2" size="lg" color="white" marginBottom="20px">
+                  Staff
+                </Heading>
+              </Box>
+            </SimpleGrid>
+            <Heading
+              as="h2"
+              size="lg"
+              color="#E79378"
+              marginBottom="20px"
+              marginTop="5"
             >
-              <Heading as="h2" size="xl" color="white">
-                Way Bill Reports
-              </Heading>
-              <Image src={BillLogo} alt="Way Bill Reports" />
-            </Box>
-            <Box
-              bg="#3E4059"
-              display="flex"
-              flexDirection="column"
-              borderRadius="24px"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="center"
-              height="286px"
+              Assignments
+            </Heading>
+            <Divider
+              border="1px solid rgba(62, 64, 89, 0.4)"
+              marginBottom="20px"
+            />
+            <SimpleGrid
+              minChildWidth="300px"
+              columns={[2, null, 2]}
+              spacing="20px"
             >
-              <Heading as="h2" size="xl" color="white" marginBottom="20px">
-                Banking Reports
-              </Heading>
-              <Image src={BankLogo} alt="Banking Reports" />
-            </Box>
-          </SimpleGrid>
-          <Heading
-            as="h2"
-            size="lg"
-            color="#E79378"
-            marginBottom="20px"
-            marginTop="5"
-          >
-            Boats :
-          </Heading>
-          <Divider border=" 1px solid #3E405966" marginBottom="20px" />
-          <SimpleGrid
-            minChildWidth="280px"
-            columns={[2, null, 3]}
-            spacing="20px"
-          >
-            <Box
-              bg="#3E4059"
-              display="flex"
-              borderRadius="24px"
-              flexDirection="column"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="space-evenly"
-              height="280px"
-            >
-              <Image src={BoatLogo} alt="Way Bill Reports" />
-
-              <Heading as="h2" size="lg" color="white" textAlign="center">
-                Operational Boats
-              </Heading>
-            </Box>
-            <Box
-              bg="#3E4059"
-              display="flex"
-              borderRadius="24px"
-              flexDirection="column"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="space-evenly"
-              height="280px"
-            >
-              <Image src={TimerLogo} alt="Schedule & Timetable" />
-              <Heading as="h2" size="lg" color="white" textAlign="center">
-                Schedule & Timetable
-              </Heading>
-            </Box>
-            <Box
-              bg="#3E4059"
-              display="flex"
-              flexDirection="column"
-              borderRadius="24px"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="space-evenly"
-              height="280px"
-            >
-              <Image src={StaffLogo} alt="Staff" />
-              <Heading as="h2" size="lg" color="white" marginBottom="20px">
-                Staff
-              </Heading>
-            </Box>
-          </SimpleGrid>
-          <Heading
-            as="h2"
-            size="lg"
-            color="#E79378"
-            marginBottom="20px"
-            marginTop="5"
-          >
-            Assignments
-          </Heading>
-          <Divider
-            border="1px solid rgba(62, 64, 89, 0.4)"
-            marginBottom="20px"
-          />
-          <SimpleGrid
-            minChildWidth="300px"
-            columns={[2, null, 2]}
-            spacing="20px"
-          >
-            <Box
-              bg="#E49076"
-              display="flex"
-              borderRadius="24px"
-              flexDirection="column"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="space-around"
-              height="286px"
-            >
-              <Heading as="h2" size="xl" color="white">
-                Boats
-              </Heading>
-              <Image src={BoatLogo} width="300" height="94" alt="Boats" />
-            </Box>
-            <Box
-              bg="#3E4059"
-              display="flex"
-              flexDirection="column"
-              borderRadius="24px"
-              alignContent="center"
-              alignItems="center"
-              justifyContent="center"
-              height="286px"
-            >
-              <Heading as="h2" size="xl" color="white" marginBottom="20px">
-                Counter
-              </Heading>
-              {/* <Image src={BankLogo} alt="Banking Reports" /> */}
-            </Box>
-          </SimpleGrid>
-        </Box>
-        </Center>
+              <Box
+                bg="#E49076"
+                display="flex"
+                borderRadius="24px"
+                flexDirection="column"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="space-around"
+                height="286px"
+              >
+                <Heading as="h2" size="xl" color="white">
+                  Boats
+                </Heading>
+                <Image src={BoatLogo} width="300" height="94" alt="Boats" />
+              </Box>
+              <Box
+                bg="#3E4059"
+                display="flex"
+                flexDirection="column"
+                borderRadius="24px"
+                alignContent="center"
+                alignItems="center"
+                justifyContent="center"
+                height="286px"
+              >
+                <Heading as="h2" size="xl" color="white" marginBottom="20px">
+                  Counter
+                </Heading>
+                {/* <Image src={BankLogo} alt="Banking Reports" /> */}
+              </Box>
+            </SimpleGrid>
+          </Box>
+        </Flex>
       </Navigation>
     </AuthContainer>
   );
