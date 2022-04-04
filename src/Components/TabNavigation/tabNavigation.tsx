@@ -20,7 +20,15 @@ import { SearchIcon } from "@chakra-ui/icons";
 import "./tabNavigation.css";
 import  Filter  from "../../Assets/Svg/filter.svg";
 
-export default function TabNavigation() {
+export type DataTableForBoatProps<Data extends object> = {
+    dataForBoat: Data[];
+    columnsForBoat: Column<Data>[];
+  };
+
+export default function TabNavigation<Data extends object>({
+    dataForBoat,
+    columnsForBoat
+  }: DataTableForBoatProps<Data>) {
     return (
         <Center display={"flex"} justifyContent="end">
             <Box maxW={"84%"} w={"full"}>
@@ -51,13 +59,13 @@ export default function TabNavigation() {
 
                     <TabPanels>
                         <TabPanel>
-                            <DataTable columns={columns} data={data} />
+                            <DataTable columns={columnsForBoat} data={dataForBoat} />
                         </TabPanel>
                         <TabPanel>
-                            <DataTable columns={columns} data={data} />
+                            <DataTable columns={columnsForBoat} data={dataForBoat} />
                         </TabPanel>
                         <TabPanel>
-                            <DataTable columns={columns} data={data} />
+                            <DataTable columns={columnsForBoat} data={dataForBoat} />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

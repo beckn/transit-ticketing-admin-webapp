@@ -7,6 +7,7 @@ import TabNavigation from '../TabNavigation/tabNavigation';
 import {useApi} from "../../hooks/useApi";
 import {apiUrl} from "../../Config/apiUrl";
 import {  useQueryClient } from "react-query";
+import { dataForScchedule, columnsForSchedule } from '../../Pages/Home/Data/data';
 
 
 
@@ -19,7 +20,7 @@ export default function Schedules() {
         <Box>
             <Navigation>
                 <Navbar pageTitle="Schedules & Timetable" tableTitle="List of Schedules :"/>
-                <TabNavigation/>
+                <TabNavigation dataForBoat={dataForScchedule} columnsForBoat={columnsForSchedule}/>
             </Navigation>
         </Box>
     );

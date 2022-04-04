@@ -7,8 +7,7 @@ import TabNavigation from '../TabNavigation/tabNavigation';
 import {  useQueryClient } from "react-query";
 import {useApi} from "../../hooks/useApi";
 import {apiUrl} from "../../Config/apiUrl"
-
-
+import { dataForStaff, columnsForStaff } from '../../Pages/Home/Data/data';
 
 export default function Staff() {
     const queryClient = useQueryClient();
@@ -18,7 +17,7 @@ export default function Staff() {
         <Box>
             <Navigation>
                 <Navbar pageTitle="Staff" tableTitle="List of Staffs :"/>
-                <TabNavigation />
+                <TabNavigation dataForBoat={dataForStaff} columnsForBoat={columnsForStaff}/>
             </Navigation>
         </Box>
     );

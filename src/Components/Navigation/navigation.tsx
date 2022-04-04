@@ -80,7 +80,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const handleStaff = () => {
     history.push('/staff')
   }
-
+    const handleHome =()=>{
+      history.push('/')
+    }
   return (
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
@@ -104,7 +106,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <NavItem className="main-drawer-item">Home</NavItem>
+      <NavItem className="main-drawer-item" onClick={handleHome}>Home</NavItem>
       <NavItem className="main-drawer-item">Boats</NavItem>
       <Divider />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
