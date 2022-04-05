@@ -4,10 +4,10 @@ import {
     Center,
     Flex,
     Text,
+    Image
 } from '@chakra-ui/react';
 import './navbar.css';
-import AngleBracket from '../../Assets/Svg/Vector.svg';
-import Pipe from '../../Assets/Svg/Pipe.svg';
+import IMAGE_PREFIX from "../../Config/image";
 
 
 interface NavbarProps  {
@@ -32,12 +32,12 @@ export default function Navbar(props: NavbarProps) {
                         <Text className='Nav-content-head'>{totalReport}</Text>
                         <Text className='Nav-content-child'>100</Text>
                     </Box>
-                    <Box><img src={AngleBracket} /></Box>
+                    <Box><Image src={IMAGE_PREFIX.AngleBracket} alt="Angle Bracket"/></Box>
                     <Box>
                         <Text className='Nav-content-head'>{wayBillReport}</Text>
                         <Text className='Nav-content-child'>50</Text>
                     </Box>
-                    <Box><img src={Pipe} /></Box>
+                    <Box><Image src={IMAGE_PREFIX.Pipe} alt="Pipe"/></Box>
                     <Box>
                         <Text className='Nav-content-head'>{BankingReport}</Text>
                         <Text className='Nav-content-child'>50</Text>

@@ -62,7 +62,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             columns={[2, null, 2]}
             spacing="20px"
           >
-            <Link  to='/opBoats'>
+            <Link  to='/way_Bill_Reports'>
             <Box
              _hover={{
               bg: "#E49076",
@@ -82,7 +82,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Image src={IMAGE_PREFIX.BillIcon} alt="Way Bill Reports" />
             </Box>
             </Link>
-            <Link  to='/opBoats'>
+            <Link  to='/banking_Reports'>
             <Box
             _hover={{
               bg: "#E49076",
@@ -232,7 +232,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Heading as="h2" size="xl" color="white" marginBottom="20px">
                 Counter
               </Heading>
-              {/* <Image src={IMAGE_PREFIX.BankIcon} alt="Banking Reports" /> */}
+              <Image src={IMAGE_PREFIX.HomeBoatIcon} width="300" height="94" alt="Banking Reports" />
             </Box>
           </SimpleGrid>
         </Box>

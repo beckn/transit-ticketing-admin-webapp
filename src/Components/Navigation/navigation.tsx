@@ -7,6 +7,7 @@ import {
   Flex,
   useColorModeValue,
   Link,
+  Image,
   Drawer,
   DrawerContent,
   Text,
@@ -84,7 +85,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pos="fixed"
       overflow="scroll"
       {...rest}>
-      <img className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo"  onClick={handleHome}/>
+         <RouterLink to="/">
+  <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo"  /></RouterLink>
       <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
         <Text className="drawer-header">
           Government of Kerala
@@ -97,8 +99,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
      <RouterLink to="/">
      <NavItem className="main-drawer-item">Home</NavItem>
        </RouterLink> 
-      <Text className="main-drawer-item">Boats</Text>
-      <Divider />
+      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" >Boats</Text>
+      <Divider mb="3"/>
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
         <RouterLink to="/opBoats"><NavItem className="sub-drawer-item" >Operational Boats</NavItem></RouterLink> 
@@ -106,9 +108,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <RouterLink to="/staff"><NavItem className="sub-drawer-item" >Staff</NavItem></RouterLink> 
         </div>
       </Flex>
-      <Text className="main-drawer-item">Assignments</Text>
-      <Divider />
-      <Flex alignItems="center" mt="14" justifyContent="space-between">
+      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF">Assignments</Text>
+      <Divider mb="3"/>
+      <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
           <NavItem className="sub-drawer-item">Boats</NavItem>
           <NavItem className="sub-drawer-item">Counter</NavItem>
@@ -133,12 +135,11 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ children, ...rest }: NavItemProps) => {
   return (
-   
       <Flex
         align="center"
         p="4"
         mx="4"
-        borderRadius="lg"
+        borderRadius="24px"
         role="group"
         cursor="pointer"
         _hover={{
