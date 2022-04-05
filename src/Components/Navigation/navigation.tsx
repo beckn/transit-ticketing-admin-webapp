@@ -15,13 +15,21 @@ import {
   BoxProps,
   FlexProps,
   Divider,
+  HStack,
+  MenuButton,
+  VStack,
+  Menu,
+  MenuList,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import "./navigation.css"
 // import Navbar from "../Navbar/navbar";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
-
+import { TriangleDownIcon } from "@chakra-ui/icons";
+import { auth } from "../../Config/firebase";
+import { deleteLocalStorage } from "../../utils/helpers";
+import logging from "../../Config/logging";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -65,12 +73,22 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-
+ const history = useHistory();
   let parsedData = null
   let data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data)
   }
+  
+  const logout=()=>{
+  auth.signOut()
+  .then(()=>{
+    deleteLocalStorage("firebaseData");
+    history.push('/')
+  })
+  .catch(error=>logging.error(error));
+}
+
   return (
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
@@ -116,16 +134,42 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <NavItem className="sub-drawer-item">Counter</NavItem>
         </div>
       </Flex>
-      <Flex mt="14" pos="relative" bottom="0">
+      <HStack spacing={{ base: '0', md: '6' }}>
+<Flex alignItems={'center'}>
+  <Menu>
+    <MenuButton
+      py={2}
+      transition="all 0.3s"
+      _focus={{ boxShadow: 'none' }}>
+      <HStack>
         <Avatar
           left="24px"
           size={"sm"}
           src={parsedData.photoURL}
         />
-        <Text className="footer-User-name">
-          {parsedData.displayName ? parsedData.displayName : parsedData.email}
-        </Text>
-      </Flex>
+        <VStack
+          display={{ base: 'none', md: 'flex' }}
+          alignItems="flex-start"
+          spacing="1px"
+          ml="2">
+          <Text fontSize="sm" className="footer-User-name" marginLeft={'31px'}>
+            {parsedData.displayName ? parsedData.displayName : parsedData.email}
+          </Text>
+        </VStack>
+        <Box display={{ base: 'none', md: 'flex' }}>
+          <TriangleDownIcon />
+        </Box>
+      </HStack>
+    </MenuButton>
+    <MenuList marginLeft={'25px'} borderStyle={'none'} bgColor="#E49076" 
+    >
+      <Text onClick={()=>logout()} className="footer-User-name" display={'flex'} justifyContent={'center'} cursor={'pointer'}>
+        Sign out
+      </Text>
+    </MenuList>
+  </Menu>
+</Flex>
+</HStack>
     </Box>
   );
 };
