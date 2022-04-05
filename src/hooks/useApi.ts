@@ -9,7 +9,6 @@ const getBoatData = async (path:string) => {
 };
 
 export const  useApi=(path:string) =>{
-  
   return useQuery([`${path}`, path], () =>  getBoatData(path),{
     retry : 2
   });

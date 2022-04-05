@@ -25,7 +25,7 @@ const HomeScreen: React.FC<IPageProps> = (props) => {
       <Navigation>
         <Center>
           {/* <DataTable columns={columns} data={data} /> */}
-          <TabNavigation/>
+          {/* <TabNavigation/> */}
         </Center>
       </Navigation>
     </AuthContainer>

@@ -84,7 +84,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pos="fixed"
       overflow="scroll"
       {...rest}>
-      <img className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" />
+      <img className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo"  onClick={handleHome}/>
       <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
         <Text className="drawer-header">
           Government of Kerala

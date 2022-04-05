@@ -3,11 +3,11 @@ import {
 } from '@chakra-ui/react';
 import Navigation from '../../Components/Navigation/navigation';
 import Navbar from '../Navbar/navbar';
-import TabNavigation from '../TabNavigation/tabNavigation';
 import {useApi} from "../../hooks/useApi";
 import {apiUrl} from "../../Config/apiUrl";
 import {  useQueryClient } from "react-query";
-
+import { dataForScchedule, columnsForSchedule } from '../../Pages/Home/Data/data';
+import ScheduleTabs from '../Tabs/scheduleTabs';
 
 
 
@@ -18,8 +18,8 @@ export default function Schedules() {
     return (
         <Box>
             <Navigation>
-                <Navbar pageTitle="Schedules & Timetable" tableTitle="List of Schedules :"/>
-                <TabNavigation/>
+                <Navbar pageTitle="Schedules & Timetable" tableTitle="List of Schedules :" totalReport="Total Stops" wayBillReport="Boats Available" BankingReport ="Area Covered"/>
+                <ScheduleTabs dataForBoat={dataForScchedule} columnsForBoat={columnsForSchedule}/>
             </Navigation>
         </Box>
     );
