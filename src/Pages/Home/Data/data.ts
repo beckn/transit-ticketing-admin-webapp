@@ -1,4 +1,5 @@
 import { Column } from "react-table";
+import { date } from "yup/lib/locale";
 // ----------------------Opereational Boats---------------------
 type BoatsConversion = {
   bootNo: number;
@@ -205,5 +206,169 @@ export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
   {
     Header: "Shift",
     accessor: "shift"
+  },
+];
+
+// ----------------------------WAY BILL REPORTS----------------------------
+
+type BoatsConversionForWayBill = {
+  nameOfBoatMaster: string,
+  boatMasterId: number,
+  bootNo: number;
+  wayBillNo: number;
+  status: boolean;
+  date: string;
+  View: string;
+  download: string;
+  print: string;
+};
+
+export const dataForWayBill: BoatsConversionForWayBill[] = [
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: true,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: true,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: true,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  }
+];
+
+export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
+  {
+    Header: "Name Of Boat Master",
+    accessor: "nameOfBoatMaster"
+  },
+  {
+    Header: "Boat Master ID",
+    accessor: "boatMasterId"
+  },
+  {
+    Header: "Boat No",
+    accessor: "bootNo"
+  },
+  {
+    Header: "Way Bill No",
+    accessor: "wayBillNo"
+  },
+  {
+    Header: "Status",
+    accessor:  d => d.status ? "#008000" : "#f0cb26"
+  },
+  {
+    Header: "Date",
+    accessor: "date"
+  },
+
+
+  {
+    Header: "",
+    accessor: "View"
+  },
+  {
+    Header: "",
+    accessor: "download"
+  },
+  {
+    Header: "",
+    accessor: "print"
+  },
+];
+
+// ----------------------------BANKING REPORTS----------------------------
+
+type BoatsConversionForBanking = {
+  nameOfBoatMaster: string,
+  bootNo: number;
+  wayBillNo: number;
+  date: string;
+  View: string;
+  download: string;
+  print: string;
+};
+
+export const dataForBanking: BoatsConversionForBanking[] = [
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    bootNo: 1102,
+    wayBillNo: 10101,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    bootNo: 1102,
+    wayBillNo: 10101,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    bootNo: 1102,
+    wayBillNo: 10101,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print"
+  }
+];
+
+export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
+  {
+    Header: "Name Of Boat Master",
+    accessor: "nameOfBoatMaster"
+  },
+  {
+    Header: "Boat No",
+    accessor: "bootNo"
+  },
+  {
+    Header: "Way Bill No",
+    accessor: "wayBillNo"
+  },
+  {
+    Header: "Date",
+    accessor: "date"
+  },
+  {
+    Header: "",
+    accessor: "View"
+  },
+  {
+    Header: "",
+    accessor: "download"
+  },
+  {
+    Header: "",
+    accessor: "print"
   },
 ];

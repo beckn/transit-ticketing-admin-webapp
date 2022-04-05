@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import DataTable from '../Table/table'
 import { SearchIcon } from '@chakra-ui/icons';
-import './tabNavigation.css';
+import './scheduleTabs.css';
 import  Filter  from '../../Assets/Svg/filter.svg';
 import { Column } from 'react-table';
 
@@ -25,7 +25,7 @@ export type DataTableForBoatProps<Data extends object> = {
     columnsForBoat: Column<Data>[];
   };
 
-export default function TabNavigation<Data extends object>({
+export default function ScheduleTabs<Data extends object>({
     dataForBoat,
     columnsForBoat
   }: DataTableForBoatProps<Data>) {

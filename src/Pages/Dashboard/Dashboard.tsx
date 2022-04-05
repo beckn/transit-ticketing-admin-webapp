@@ -15,11 +15,13 @@ import IPageProps from "../../Interfaces/page";
 import { getLocalStorage } from "../../utils/helpers";
 import Navigation from "../../Components/Navigation/navigation";
 import IMAGE_PREFIX from "../../Config/image";
+import { useHistory } from "react-router-dom";
 
 
 
 const Dashboard: React.FC<IPageProps> = (props) => {
   const [user, setUser] = useState<string>("");
+  const history = useHistory();
 
   useEffect(() => {
     const data = getLocalStorage("firebaseData");
@@ -28,6 +30,12 @@ const Dashboard: React.FC<IPageProps> = (props) => {
       setUser(parsedData);
     }
   }, []);
+  const handleWayBillReport=()=>{
+    history.push('/way_Bill_Reports')
+  }
+  const handleBankingReport=()=>{
+    history.push('/banking_Reports')
+  }
 
   return (
     <AuthContainer>
@@ -62,6 +70,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 alignItems="center"
                 justifyContent="center"
                 height="286px"
+                onClick={handleWayBillReport}
               >
                 <Heading as="h2" size="xl" color="white">
                   Way Bill Reports
@@ -77,6 +86,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                 alignItems="center"
                 justifyContent="center"
                 height="286px"
+                onClick={handleBankingReport}
               >
                 <Heading as="h2" size="xl" color="white" marginBottom="20px">
                   Banking Reports

@@ -3,11 +3,11 @@ import {
 } from '@chakra-ui/react';
 import Navigation from '../../Components/Navigation/navigation';
 import Navbar from '../Navbar/navbar';
-import TabNavigation from '../TabNavigation/tabNavigation';
 import {  useQueryClient } from "react-query";
 import {useApi} from "../../hooks/useApi";
 import {apiUrl} from "../../Config/apiUrl"
 import { dataForStaff, columnsForStaff } from '../../Pages/Home/Data/data';
+import StaffTabs from '../Tabs/staffTabs';
 
 export default function Staff() {
     const queryClient = useQueryClient();
@@ -16,8 +16,8 @@ export default function Staff() {
     return (
         <Box>
             <Navigation>
-                <Navbar pageTitle="Staff" tableTitle="List of Staffs :"/>
-                <TabNavigation dataForBoat={dataForStaff} columnsForBoat={columnsForStaff}/>
+                <Navbar pageTitle="Staff" tableTitle="Boat Master :" totalReport="Total Staff" wayBillReport="Boat Master" BankingReport ="Ticket Master"/>
+                <StaffTabs dataForBoat={dataForStaff} columnsForBoat={columnsForStaff}/>
             </Navigation>
         </Box>
     );

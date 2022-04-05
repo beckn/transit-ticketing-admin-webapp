@@ -5,6 +5,8 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import OperationalBoats from "../Components/OperationalBoats/operationalBoats";
 import Schedules from "../Components/Schedules/schedules";
 import Staff from "../Components/Staff/staff";
+import WayBillReport from "../Components/WayBillReports/wayBillReports";
+import BankingReports from "../Components/BankingReports/bankingReports";
 
 const routes: IRoute[] = [
   {
@@ -49,6 +51,20 @@ const routes: IRoute[] = [
     name: "Staff",
     protected: false
   },
+  {
+    path: "/way_Bill_Reports",
+    exact: true, 
+    component: WayBillReport,
+    name: "Way Bill Report",
+    protected: false
+  },
+  {
+  path: "/banking_Reports",
+  exact: true, 
+  component: BankingReports,
+  name: "Banking Report",
+  protected: false
+},
 
 ];
 
