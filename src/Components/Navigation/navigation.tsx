@@ -1,4 +1,5 @@
 import { ReactNode, ReactText } from "react";
+import {Link as RouterLink} from "react-router-dom"
 import {
   Avatar,
   Box,
@@ -70,17 +71,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   if (data) {
     parsedData = JSON.parse(data)
   }
-  // console.log("ParsedData", parsedData.photoURL);
-  const handleOperationalBoats = () => {
-    history.push('/opBoats')
-  }
-  const handleSchedules = () => {
-    history.push('/schedules')
-  }
-  const handleStaff = () => {
-    history.push('/staff')
-  }
-
   return (
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
@@ -104,17 +94,19 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <NavItem className="main-drawer-item">Home</NavItem>
-      <NavItem className="main-drawer-item">Boats</NavItem>
+     <RouterLink to="/">
+     <NavItem className="main-drawer-item">Home</NavItem>
+       </RouterLink> 
+      <Text className="main-drawer-item">Boats</Text>
       <Divider />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-          <NavItem className="sub-drawer-item" onClick={handleOperationalBoats}>Operational Boats</NavItem>
-          <NavItem className="sub-drawer-item" onClick={handleSchedules}>Schedules</NavItem>
-          <NavItem className="sub-drawer-item" onClick={handleStaff}>Staff</NavItem>
+        <RouterLink to="/opBoats"><NavItem className="sub-drawer-item" >Operational Boats</NavItem></RouterLink> 
+        <RouterLink to="/schedules"><NavItem className="sub-drawer-item" >Schedules</NavItem></RouterLink> 
+        <RouterLink to="/staff"><NavItem className="sub-drawer-item" >Staff</NavItem></RouterLink> 
         </div>
       </Flex>
-      <NavItem className="main-drawer-item">Assignments</NavItem>
+      <Text className="main-drawer-item">Assignments</Text>
       <Divider />
       <Flex alignItems="center" mt="14" justifyContent="space-between">
         <div>
@@ -141,11 +133,7 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ children, ...rest }: NavItemProps) => {
   return (
-    <Link
-      href="#"
-      style={{ textDecoration: "none", textAlign: "left" }}
-      _focus={{ boxShadow: "none" }}
-    >
+   
       <Flex
         align="center"
         p="4"
@@ -161,6 +149,5 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       >
         {children}
       </Flex>
-    </Link>
   );
 };

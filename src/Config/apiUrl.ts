@@ -1,16 +1,15 @@
 export const apiUrl = {
-SCHEDULE:"schedule",
-TRIP_INVENTORIES:"tripInventories",
-STAFF:"staffs",
-TRIPS_IN_SCHEDULE:"tripsInSchedules",
-FARE_RULES:"fareRules",
-SCHEDULED_JOURNEYS:"scheduledJourneys",
-STATIONS:"stations",
-STOP_TIME:"stopTimeses",
-TRIPSES:"tripses",
-PAYMENT_DETAILS:"paymentsDetailses",
-FARE_ATTRIBUTES:"fareAttributeses",
-OPERATIONAL_BOATS:"boatses",
-PROFILE:"profile"
+SCHEDULE:"/api/v1/secure/boat/schedules",
+TRIP_INVENTORIES:"/api/v1/secure/tripInventories",
+STAFF:"api/v1/secure/staffs",
+TRIPS_IN_SCHEDULE:"/api/v1/secure/tripsInSchedules",
+FARE_RULES:"/api/v1/secure/fareRules",
+SCHEDULED_JOURNEYS:"/api/v1/secure/scheduledJourneys",
+STATIONS:"/api/v1/secure/stations",
+STOP_TIME:"/api/v1/secure/stopTimeses",
+TRIPSES:"/api/v1/secure/tripses",
+PAYMENT_DETAILS:"/api/v1/secure/paymentsDetailses",
+FARE_ATTRIBUTES:"/api/v1/secure/fareAttributeses",
+OPERATIONAL_BOATS:"/api/v1/secure/boats",
 }
 

@@ -1,36 +1,39 @@
-import { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from 'axios';
+import { history } from "../index";
+import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
 
-const Request = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
 
-const onRequest = (config: AxiosRequestConfig): AxiosRequestConfig => {
-  console.error('request', config);
-  return config;
+
+export const getApiKey= ()=> {
+  const localData = getLocalStorage("firebaseData");
+  const parsedData = localData && JSON.parse(localData);
+  return  parsedData.stsTokenManager.apiKey || ""
 }
 
-const onRequestError = (error: AxiosError): Promise<AxiosError> => {
-  console.error('error', error);
-  return Promise.reject(error);
+const axiosInstance=axios.create({
+    baseURL: baseUrl,
+    headers:{
+"content-type":"application/json",
+   accept:"*/*",
+   "X-API-KEY":"a8d6ge7d-5tsa-8d9c-m3b2-30e21c0e9564",
+    }
+})
+
+export const request = ({...options}) => {
+
+  const onSuccess= (response:any) => response;
+  const onError = (error:any) => {
+if(error.response.status === 401) {
+  console.log("i am error",error)
+
+  deleteLocalStorage("firebaseData");
+  history.push('/login')
+ }
+
+return error
+  };
+return axiosInstance(options).then(onSuccess).catch(onError);
 }
 
-const onResponse = (response: AxiosResponse): AxiosResponse => {
-  console.log('response', response);
-  return response;
-}
-
-const onResponseError = (error: AxiosError): Promise<AxiosError> => {
-  console.log(' Response error', error);
-  return Promise.reject(error);
-}
-
-export function setupInterceptorsTo(axiosInstance: AxiosInstance): AxiosInstance {
-  axiosInstance.interceptors.request.use(onRequest, onRequestError);
-  axiosInstance.interceptors.response.use(onResponse, onResponseError);
-  return axiosInstance;
-}
 
