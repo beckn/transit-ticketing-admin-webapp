@@ -13,12 +13,23 @@ import {
   BoxProps,
   FlexProps,
   Divider,
+  HStack,
+  VStack,
+  Menu,
+  MenuButton,
+  MenuList,
 } from "@chakra-ui/react";
+import {
+  FiChevronDown,
+} from 'react-icons/fi';
 import { IconType } from "react-icons";
 import "./navigation.css"
 // import Navbar from "../Navbar/navbar";
 import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
+import { auth } from "../../Config/firebase";
+import { deleteLocalStorage } from "../../utils/helpers";
+import logging from "../../Config/logging";
 
 interface LinkItemProps {
   name: string;
@@ -26,7 +37,7 @@ interface LinkItemProps {
 }
 
 export default function Navigation({ children }: { children: ReactNode }) {
-  const { isOpen, 
+  const { isOpen,
     // onOpen, 
     onClose } = useDisclosure();
   return (
@@ -70,7 +81,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   if (data) {
     parsedData = JSON.parse(data)
   }
-  // console.log("ParsedData", parsedData.photoURL);
   const handleOperationalBoats = () => {
     history.push('/opBoats')
   }
@@ -80,9 +90,17 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const handleStaff = () => {
     history.push('/staff')
   }
-    const handleHome =()=>{
+  const handleHome = () => {
+    history.push('/')
+  }
+  const logout=()=>{
+    auth.signOut()
+    .then(()=>{
+      deleteLocalStorage("firebaseData");
       history.push('/')
-    }
+    })
+    .catch(error=>logging.error(error));
+  }
   return (
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
@@ -90,13 +108,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       transition="1s ease"
       pb="12"
       bg={useColorModeValue('#3E4059', 'gray.900')}
-      // w={{ base: "448px", md: 60 }}
       w="448px"
       h="full"
       pos="fixed"
       overflow="scroll"
       {...rest}>
-      <img className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo"  onClick={handleHome}/>
+      <img className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" onClick={handleHome} />
       <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
         <Text className="drawer-header">
           Government of Kerala
@@ -124,16 +141,42 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <NavItem className="sub-drawer-item">Counter</NavItem>
         </div>
       </Flex>
-      <Flex  mt="14" pos="relative" bottom="0">
-        <Avatar
-          left="24px"
-          size={"sm"}
-          src={parsedData.photoURL}
-        />
-        <Text className="footer-User-name">
-          {parsedData.displayName ? parsedData.displayName : parsedData.email}
-        </Text>
-      </Flex>
+      <HStack spacing={{ base: '0', md: '6' }}>
+        <Flex alignItems={'center'}>
+          <Menu>
+            <MenuButton
+              py={2}
+              transition="all 0.3s"
+              _focus={{ boxShadow: 'none' }}>
+              <HStack>
+                <Avatar
+                  left="24px"
+                  size={"sm"}
+                  src={parsedData.photoURL}
+                />
+                <VStack
+                  display={{ base: 'none', md: 'flex' }}
+                  alignItems="flex-start"
+                  spacing="1px"
+                  ml="2">
+                  <Text fontSize="sm" className="footer-User-name" marginLeft={'31px'}>
+                    {parsedData.displayName ? parsedData.displayName : parsedData.email}
+                  </Text>
+                </VStack>
+                <Box display={{ base: 'none', md: 'flex' }}>
+                  <FiChevronDown />
+                </Box>
+              </HStack>
+            </MenuButton>
+            <MenuList marginLeft={'25px'} borderStyle={'none'} bgColor="#E49076" 
+            >
+              <Text onClick={()=>logout()} className="footer-User-name" display={'flex'} justifyContent={'center'} cursor={'pointer'}>
+                Sign out
+              </Text>
+            </MenuList>
+          </Menu>
+        </Flex>
+      </HStack>
     </Box>
   );
 };
