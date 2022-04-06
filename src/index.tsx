@@ -6,9 +6,9 @@ import {  QueryClientProvider,QueryClient } from "react-query";
 import { BrowserRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import reportWebVitals from "./reportWebVitals";
-import {createBrowserHistory} from "history";
+// import {createBrowserHistory} from "history";
 
-export const history = createBrowserHistory()
+// export const history = createBrowserHistory()
 const queryClient = new QueryClient();
 
 ReactDOM.render(

@@ -19,7 +19,7 @@ export default function Navbar(props: NavbarProps) {
     BankingReport,
     widgetData,
   } = props;
-  const { total, remaining, available } = widgetData;
+  const { total, remaining, available } = widgetData || {};
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"1232px"} h="354px" w={"full"}>

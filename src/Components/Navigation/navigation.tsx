@@ -1,5 +1,5 @@
 import { ReactNode, ReactText } from "react";
-import {Link as RouterLink} from "react-router-dom"
+import { Link as RouterLink } from "react-router-dom"
 import {
   Avatar,
   Box,
@@ -19,7 +19,7 @@ import {
 import { IconType } from "react-icons";
 import "./navigation.css"
 // import Navbar from "../Navbar/navbar";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
 
 interface LinkItemProps {
@@ -28,7 +28,7 @@ interface LinkItemProps {
 }
 
 export default function Navigation({ children }: { children: ReactNode }) {
-  const { isOpen, 
+  const { isOpen,
     // onOpen, 
     onClose } = useDisclosure();
   return (
@@ -53,7 +53,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml={"26%"} w={"70%"} p="4">
+      <Box ml={"450px"} w={"70%"} p="4">
         {children}
       </Box>
     </Box>
@@ -65,7 +65,6 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const history = useHistory();
 
   let parsedData = null
   let data = localStorage.getItem("firebaseData");
@@ -78,15 +77,16 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       borderRadius="0px 24px 24px 0px"
       transition="1s ease"
       pb="12"
-      bg={useColorModeValue('#3E4059', 'gray.900')}
+      bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
       w="448px"
       h="full"
       pos="fixed"
       overflow="scroll"
       {...rest}>
-         <RouterLink to="/">
-  <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo"  /></RouterLink>
+      <RouterLink to="/">
+        <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" />
+      </RouterLink>
       <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
         <Text className="drawer-header">
           Government of Kerala
@@ -96,27 +96,27 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-     <RouterLink to="/">
-     <NavItem className="main-drawer-item">Home</NavItem>
-       </RouterLink> 
+      <RouterLink to="/">
+        <NavItem className="main-drawer-item">Home</NavItem>
+      </RouterLink>
       <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" >Boats</Text>
-      <Divider mb="3"/>
+      <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-        <RouterLink to="/opBoats"><NavItem className="sub-drawer-item" >Operational Boats</NavItem></RouterLink> 
-        <RouterLink to="/schedules"><NavItem className="sub-drawer-item" >Schedules</NavItem></RouterLink> 
-        <RouterLink to="/staff"><NavItem className="sub-drawer-item" >Staff</NavItem></RouterLink> 
+          <RouterLink to="/opBoats"><NavItem className="sub-drawer-item" >Operational Boats</NavItem></RouterLink>
+          <RouterLink to="/schedules"><NavItem className="sub-drawer-item" >Schedules</NavItem></RouterLink>
+          <RouterLink to="/staff"><NavItem className="sub-drawer-item" >Staff</NavItem></RouterLink>
         </div>
       </Flex>
       <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF">Assignments</Text>
-      <Divider mb="3"/>
+      <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
           <NavItem className="sub-drawer-item">Boats</NavItem>
           <NavItem className="sub-drawer-item">Counter</NavItem>
         </div>
       </Flex>
-      <Flex  mt="14" pos="relative" bottom="0">
+      <Flex mt="14" pos="relative" bottom="0">
         <Avatar
           left="24px"
           size={"sm"}
@@ -135,20 +135,20 @@ interface NavItemProps extends FlexProps {
 }
 const NavItem = ({ children, ...rest }: NavItemProps) => {
   return (
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="24px"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: "#E49076",
-          color: "white",
-        }}
-        {...rest}
-      >
-        {children}
-      </Flex>
+    <Flex
+      align="center"
+      p="4"
+      mx="4"
+      borderRadius="24px"
+      role="group"
+      cursor="pointer"
+      _hover={{
+        bg: "#E49076",
+        color: "white",
+      }}
+      {...rest}
+    >
+      {children}
+    </Flex>
   );
 };

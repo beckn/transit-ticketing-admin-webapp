@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { history } from "../index";
+// import { history } from "../index";
 import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
 
 const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
@@ -21,17 +21,14 @@ const axiosInstance=axios.create({
 })
 
 export const request = ({...options}) => {
-
   const onSuccess= (response:any) => response;
   const onError = (error:any) => {
-if(error.response.status === 401) {
-  console.log("i am error",error)
-
-  deleteLocalStorage("firebaseData");
-  history.push('/login')
- }
-
-return error
+    if(error.response.status === 401) {
+      console.log("i am error",error)
+      deleteLocalStorage("firebaseData");
+      // history.push('/login');
+    }
+    return error
   };
 return axiosInstance(options).then(onSuccess).catch(onError);
 }
