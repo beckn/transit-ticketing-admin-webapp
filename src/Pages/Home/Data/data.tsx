@@ -1,74 +1,77 @@
 import { Column } from "react-table";
 import { date } from "yup/lib/locale";
+import { Box, Link, Divider } from "@chakra-ui/react";
+
 // ----------------------Opereational Boats---------------------
-type BoatsConversion = {
+
+type BoatTableData = {
   bootNo: number;
   boatMaster: string;
-  schudule: string;
+  schedule: string;
   lastServiceDate: string;
   newServiceDate: string;
-  status: boolean;
+  status: string;
   station: string;
 };
 
-export const data: BoatsConversion[] = [
+export const boatData: Array<BoatTableData> = [
   {
     bootNo: 1102,
     boatMaster: "Navjeet Singh",
-    schudule: "EKM-V Puzha",
+    schedule: "EKM-V Puzha",
     lastServiceDate: "01/11/22",
     newServiceDate: "02-11-22",
-    status: true,
-    station: "EDATHUA"
+    status: "Replace",
+    station: "EDATHUA",
   },
   {
     bootNo: 1102,
     boatMaster: "Navjeet Singh",
-    schudule: "EKM-V Puzha",
+    schedule: "EKM-V Puzha",
     lastServiceDate: "01/11/22",
     newServiceDate: "02-11-22",
-    status: true,
-    station: "EDATHUA"
+    status: "Servicing",
+    station: "EDATHUA",
   },
   {
     bootNo: 1102,
     boatMaster: "Navjeet Singh",
-    schudule: "EKM-V Puzha",
+    schedule: "EKM-V Puzha",
     lastServiceDate: "01/11/22",
     newServiceDate: "02-11-22",
-    status: true,
-    station: "EDATHUA"
-  }
+    status: "New",
+    station: "EDATHUA",
+  },
 ];
 
-export const columns: Column<BoatsConversion>[] = [
+export const boatColumns: Column<BoatTableData>[] = [
   {
-    Header: "Boat No",
-    accessor: "bootNo"
+    Header: "Boat Master ID",
+    accessor: "bootNo",
   },
   {
     Header: "Boat Master",
-    accessor: "boatMaster"
+    accessor: "boatMaster",
   },
   {
-    Header: "Schudule",
-    accessor: "schudule"
+    Header: "Schedule",
+    accessor: "schedule",
   },
   {
     Header: "Last Service Date",
-    accessor: "lastServiceDate"
+    accessor: "lastServiceDate",
   },
   {
     Header: "New Service Date",
-    accessor: "newServiceDate"
+    accessor: "newServiceDate",
   },
   {
     Header: "Status",
-    accessor: d => d.status ? "Yes" : "No" 
+    accessor: "status",
   },
   {
     Header: "Station",
-    accessor: "station"
+    accessor: "station",
   },
 ];
 
@@ -90,7 +93,7 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
     startTime: "11:02 AM",
     endTime: "12:02 PM",
     startLocation: "EDATHUA",
-    endLocation: "NEDUMUDY"
+    endLocation: "NEDUMUDY",
   },
   {
     bootNo: 1102,
@@ -98,7 +101,7 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
     startTime: "11:02 AM",
     endTime: "12:02 PM",
     startLocation: "EDATHUA",
-    endLocation: "NEDUMUDY"
+    endLocation: "NEDUMUDY",
   },
   {
     bootNo: 1102,
@@ -106,46 +109,46 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
     startTime: "11:02 AM",
     endTime: "12:02 PM",
     startLocation: "EDATHUA",
-    endLocation: "NEDUMUDY"
-  }
+    endLocation: "NEDUMUDY",
+  },
 ];
 
 export const columnsForSchedule: Column<BoatsConversionForScchedule>[] = [
   {
     Header: "Boat No",
-    accessor: "bootNo"
+    accessor: "bootNo",
   },
   {
     Header: "Boat Master Name",
-    accessor: "boatMasterName"
+    accessor: "boatMasterName",
   },
   {
     Header: "Start Time",
-    accessor: "startTime"
+    accessor: "startTime",
   },
   {
     Header: "End Time",
-    accessor: "endTime"
+    accessor: "endTime",
   },
   {
     Header: "Start Location",
-    accessor: "startLocation"
+    accessor: "startLocation",
   },
   {
     Header: "End Location",
-    accessor: "endLocation"
+    accessor: "endLocation",
   },
 ];
 
 // ------------------------staff-----------------------
 type BoatsConversionForStaff = {
-  boatMasterId: number,
-  boatMaster: string,
+  boatMasterId: number;
+  boatMaster: string;
   bootNo: number;
-  dateOfJoining: string,
-  station: string,
-  postion: string,
-  shift: string,
+  dateOfJoining: string;
+  station: string;
+  postion: string;
+  shift: string;
 };
 
 export const dataForStaff: BoatsConversionForStaff[] = [
@@ -156,7 +159,7 @@ export const dataForStaff: BoatsConversionForStaff[] = [
     dateOfJoining: "01-11-22",
     station: "EDATHUA",
     postion: "Senior",
-    shift: "Morning"
+    shift: "Morning",
   },
   {
     boatMasterId: 4321234,
@@ -165,7 +168,7 @@ export const dataForStaff: BoatsConversionForStaff[] = [
     dateOfJoining: "01-11-22",
     station: "EDATHUA",
     postion: "Junior",
-    shift: "Evening"
+    shift: "Evening",
   },
   {
     boatMasterId: 4321234,
@@ -174,46 +177,46 @@ export const dataForStaff: BoatsConversionForStaff[] = [
     dateOfJoining: "01-11-22",
     station: "EDATHUA",
     postion: "New",
-    shift: "Morning"
-  }
+    shift: "Morning",
+  },
 ];
 
 export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
   {
     Header: "Boat Master ID",
-    accessor: "boatMasterId"
+    accessor: "boatMasterId",
   },
   {
     Header: "Boat Master",
-    accessor: "boatMaster"
+    accessor: "boatMaster",
   },
   {
     Header: "Boat No",
-    accessor: "bootNo"
+    accessor: "bootNo",
   },
   {
     Header: "Date of Joining",
-    accessor: "dateOfJoining"
+    accessor: "dateOfJoining",
   },
   {
     Header: "Station",
-    accessor: "station"
+    accessor: "station",
   },
   {
     Header: "Position",
-    accessor: "postion"
+    accessor: "postion",
   },
   {
     Header: "Shift",
-    accessor: "shift"
+    accessor: "shift",
   },
 ];
 
 // ----------------------------WAY BILL REPORTS----------------------------
 
 type BoatsConversionForWayBill = {
-  nameOfBoatMaster: string,
-  boatMasterId: number,
+  nameOfBoatMaster: string;
+  boatMasterId: number;
   bootNo: number;
   wayBillNo: number;
   status: boolean;
@@ -233,7 +236,40 @@ export const dataForWayBill: BoatsConversionForWayBill[] = [
     date: "01/11",
     View: "View",
     download: "Download",
-    print: "Print"
+    print: "Print",
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: false,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print",
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: false,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print",
+  },
+  {
+    nameOfBoatMaster: "Navjeet Singh",
+    boatMasterId: 4321234,
+    bootNo: 1102,
+    wayBillNo: 10101,
+    status: false,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print",
   },
   {
     nameOfBoatMaster: "Navjeet Singh",
@@ -244,66 +280,63 @@ export const dataForWayBill: BoatsConversionForWayBill[] = [
     date: "01/11",
     View: "View",
     download: "Download",
-    print: "Print"
+    print: "Print",
   },
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: true,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print"
-  }
 ];
 
 export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "Name Of Boat Master",
-    accessor: "nameOfBoatMaster"
+    accessor: "nameOfBoatMaster",
   },
   {
     Header: "Boat Master ID",
-    accessor: "boatMasterId"
+    accessor: "boatMasterId",
   },
   {
     Header: "Boat No",
-    accessor: "bootNo"
+    accessor: "bootNo",
   },
   {
     Header: "Way Bill No",
-    accessor: "wayBillNo"
+    accessor: "wayBillNo",
   },
   {
     Header: "Status",
-    accessor:  d => d.status ? "#008000" : "#f0cb26"
+    accessor: (props) => (
+      <Divider
+        w="42"
+        h="21"
+        bg={props.status ? "#51FC15" : "#FCF315"}
+        p="1"
+      ></Divider>
+    ),
   },
   {
     Header: "Date",
-    accessor: "date"
+    accessor: "date",
   },
 
-
   {
     Header: "",
-    accessor: "View"
+    accessor: "View",
+    Cell: (props) => <Link color="#EE9A7F">View</Link>,
   },
   {
     Header: "",
-    accessor: "download"
+    accessor: "download",
+    Cell: (props) => <Link color="#EE9A7F">Download</Link>,
   },
-  {
-    Header: "",
-    accessor: "print"
-  },
+  // {
+  //   Header: "",
+  //   accessor: "print"
+  // },
 ];
 
 // ----------------------------BANKING REPORTS----------------------------
 
 type BoatsConversionForBanking = {
-  nameOfBoatMaster: string,
+  nameOfBoatMaster: string;
   bootNo: number;
   wayBillNo: number;
   date: string;
@@ -320,7 +353,7 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     date: "01/11",
     View: "View",
     download: "Download",
-    print: "Print"
+    print: "Print",
   },
   {
     nameOfBoatMaster: "Navjeet Singh",
@@ -329,7 +362,7 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     date: "01/11",
     View: "View",
     download: "Download",
-    print: "Print"
+    print: "Print",
   },
   {
     nameOfBoatMaster: "Navjeet Singh",
@@ -338,37 +371,39 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     date: "01/11",
     View: "View",
     download: "Download",
-    print: "Print"
-  }
+    print: "Print",
+  },
 ];
 
 export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "Name Of Boat Master",
-    accessor: "nameOfBoatMaster"
+    accessor: "nameOfBoatMaster",
   },
   {
     Header: "Boat No",
-    accessor: "bootNo"
+    accessor: "bootNo",
   },
   {
     Header: "Way Bill No",
-    accessor: "wayBillNo"
+    accessor: "wayBillNo",
   },
   {
     Header: "Date",
-    accessor: "date"
+    accessor: "date",
   },
   {
     Header: "",
-    accessor: "View"
+    accessor: "View",
+    Cell: (props) => <Link color="#EE9A7F">View</Link>,
   },
   {
     Header: "",
-    accessor: "download"
+    accessor: "download",
+    Cell: (props) => <Link color="#EE9A7F">Download</Link>,
   },
   {
     Header: "",
-    accessor: "print"
+    accessor: "print",
   },
 ];

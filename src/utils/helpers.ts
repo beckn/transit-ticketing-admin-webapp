@@ -1,3 +1,4 @@
+import { boolean } from "yup";
 
 const storageKeyName = "accessToken";
 
@@ -17,8 +18,15 @@ const deleteLocalStorage = (name: string) => {
   return localStorage.removeItem(storageKeyName);
 };
 
+const getWidgetData= (data:Array<Object>,countKey:string,countValue:any)=> {
+  const filteredData= data.filter((boat:any)=>boat[countKey]===countValue)
+  console.log(filteredData)
+  return {total:data.length||0,available:filteredData.length||0,remaining:data.length-filteredData.length||0}
+}
+
 export {
   setLocalStorage,
   getLocalStorage,
-  deleteLocalStorage
+  deleteLocalStorage,
+  getWidgetData
 };
