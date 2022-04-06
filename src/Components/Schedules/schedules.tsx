@@ -29,6 +29,7 @@ export default function Schedules() {
               totalReport="Total Stops"
               wayBillReport="Boats Available"
               BankingReport="Area Covered"
+              widgetData={{ total: 4, remaining: 5, available: 7 }}
             />
             <ScheduleTabs
               dataForBoat={dataForScchedule}
