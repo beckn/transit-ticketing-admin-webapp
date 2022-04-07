@@ -30,15 +30,15 @@ export type DataTableForBoatProps<Data extends object> = {
   columnsForBoat: any;
 };
 
-type MyOptionType = {
+type MyOptionTypeForBoatNo = {
   label: string;
   value: string;
 };
 
-const options: MyOptionType[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+const options: MyOptionTypeForBoatNo[] = [
+  { value: "1102", label: "1102" },
+  { value: "1104", label: "1104" },
+  { value: "1108", label: "1108" },
 ];
 
 const customControlStyles: CSSProperties = {
@@ -48,7 +48,7 @@ const customControlStyles: CSSProperties = {
 
 type IsMulti = false;
 
-const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
+const selectStyle: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   control: (provided, state) => {
     return {
       ...provided,
@@ -57,10 +57,9 @@ const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
   },
 };
 
-const customStyles: StylesConfig<MyOptionType, IsMulti> = {
+const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   control: (base) => ({
     ...base,
-    border: "1px solid #bac0c5b8 !important",
     "margin-top": "7px",
     "font-size": "13px",
     "font-family": "'Open Sans', sans-serif",
@@ -69,15 +68,18 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     "padding-left": "10px",
     "max-height": "42px",
     display: "flex",
-    width: "100%",
     background: "#f5f8faad",
     borderRadius: "4px",
+    borderColor:'#E79378',
+    focusBorderColor:'#E79378',
+    minWidth:'max-content',
+    width:'12rem',
     "&:hover": {
-      borderColor: " #A9A9A9 !important",
+      borderColor: " #E79378 !important",
     },
     "&:focus": {
       transition: "0.4 ease",
-      borderColor: "#5bc0eb !important",
+      borderColor: "#E79378 !important",
       boxShadow: "0px 0px 0.3rem #02b3e4 !important",
     },
   }),
@@ -100,8 +102,8 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   }),
 };
 
-const formattedArray = (array: Array<MyOptionType>) => {
-  return array.map((item: MyOptionType) => {
+const formattedArray = (array: Array<MyOptionTypeForBoatNo>) => {
+  return array.map((item: MyOptionTypeForBoatNo) => {
     return {
       label: `${item.label}`,
       value: `${item.value}`,
@@ -119,9 +121,9 @@ export default function WayBillReportsTabs<Data extends object>({
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab>All</Tab>
-              <Tab>Completed</Tab>
-              <Tab>Pending</Tab>
+              <Tab _focus={{borderColor:'none'}}>All</Tab>
+              <Tab _focus={{borderColor:'none'}}>Completed</Tab>
+              <Tab _focus={{borderColor:'none'}}>Pending</Tab>
             </Stack>
 
             <Flex marginBottom={"10px"}>
@@ -202,18 +204,22 @@ export default function WayBillReportsTabs<Data extends object>({
             width={"40%"}
           >
             <InputGroup>
-              <InputRightElement
+              <InputRightElement   
                 className="InputLeft"
                 pointerEvents="none"
                 children={
                   <SearchIcon className="SearchIcon" color="gray.300" />
                 }
               />
-              <Input
+              <Input 
+                borderColor={'#E79378'}
+                focusBorderColor={'#E79378'}
                 height={"40px"}
                 variant="outline"
                 size="xs"
                 placeholder={`Search`}
+                borderRadius={'10px'}
+                _hover={{ borderColor: "#E79378 !important" }}
               />
             </InputGroup>
             <Stack direction="row" spacing={4}>

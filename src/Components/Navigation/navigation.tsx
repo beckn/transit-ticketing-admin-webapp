@@ -73,21 +73,21 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
- const history = useHistory();
+  const history = useHistory();
   let parsedData = null
   let data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data)
   }
-  
-  const logout=()=>{
-  auth.signOut()
-  .then(()=>{
-    deleteLocalStorage("firebaseData");
-    history.push('/')
-  })
-  .catch(error=>logging.error(error));
-}
+
+  const logout = () => {
+    auth.signOut()
+      .then(() => {
+        deleteLocalStorage("firebaseData");
+        history.push('/')
+      })
+      .catch(error => logging.error(error));
+  }
 
   return (
     <Box
@@ -114,10 +114,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <RouterLink to="/">
-        <NavItem className="main-drawer-item">Home</NavItem>
-      </RouterLink>
-      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" >Boats</Text>
+      <div>
+        <RouterLink to="/"><NavItem className="main-drawer-item">Home</NavItem></RouterLink>
+      </div>
+      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" fontFamily={'Roboto'}>Boats</Text>
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
@@ -126,50 +126,70 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <RouterLink to="/staff"><NavItem className="sub-drawer-item" >Staff</NavItem></RouterLink>
         </div>
       </Flex>
-      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF">Assignments</Text>
+      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" fontFamily={'Roboto'} marginTop={'20px'}>Assignments</Text>
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-        <RouterLink to="/boats"><NavItem className="sub-drawer-item">Boats</NavItem></RouterLink>
-        <RouterLink to="/counter"><NavItem className="sub-drawer-item">Counter</NavItem></RouterLink>
+          <RouterLink to="/boats"><NavItem className="sub-drawer-item">Boats</NavItem></RouterLink>
+          <RouterLink to="/counter"><NavItem className="sub-drawer-item">Counter</NavItem></RouterLink>
         </div>
       </Flex>
-      <HStack spacing={{ base: '0', md: '6' }}>
-<Flex alignItems={'center'}>
-  <Menu>
-    <MenuButton
-      py={2}
-      transition="all 0.3s"
-      _focus={{ boxShadow: 'none' }}>
-      <HStack>
-        <Avatar
-          left="24px"
-          size={"sm"}
-          src={parsedData.photoURL}
-        />
-        <VStack
-          display={{ base: 'none', md: 'flex' }}
-          alignItems="flex-start"
-          spacing="1px"
-          ml="2">
-          <Text fontSize="sm" className="footer-User-name" marginLeft={'31px'}>
-            {parsedData.displayName ? parsedData.displayName : parsedData.email}
-          </Text>
-        </VStack>
-        <Box display={{ base: 'none', md: 'flex' }}>
-          <TriangleDownIcon />
-        </Box>
+      <HStack
+        spacing={{ base: '0', md: '6' }}
+      >
+        <Flex
+          alignItems={'center'} marginTop={'20px'}
+        >
+          <Menu>
+            <MenuButton>
+              <HStack>
+                <Avatar
+                  left="24px"
+                  size={"sm"}
+                  src={parsedData.photoURL}
+                />
+                <VStack>
+                  <Text
+                    fontSize="m"
+                    className="footer-User-name"
+                    marginLeft={'31px'}>
+                    {parsedData.displayName ? parsedData.displayName : parsedData.email}
+                  </Text>
+                </VStack>
+                <TriangleDownIcon />
+              </HStack>
+            </MenuButton>
+            <MenuList
+              marginLeft={'25px'}
+              bgColor={'#3E4059'}
+              color={'#fff'}
+              border={'none'}
+              display={'flex'}
+              justifyContent={'center'}
+
+            >
+              <Text
+                onClick={() => logout()}
+                display={'flex'}
+                justifyContent={'center'}
+                cursor={'pointer'}
+                fontFamily={'Roboto'}
+                border={'1px solid'}
+                w={'7rem'}
+                p={'5px'}
+                fontWeight={'bold'}
+                borderRadius={'20px'}
+                _hover={{
+                  bg: "#E49076",
+                  color: "Black",
+                }}
+              >
+                Sign out
+              </Text>
+            </MenuList>
+          </Menu>
+        </Flex>
       </HStack>
-    </MenuButton>
-    <MenuList marginLeft={'25px'} borderStyle={'none'} bgColor="#E49076" 
-    >
-      <Text onClick={()=>logout()} className="footer-User-name" display={'flex'} justifyContent={'center'} cursor={'pointer'}>
-        Sign out
-      </Text>
-    </MenuList>
-  </Menu>
-</Flex>
-</HStack>
     </Box>
   );
 };
@@ -186,9 +206,10 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       borderRadius="24px"
       role="group"
       cursor="pointer"
+      fontFamily={'Roboto'}
       _hover={{
         bg: "#E49076",
-        color: "white",
+        color: "black",
       }}
       {...rest}
     >

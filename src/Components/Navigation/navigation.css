@@ -47,6 +47,7 @@
         font-size: 24px;
         line-height: 28px;
         color: #FFFFFF;
+        margin-bottom: 30px;
     }
     .main-drawer-item:hover{
         background-color: #E79378;
@@ -61,7 +62,7 @@
         font-size: 24px;
         line-height: 28px;
         color: #FFFFFF;
-       
+       margin-top: 30px;
     }
     .sub-drawer-item:hover{
         background-color: #E79378;
