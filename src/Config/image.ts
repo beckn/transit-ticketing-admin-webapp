@@ -7,9 +7,11 @@ import TimerIcon from "../Assets/Svg/timer.svg";
 import StaffIcon from "../Assets/Svg/staff.svg";
 import AngleBracket from '../Assets/Svg/Vector.svg';
 import Pipe from '../Assets/Svg/Pipe.svg';
+import CrossIcon from '../Assets/Svg/crossIcon.svg';
 
 const IMAGE_PREFIX = {
-  Logo, BoatIcon,BankIcon,BillIcon,HomeBoatIcon,TimerIcon,StaffIcon,AngleBracket,Pipe
+  Logo, BoatIcon,BankIcon,BillIcon,HomeBoatIcon,TimerIcon,StaffIcon,AngleBracket,Pipe,
+  CrossIcon
 }
 
 export default IMAGE_PREFIX;
