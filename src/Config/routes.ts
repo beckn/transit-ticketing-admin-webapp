@@ -7,6 +7,8 @@ import Schedules from "../Components/Schedules/schedules";
 import Staff from "../Components/Staff/staff";
 import WayBillReport from "../Components/WayBillReports/wayBillReports";
 import BankingReports from "../Components/BankingReports/bankingReports";
+import Boats from '../Pages/Assignment/Boat/boats'
+import Counter from "../Pages/Assignment/Counter/counter";
 
 const routes: IRoute[] = [
   {
@@ -63,6 +65,20 @@ const routes: IRoute[] = [
   exact: true, 
   component: BankingReports,
   name: "Banking Report",
+  protected: false
+},
+{
+  path: "/boats",
+  exact: true, 
+  component: Boats,
+  name: "Boats",
+  protected: false
+},
+{
+  path: "/counter",
+  exact: true, 
+  component: Counter,
+  name: "Counter",
   protected: false
 },
 

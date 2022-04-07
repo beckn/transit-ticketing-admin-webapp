@@ -1,21 +1,21 @@
 import axios from 'axios';
-import { history } from "../index";
+// import { history } from "../index";
 import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
 import { auth } from "../Config/firebase";
 import logging from "../Config/logging";
 
 const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
 
-export const logout = () => {
-  console.log("i am running")
-  auth
-    .signOut()
-    .then(() => {
-      deleteLocalStorage("firebaseData");
-      history.push("/");
-    })
-    .catch((error) => logging.error(error));
-};
+// export const logout = () => {
+//   console.log("i am running")
+//   auth
+//     .signOut()
+//     .then(() => {
+//       deleteLocalStorage("firebaseData");
+//       history.push("/");
+//     })
+//     .catch((error) => logging.error(error));
+// };
 
 
 export const getApiKey= ()=> {
@@ -34,15 +34,14 @@ const axiosInstance=axios.create({
 })
 
 export const request = ({...options}) => {
-
   const onSuccess= (response:any) => response;
   const onError = (error:any) => {
-if(error.response.status === 401) {
-  console.log("i am error",error)
-  logout()
- }
-
-return error
+    if(error.response.status === 401) {
+      console.log("i am error",error)
+      deleteLocalStorage("firebaseData");
+      // history.push('/login');
+    }
+    return error
   };
 return axiosInstance(options).then(onSuccess).catch(onError);
 }

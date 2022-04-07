@@ -16,9 +16,9 @@ import {
   FlexProps,
   Divider,
   HStack,
+  MenuButton,
   VStack,
   Menu,
-  MenuButton,
   MenuList,
 } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
@@ -27,10 +27,10 @@ import "./navigation.css";
 // import Navbar from "../Navbar/navbar";
 import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
+import { TriangleDownIcon } from "@chakra-ui/icons";
 import { auth } from "../../Config/firebase";
 import { deleteLocalStorage } from "../../utils/helpers";
 import logging from "../../Config/logging";
-
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -68,7 +68,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml={"26%"} w={"70%"} p="4">
+      <Box ml={"450px"} w={"70%"} p="4">
         {children}
       </Box>
     </Box>
@@ -81,24 +81,12 @@ interface SidebarProps extends BoxProps {
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const history = useHistory();
-
   let parsedData = null;
   let data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
   }
-  // const handleOperationalBoats = () => {
-  //   history.push('/opBoats')
-  // }
-  // const handleSchedules = () => {
-  //   history.push('/schedules')
-  // }
-  // const handleStaff = () => {
-  //   history.push('/staff')
-  // }
-  // const handleHome = () => {
-  //   history.push('/')
-  // }
+
   const logout = () => {
     auth
       .signOut()
@@ -108,6 +96,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       })
       .catch((error) => logging.error(error));
   };
+
   return (
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
@@ -115,6 +104,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       transition="1s ease"
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
+      // w={{ base: "448px", md: 60 }}
       w="448px"
       h="full"
       pos="fixed"
@@ -157,8 +147,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-          <NavItem className="sub-drawer-item">Boats</NavItem>
-          <NavItem className="sub-drawer-item">Counter</NavItem>
+          <RouterLink to="/boats">
+            <NavItem className="sub-drawer-item">Boats</NavItem>
+          </RouterLink>
+          <RouterLink to="/counter">
+            <NavItem className="sub-drawer-item">Counter</NavItem>
+          </RouterLink>
         </div>
       </Flex>
       <HStack spacing={{ base: "0", md: "6" }}>
@@ -188,7 +182,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                   </Text>
                 </VStack>
                 <Box display={{ base: "none", md: "flex" }}>
-                  <FiChevronDown />
+                  <TriangleDownIcon />
                 </Box>
               </HStack>
             </MenuButton>
