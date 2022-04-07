@@ -130,8 +130,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-          <NavItem className="sub-drawer-item">Boats</NavItem>
-          <NavItem className="sub-drawer-item">Counter</NavItem>
+        <RouterLink to="/boats"><NavItem className="sub-drawer-item">Boats</NavItem></RouterLink>
+        <RouterLink to="/counter"><NavItem className="sub-drawer-item">Counter</NavItem></RouterLink>
         </div>
       </Flex>
       <HStack spacing={{ base: '0', md: '6' }}>
