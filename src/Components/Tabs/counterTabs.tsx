@@ -34,23 +34,27 @@ import {
           <Tabs>
             <TabList display={"flex"} justifyContent={"space-between"}>
               <Stack direction="row">
-                <Tab>All</Tab>
+                <Tab _focus={{borderColor:'none'}}>All</Tab>
               </Stack>
-              <Stack direction="row">
+              <Stack direction="row" marginBottom={'10px'}>
                 <InputGroup>
-                  <InputRightElement
-                    className="InputLeft"
-                    pointerEvents="none"
-                    children={
-                      <SearchIcon className="SearchIcon" color="gray.300" />
-                    }
-                  />
-                  <Input
-                    height={"40px"}
-                    variant="outline"
-                    size="xs"
-                    placeholder={`Search`}
-                  />
+                <InputRightElement   
+                className="InputLeft"
+                pointerEvents="none"
+                children={
+                  <SearchIcon className="SearchIcon" color="gray.300" />
+                }
+              />
+              <Input 
+                borderColor={'#E79378'}
+                focusBorderColor={'#E79378'}
+                height={"40px"}
+                variant="outline"
+                size="xs"
+                placeholder={`Search`}
+                borderRadius={'10px'}
+                _hover={{ borderColor: "#E79378 !important" }}
+              />
                 </InputGroup>
                 <Stack direction="row" spacing={4}>
                   <Button

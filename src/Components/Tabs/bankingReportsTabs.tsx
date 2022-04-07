@@ -46,84 +46,86 @@ export type DataTableForBoatProps<Data extends object> = {
 };
 
 type MyOptionType = {
-  label: string;
-  value: string;
+    label: string;
+    value: string;
 };
 
 const options: MyOptionType[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" }
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" }
 ];
 
 const customControlStyles: CSSProperties = {
-  color: "white",
-  borderColor: "pink"
+    color: "white",
+    borderColor: "pink"
 };
 
 type IsMulti = false;
 
 const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
-  control: (provided, state) => {
+    control: (provided, state) => {
 
-    return {
-      ...provided,
-      ...customControlStyles
-    };
-  }
+        return {
+            ...provided,
+            ...customControlStyles
+        };
+    }
 };
 
 const customStyles: StylesConfig<MyOptionType, IsMulti> = {
-  control: (base) => ({
-    ...base,
-    border: "1px solid #bac0c5b8 !important",
-    "margin-top": "7px",
-    "font-size": "13px",
-    "font-family": "'Open Sans', sans-serif",
-    "padding-bottom": "4px",
-    "padding-top": "4px",
-    "padding-left": "10px",
-    "max-height": "42px",
-    display: "flex",
-    width: "100%",
-    background: "#f5f8faad",
-    borderRadius: "4px",
-    "&:hover": {
-      borderColor: " #A9A9A9 !important",
-    },
-    "&:focus": {
-      transition: "0.4 ease",
-      borderColor: "#5bc0eb !important",
-      boxShadow: "0px 0px 0.3rem #02b3e4 !important",
-    },
-  }),
-  // placeholder: () => ({
-  //     color: "#7d97ad",
-  // }),
-  valueContainer: (provided) => ({
-    ...provided,
-    width: "90%",
-    paddingTop: "0",
-    paddingBottom: "0",
-  }),
-  indicatorSeparator: (provided) => ({
-    ...provided,
-    width: "10%",
-    minHeight: "1px",
-  }),
-  singleValue: () => ({
-    color: "#525c65",
-  }),
+    control: (base) => ({
+        ...base,
+        "margin-top": "7px",
+        "font-size": "13px",
+        "font-family": "'Open Sans', sans-serif",
+        "padding-bottom": "4px",
+        "padding-top": "4px",
+        "padding-left": "10px",
+        "max-height": "42px",
+        display: "flex",
+        background: "#f5f8faad",
+        borderRadius: "4px",
+        borderColor:'#E79378',
+        focusBorderColor:'#E79378',
+        minWidth:'max-content',
+        width:'12rem',
+        "&:hover": {
+          borderColor: " #E79378 !important",
+        },
+        "&:focus": {
+          transition: "0.4 ease",
+          borderColor: "#E79378 !important",
+          boxShadow: "0px 0px 0.3rem #02b3e4 !important",
+        },
+      }),
+    // placeholder: () => ({
+    //     color: '#7d97ad',
+    // }),
+    valueContainer: (provided) => ({
+        ...provided,
+        width: '90%',
+        paddingTop: '0',
+        paddingBottom: '0',
+    }),
+    indicatorSeparator: (provided) => ({
+        ...provided,
+        width: '10%',
+        minHeight: '1px',
+    }),
+    singleValue: () => ({
+        color: '#525c65',
+    }),
 }
 
 
 const formattedArray = (array: Array<MyOptionType>) => {
-  return array.map((item: MyOptionType) => {
-    return {
-      label: `${item.label}`,
-      value: `${item.value}`,
-    }
-  })
+    return array.map((item: MyOptionType) => {
+        return {
+            label: `${item.label}`,
+            value: `${item.value}`,
+        }
+    })
 }
 
 
@@ -164,63 +166,33 @@ export default function BankingReportsTabs<Data extends object>({
               <Tab>Old</Tab>
             </Stack>
 
-            <Flex marginBottom={"10px"}>
-              <Select
-                components={{ IndicatorSeparator: () => null }}
-                className="Select"
-                isSearchable={true}
-                placeholder={"Select Boat No"}
-                // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
-                // }}
-                // value={
-                //     field.value
-                //         ? {
-                //             id: field.value.id,
-                //             label: field.value.value,
-                //             value: field.value.value,
-                //         }
-                //         : ""
-                // }
-                styles={customStyles}
-                options={options.length === 0 ? formattedArray([]) : formattedArray(options)}
-              />
-              <Select
-                components={{ IndicatorSeparator: () => null }}
-                className="Select"
-                isSearchable={true}
-                placeholder={"Select Boat Master"}
-                // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
-                // }}
-                // value={
-                //     field.value
-                //         ? {
-                //             id: field.value.id,
-                //             label: field.value.value,
-                //             value: field.value.value,
-                //         }
-                //         : ""
-                // }
-                styles={customStyles}
-                options={options.length === 0 ? formattedArray([]) : formattedArray(options)}
-              />
-              <Stack spacing={4} direction="row" align="center" padding={"10px"}>
-                <Button 
-                  colorScheme="#E79378" 
-                  size="md" 
-                  _hover={{ bgColor: "#E79378" }} 
-                  leftIcon={<img src={Filter} alt="Filter Icon" />} 
-                  bgColor="#E79378"
-                  color={"#fff"}
-                  padding={"20px"}
-                >
-                  Apply
-                </Button>
-              </Stack>
-            </Flex>
-          </TabList>
-
+                    <Stack direction="row" marginTop={'10px'} display={'flex'} justifyContent={'flex-start'} width={'40%'}>
+                        <InputGroup>
+                            <InputRightElement
+                                className="InputLeft"
+                                pointerEvents="none"
+                                children={
+                                    <SearchIcon className="SearchIcon" color="#E79378" />
+                                }
+                            />
+                            <Input
+                                borderColor={'#E79378'}
+                                focusBorderColor={'#E79378'}
+                                height={"40px"}
+                                variant="outline"
+                                size="xs"
+                                placeholder={`Search`}
+                                borderRadius={'10px'}
+                                _hover={{ borderColor: "#E79378 !important" }}
+                            />
+                        </InputGroup>
+                        <Stack direction="row" spacing={4}>
+                            <Button _hover={{ bgColor: "#646782" }} leftIcon={<img src={Filter} />} bgColor="#3E4059" color={"#fff"} padding={"20px"} >
+                                Filter
+                            </Button>
+                        </Stack>
+                    </Stack>
+        </TabList>
           <Stack direction="row" marginTop={"10px"} display={"flex"} justifyContent={"flex-start"} width={"full"}>
             
             <Flex mr="9" w="40%">
