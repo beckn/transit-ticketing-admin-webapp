@@ -121,10 +121,18 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <RouterLink exact={true} activeClassName="is-active" to="/">
-        <NavItem className="main-drawer-item">Home</NavItem>
-      </RouterLink>
-      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF">
+      <div>
+        <RouterLink exact={true} activeClassName="is-active" to="/">
+          <NavItem className="main-drawer-item">Home</NavItem>
+        </RouterLink>
+      </div>
+      <Text
+        ml="8"
+        fontWeight="700"
+        fontSize="24"
+        color="#FFFFFF"
+        fontFamily={"Roboto"}
+      >
         Boats
       </Text>
       <Divider mb="3" />
@@ -162,7 +170,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           </RouterLink>
         </div>
       </Flex>
-      <HStack spacing={{ base: "0", md: "6" }}>
+      <HStack spacing={{ base: "0", md: "6" }} marginTop={"20px"}>
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -172,14 +180,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             >
               <HStack>
                 <Avatar left="24px" size={"sm"} src={parsedData.photoURL} />
-                <VStack
-                  display={{ base: "none", md: "flex" }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2"
-                >
+                <VStack>
                   <Text
-                    fontSize="sm"
+                    fontSize="m"
                     className="footer-User-name"
                     marginLeft={"31px"}
                   >
@@ -188,22 +191,32 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                       : parsedData.email}
                   </Text>
                 </VStack>
-                <Box display={{ base: "none", md: "flex" }}>
-                  <TriangleDownIcon />
-                </Box>
+                <TriangleDownIcon />
               </HStack>
             </MenuButton>
             <MenuList
               marginLeft={"25px"}
-              borderStyle={"none"}
-              bgColor="#E49076"
+              bgColor={"#3E4059"}
+              color={"#fff"}
+              border={"none"}
+              display={"flex"}
+              justifyContent={"center"}
             >
               <Text
                 onClick={() => logout()}
-                className="footer-User-name"
                 display={"flex"}
                 justifyContent={"center"}
                 cursor={"pointer"}
+                fontFamily={"Roboto"}
+                border={"1px solid"}
+                w={"7rem"}
+                p={"5px"}
+                fontWeight={"bold"}
+                borderRadius={"20px"}
+                _hover={{
+                  bg: "#E49076",
+                  color: "Black",
+                }}
               >
                 Sign out
               </Text>
@@ -230,7 +243,7 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       fontFamily={"Roboto"}
       _hover={{
         bg: "#E49076",
-        color: "black",
+        color: "#fff",
       }}
       {...rest}
     >

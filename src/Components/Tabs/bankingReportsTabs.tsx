@@ -51,9 +51,14 @@ type MyOptionType = {
 };
 
 const options: MyOptionType[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "1102", label: "1102" },
+  { value: "1104", label: "1104" },
+  { value: "1108", label: "1108" },
+];
+const optionsForBoatMaster: MyOptionType[] = [
+  { value: "Navjeet Singh", label: "Navjeet SIngh" },
+  { value: "Navneet Singh", label: "Navneet Singh" },
+  { value: "Navjot Singh", label: "Navjot Singh" },
 ];
 
 const customControlStyles: CSSProperties = {
@@ -63,19 +68,9 @@ const customControlStyles: CSSProperties = {
 
 type IsMulti = false;
 
-const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
-  control: (provided, state) => {
-    return {
-      ...provided,
-      ...customControlStyles,
-    };
-  },
-};
-
 const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   control: (base) => ({
     ...base,
-    border: "1px solid #bac0c5b8 !important",
     "margin-top": "7px",
     "font-size": "13px",
     "font-family": "'Open Sans', sans-serif",
@@ -84,21 +79,21 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     "padding-left": "10px",
     "max-height": "42px",
     display: "flex",
-    width: "100%",
     background: "#f5f8faad",
     borderRadius: "4px",
+    borderColor: "#E79378",
+    focusBorderColor: "#E79378",
+    minWidth: "max-content",
+    width: "12rem",
     "&:hover": {
-      borderColor: " #A9A9A9 !important",
+      borderColor: " #E79378 !important",
     },
     "&:focus": {
       transition: "0.4 ease",
-      borderColor: "#5bc0eb !important",
+      borderColor: "#E79378 !important",
       boxShadow: "0px 0px 0.3rem #02b3e4 !important",
     },
   }),
-  // placeholder: () => ({
-  //     color: "#7d97ad",
-  // }),
   valueContainer: (provided) => ({
     ...provided,
     width: "90%",
@@ -166,7 +161,7 @@ export default function BankingReportsTabs<Data extends object>({
                 isSearchable={true}
                 placeholder={"Select Boat No"}
                 // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
+                //     form.setFieldValue('assignment_id', value)
                 // }}
                 // value={
                 //     field.value
@@ -175,7 +170,7 @@ export default function BankingReportsTabs<Data extends object>({
                 //             label: field.value.value,
                 //             value: field.value.value,
                 //         }
-                //         : ""
+                //         : ''
                 // }
                 styles={customStyles}
                 options={
@@ -190,7 +185,7 @@ export default function BankingReportsTabs<Data extends object>({
                 isSearchable={true}
                 placeholder={"Select Boat Master"}
                 // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
+                //     form.setFieldValue('assignment_id', value)
                 // }}
                 // value={
                 //     field.value
@@ -199,13 +194,13 @@ export default function BankingReportsTabs<Data extends object>({
                 //             label: field.value.value,
                 //             value: field.value.value,
                 //         }
-                //         : ""
+                //         : ''
                 // }
                 styles={customStyles}
                 options={
-                  options.length === 0
+                  optionsForBoatMaster.length === 0
                     ? formattedArray([])
-                    : formattedArray(options)
+                    : formattedArray(optionsForBoatMaster)
                 }
               />
               <Stack
@@ -228,7 +223,6 @@ export default function BankingReportsTabs<Data extends object>({
               </Stack>
             </Flex>
           </TabList>
-
           <Stack
             direction="row"
             marginTop={"10px"}
@@ -246,6 +240,16 @@ export default function BankingReportsTabs<Data extends object>({
                   }
                 />
                 <Input
+                  height={"40px"}
+                  variant="outline"
+                  size="xs"
+                  placeholder={`Search`}
+                />
+                <Input
+                  borderColor={"#E79378"}
+                  _focus={{ borderColor: "#E79378" }}
+                  _hover={{ borderColor: "#E79378" }}
+                  borderRadius={"10px"}
                   height={"40px"}
                   variant="outline"
                   size="xs"
