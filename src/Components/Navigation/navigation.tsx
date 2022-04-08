@@ -39,7 +39,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
     // onOpen, 
     onClose } = useDisclosure();
   return (
-    <Box minH="100vh" display={"flex"} bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" display={"flex"} overflowX={"hidden"} bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
