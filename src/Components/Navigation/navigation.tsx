@@ -1,12 +1,11 @@
 import { ReactNode, ReactText } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { NavLink as RouterLink } from "react-router-dom";
 import {
   Avatar,
   Box,
   CloseButton,
   Flex,
   useColorModeValue,
-  Link,
   Image,
   Drawer,
   DrawerContent,
@@ -46,6 +45,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
     <Box
       minH="100vh"
       display={"flex"}
+      overflowX={"hidden"}
       bg={useColorModeValue("gray.100", "gray.900")}
     >
       <SidebarContent
@@ -121,30 +121,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
-      <div>
-        <RouterLink to="/">
-          <NavItem className="main-drawer-item">Home</NavItem>
-        </RouterLink>
-      </div>
-      <Text
-        ml="8"
-        fontWeight="700"
-        fontSize="24"
-        color="#FFFFFF"
-        fontFamily={"Roboto"}
-      >
+      <RouterLink exact={true} activeClassName="is-active" to="/">
+        <NavItem className="main-drawer-item">Home</NavItem>
+      </RouterLink>
+      <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF">
         Boats
       </Text>
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-          <RouterLink to="/opBoats">
+          <RouterLink exact={true} activeClassName="is-active" to="/opBoats">
             <NavItem className="sub-drawer-item">Operational Boats</NavItem>
           </RouterLink>
-          <RouterLink to="/schedules">
+          <RouterLink exact={true} activeClassName="is-active" to="/schedules">
             <NavItem className="sub-drawer-item">Schedules</NavItem>
           </RouterLink>
-          <RouterLink to="/staff">
+          <RouterLink exact={true} activeClassName="is-active" to="/staff">
             <NavItem className="sub-drawer-item">Staff</NavItem>
           </RouterLink>
         </div>
@@ -162,23 +154,32 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       <Divider mb="3" />
       <Flex alignItems="center" mx="14" justifyContent="space-between">
         <div>
-          <RouterLink to="/boats">
+          <RouterLink exact={true} activeClassName="is-active" to="/boats">
             <NavItem className="sub-drawer-item">Boats</NavItem>
           </RouterLink>
-          <RouterLink to="/counter">
+          <RouterLink exact={true} activeClassName="is-active" to="/counter">
             <NavItem className="sub-drawer-item">Counter</NavItem>
           </RouterLink>
         </div>
       </Flex>
       <HStack spacing={{ base: "0", md: "6" }}>
-        <Flex alignItems={"center"} marginTop={"20px"}>
+        <Flex alignItems={"center"}>
           <Menu>
-            <MenuButton>
+            <MenuButton
+              py={2}
+              transition="all 0.3s"
+              _focus={{ boxShadow: "none" }}
+            >
               <HStack>
                 <Avatar left="24px" size={"sm"} src={parsedData.photoURL} />
-                <VStack>
+                <VStack
+                  display={{ base: "none", md: "flex" }}
+                  alignItems="flex-start"
+                  spacing="1px"
+                  ml="2"
+                >
                   <Text
-                    fontSize="m"
+                    fontSize="sm"
                     className="footer-User-name"
                     marginLeft={"31px"}
                   >
@@ -187,32 +188,22 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                       : parsedData.email}
                   </Text>
                 </VStack>
-                <TriangleDownIcon />
+                <Box display={{ base: "none", md: "flex" }}>
+                  <TriangleDownIcon />
+                </Box>
               </HStack>
             </MenuButton>
             <MenuList
               marginLeft={"25px"}
-              bgColor={"#3E4059"}
-              color={"#fff"}
-              border={"none"}
-              display={"flex"}
-              justifyContent={"center"}
+              borderStyle={"none"}
+              bgColor="#E49076"
             >
               <Text
                 onClick={() => logout()}
+                className="footer-User-name"
                 display={"flex"}
                 justifyContent={"center"}
                 cursor={"pointer"}
-                fontFamily={"Roboto"}
-                border={"1px solid"}
-                w={"7rem"}
-                p={"5px"}
-                fontWeight={"bold"}
-                borderRadius={"20px"}
-                _hover={{
-                  bg: "#E49076",
-                  color: "Black",
-                }}
               >
                 Sign out
               </Text>
