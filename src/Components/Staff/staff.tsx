@@ -26,6 +26,7 @@ export default function Staff() {
               totalReport="Total Staff"
               wayBillReport="Boat Master"
               BankingReport="Ticket Master"
+              widgetData={{ total: 4, remaining: 5, available: 7 }}
             />
             <StaffTabs
               dataForBoat={dataForStaff}

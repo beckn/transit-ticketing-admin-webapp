@@ -1,8 +1,21 @@
 import axios from 'axios';
 // import { history } from "../index";
 import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
+import { auth } from "../Config/firebase";
+import logging from "../Config/logging";
 
 const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
+
+// export const logout = () => {
+//   console.log("i am running")
+//   auth
+//     .signOut()
+//     .then(() => {
+//       deleteLocalStorage("firebaseData");
+//       history.push("/");
+//     })
+//     .catch((error) => logging.error(error));
+// };
 
 
 export const getApiKey= ()=> {

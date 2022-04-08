@@ -30,8 +30,8 @@ import {
   HStack,
   Tag,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons"
-import DataTable from "../Table/table"
+import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
@@ -51,32 +51,26 @@ type MyOptionType = {
 };
 
 const options: MyOptionType[] = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" }
+  { value: "1102", label: "1102" },
+  { value: "1104", label: "1104" },
+  { value: "1108", label: "1108" },
+];
+const optionsForBoatMaster: MyOptionType[] = [
+  { value: "Navjeet Singh", label: "Navjeet SIngh" },
+  { value: "Navneet Singh", label: "Navneet Singh" },
+  { value: "Navjot Singh", label: "Navjot Singh" },
 ];
 
 const customControlStyles: CSSProperties = {
   color: "white",
-  borderColor: "pink"
+  borderColor: "pink",
 };
 
 type IsMulti = false;
 
-const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
-  control: (provided, state) => {
-
-    return {
-      ...provided,
-      ...customControlStyles
-    };
-  }
-};
-
 const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   control: (base) => ({
     ...base,
-    border: "1px solid #bac0c5b8 !important",
     "margin-top": "7px",
     "font-size": "13px",
     "font-family": "'Open Sans', sans-serif",
@@ -85,21 +79,21 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     "padding-left": "10px",
     "max-height": "42px",
     display: "flex",
-    width: "100%",
     background: "#f5f8faad",
     borderRadius: "4px",
+    borderColor: "#E79378",
+    focusBorderColor: "#E79378",
+    minWidth: "max-content",
+    width: "12rem",
     "&:hover": {
-      borderColor: " #A9A9A9 !important",
+      borderColor: " #E79378 !important",
     },
     "&:focus": {
       transition: "0.4 ease",
-      borderColor: "#5bc0eb !important",
+      borderColor: "#E79378 !important",
       boxShadow: "0px 0px 0.3rem #02b3e4 !important",
     },
   }),
-  // placeholder: () => ({
-  //     color: "#7d97ad",
-  // }),
   valueContainer: (provided) => ({
     ...provided,
     width: "90%",
@@ -114,44 +108,40 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   singleValue: () => ({
     color: "#525c65",
   }),
-}
-
+};
 
 const formattedArray = (array: Array<MyOptionType>) => {
   return array.map((item: MyOptionType) => {
     return {
       label: `${item.label}`,
       value: `${item.value}`,
-    }
-  })
-}
-
+    };
+  });
+};
 
 export default function BankingReportsTabs<Data extends object>({
   dataForBoat,
-  columnsForBoat
+  columnsForBoat,
 }: DataTableForBoatProps<Data>) {
-  const [ selectedLocation, setSelectedLocation ]= useState("");
-  const [ selectedLocationValue, setSelectedLocationValue ]= useState("");
-  const [ wayBillReport, setWayBillReport ]= useState("");
-  const [ wayBillReportValue, setWayBillReportValue ]= useState("");
-  const [ selectedStatus, setSelectedStatus ]= useState("");
-  const [ selectedStatusValue, setSelectedStatusValue ]= useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLocationValue, setSelectedLocationValue] = useState("");
+  const [wayBillReport, setWayBillReport] = useState("");
+  const [wayBillReportValue, setWayBillReportValue] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedStatusValue, setSelectedStatusValue] = useState("");
 
-  const handleFilter = (title: string, value:string, index: string) : void => {
-    if(title === "Location"){
+  const handleFilter = (title: string, value: string, index: string): void => {
+    if (title === "Location") {
       setSelectedLocation(value);
       setSelectedLocationValue(index);
-    }
-    else if(title === "WayBill Number"){ 
+    } else if (title === "WayBill Number") {
       setWayBillReport(value);
       setWayBillReportValue(index);
-    }
-    else{ 
+    } else {
       setSelectedStatus(value);
       setSelectedStatusValue(index);
     }
-  }
+  };
 
   return (
     <Center display={"flex"} justifyContent="end">
@@ -171,7 +161,7 @@ export default function BankingReportsTabs<Data extends object>({
                 isSearchable={true}
                 placeholder={"Select Boat No"}
                 // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
+                //     form.setFieldValue('assignment_id', value)
                 // }}
                 // value={
                 //     field.value
@@ -180,10 +170,14 @@ export default function BankingReportsTabs<Data extends object>({
                 //             label: field.value.value,
                 //             value: field.value.value,
                 //         }
-                //         : ""
+                //         : ''
                 // }
                 styles={customStyles}
-                options={options.length === 0 ? formattedArray([]) : formattedArray(options)}
+                options={
+                  options.length === 0
+                    ? formattedArray([])
+                    : formattedArray(options)
+                }
               />
               <Select
                 components={{ IndicatorSeparator: () => null }}
@@ -191,7 +185,7 @@ export default function BankingReportsTabs<Data extends object>({
                 isSearchable={true}
                 placeholder={"Select Boat Master"}
                 // onChange={(value) => {
-                //     form.setFieldValue("assignment_id", value)
+                //     form.setFieldValue('assignment_id', value)
                 // }}
                 // value={
                 //     field.value
@@ -200,17 +194,26 @@ export default function BankingReportsTabs<Data extends object>({
                 //             label: field.value.value,
                 //             value: field.value.value,
                 //         }
-                //         : ""
+                //         : ''
                 // }
                 styles={customStyles}
-                options={options.length === 0 ? formattedArray([]) : formattedArray(options)}
+                options={
+                  optionsForBoatMaster.length === 0
+                    ? formattedArray([])
+                    : formattedArray(optionsForBoatMaster)
+                }
               />
-              <Stack spacing={4} direction="row" align="center" padding={"10px"}>
-                <Button 
-                  colorScheme="#E79378" 
-                  size="md" 
-                  _hover={{ bgColor: "#E79378" }} 
-                  leftIcon={<img src={Filter} alt="Filter Icon" />} 
+              <Stack
+                spacing={4}
+                direction="row"
+                align="center"
+                padding={"10px"}
+              >
+                <Button
+                  colorScheme="#E79378"
+                  size="md"
+                  _hover={{ bgColor: "#E79378" }}
+                  leftIcon={<img src={Filter} alt="Filter Icon" />}
                   bgColor="#E79378"
                   color={"#fff"}
                   padding={"20px"}
@@ -220,60 +223,119 @@ export default function BankingReportsTabs<Data extends object>({
               </Stack>
             </Flex>
           </TabList>
-
-          <Stack direction="row" marginTop={"10px"} display={"flex"} justifyContent={"flex-start"} width={"full"}>
-            
+          <Stack
+            direction="row"
+            marginTop={"10px"}
+            display={"flex"}
+            justifyContent={"flex-start"}
+            width={"full"}
+          >
             <Flex mr="9" w="40%">
               <InputGroup mr="6">
                 <InputRightElement
                   className="InputLeft"
                   pointerEvents="none"
-                  children={<SearchIcon className="SearchIcon" color="gray.300" />}
+                  children={
+                    <SearchIcon className="SearchIcon" color="gray.300" />
+                  }
                 />
-                <Input height={"40px"} variant="outline" size="xs" placeholder={`Search`} />
+                <Input
+                  height={"40px"}
+                  variant="outline"
+                  size="xs"
+                  placeholder={`Search`}
+                />
+                <Input
+                  borderColor={"#E79378"}
+                  _focus={{ borderColor: "#E79378" }}
+                  _hover={{ borderColor: "#E79378" }}
+                  borderRadius={"10px"}
+                  height={"40px"}
+                  variant="outline"
+                  size="xs"
+                  placeholder={`Search`}
+                />
               </InputGroup>
               <Stack direction="row" spacing={4}>
                 <Menu>
-                  <MenuButton 
-                    colorScheme="#3E4059" 
-                    size="md" 
+                  <MenuButton
+                    colorScheme="#3E4059"
+                    size="md"
                     _hover={{ bgColor: "#646782" }}
                     leftIcon={<img src={Filter} alt="filter Icon" />}
                     bgColor="#3E4059"
-                    color={"#fff"} 
+                    color={"#fff"}
                     padding={"20px"}
-                    as={Button} 
+                    as={Button}
                     rightIcon={<ChevronDownIcon />}
                   >
                     Filter
                   </MenuButton>
-                  <MenuList maxW="180px" maxH="266px" overflow={"auto"} p={0} borderRadius="lg">
+                  <MenuList
+                    maxW="180px"
+                    maxH="266px"
+                    overflow={"auto"}
+                    p={0}
+                    borderRadius="lg"
+                  >
                     <Accordion allowToggle borderRadius="lg">
-                      {[0,1,2].map(item => {
-                        const accordingHeading = item === 0 ? "Location" : item === 1 ? "WayBill Number" : "Status";
-                        const radioData = item === 0 ? ["Edathua","Edathua","Edathua","Edathua","Edathua"] : item === 1 ? ["0001","0001","0001","0001","0001"] : ["Complete", "Pending"];
-                        const radioValue = item === 0 ? selectedLocationValue : item === 1 ? wayBillReportValue : selectedStatusValue;
+                      {[0, 1, 2].map((item) => {
+                        const accordingHeading =
+                          item === 0
+                            ? "Location"
+                            : item === 1
+                            ? "WayBill Number"
+                            : "Status";
+                        const radioData =
+                          item === 0
+                            ? [
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                              ]
+                            : item === 1
+                            ? ["0001", "0001", "0001", "0001", "0001"]
+                            : ["Complete", "Pending"];
+                        const radioValue =
+                          item === 0
+                            ? selectedLocationValue
+                            : item === 1
+                            ? wayBillReportValue
+                            : selectedStatusValue;
 
-                        return(
+                        return (
                           <AccordionItem key={item}>
                             <h2>
-                              <AccordionButton _expanded={{ bg: "#E79379", color: "#fff" }}  _hover={{ bgColor: "#E79379", color: "#fff" }}>
+                              <AccordionButton
+                                _expanded={{ bg: "#E79379", color: "#fff" }}
+                                _hover={{ bgColor: "#E79379", color: "#fff" }}
+                              >
                                 <Box flex="1" textAlign="left" fontSize={"lg"}>
                                   {accordingHeading}
                                 </Box>
                                 <AccordionIcon />
                               </AccordionButton>
                             </h2>
-                            <AccordionPanel bgColor={"#3E4059"} color={"#fff"} pb={4}>
+                            <AccordionPanel
+                              bgColor={"#3E4059"}
+                              color={"#fff"}
+                              pb={4}
+                            >
                               <InputGroup>
                                 <InputRightElement
                                   pos={"absolute"}
                                   right="10px"
                                   top="2px"
-                                  w="4" h="4"
+                                  w="4"
+                                  h="4"
                                   pointerEvents="none"
                                   children={
-                                    <SearchIcon className="SearchIcon" color="#3E4059" />
+                                    <SearchIcon
+                                      className="SearchIcon"
+                                      color="#3E4059"
+                                    />
                                   }
                                 />
                                 <Input
@@ -286,8 +348,11 @@ export default function BankingReportsTabs<Data extends object>({
                                   placeholder={`Search`}
                                 />
                               </InputGroup>
-                              
-                              <Flex mt={"4"} maxH="105px" overflow={"auto"}
+
+                              <Flex
+                                mt={"4"}
+                                maxH="105px"
+                                overflow={"auto"}
                                 css={{
                                   "&::-webkit-scrollbar": {
                                     width: "4px",
@@ -304,14 +369,24 @@ export default function BankingReportsTabs<Data extends object>({
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
                                     {radioData.map((data, index) => (
-                                      <Stack onClick={() => handleFilter(accordingHeading, data, `${index + 1}`)}>
-                                        <Radio value={`${index + 1}`}> {data} </Radio>
+                                      <Stack
+                                        onClick={() =>
+                                          handleFilter(
+                                            accordingHeading,
+                                            data,
+                                            `${index + 1}`
+                                          )
+                                        }
+                                      >
+                                        <Radio value={`${index + 1}`}>
+                                          {" "}
+                                          {data}{" "}
+                                        </Radio>
                                       </Stack>
                                     ))}
                                   </Stack>
                                 </RadioGroup>
                               </Flex>
-
                             </AccordionPanel>
                           </AccordionItem>
                         );
@@ -330,61 +405,89 @@ export default function BankingReportsTabs<Data extends object>({
             <Flex justify={"space-between"} w="60%">
               <HStack spacing={4}>
                 {selectedLocation !== "" && (
-                  <Tag size="lg" variant="solid" h="43px" bg="#C4C4C4" color="#3E4059" colorScheme="#3E4059"> 
-                    {selectedLocation} 
-                    <Image 
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {selectedLocation}
+                    <Image
                       css={{ cursor: "pointer" }}
                       onClick={() => {
-                        setSelectedLocation(""); 
-                        setSelectedLocationValue("")
-                      }} 
-                      src={IMAGE_PREFIX.CrossIcon} 
-                      pl={"4"} 
-                      alt="Angle Bracket" 
+                        setSelectedLocation("");
+                        setSelectedLocationValue("");
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
                     />
                   </Tag>
                 )}
                 {wayBillReport !== "" && (
-                  <Tag size="lg" variant="solid" h="43px" bg="#C4C4C4" color="#3E4059" colorScheme="#3E4059"> 
-                    {wayBillReport} 
-                    <Image 
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {wayBillReport}
+                    <Image
                       css={{ cursor: "pointer" }}
                       onClick={() => {
-                        setWayBillReport(""); setWayBillReportValue("")
-                      }} 
-                      src={IMAGE_PREFIX.CrossIcon} 
-                      pl={"4"} 
-                      alt="Angle Bracket" 
+                        setWayBillReport("");
+                        setWayBillReportValue("");
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
                     />
                   </Tag>
                 )}
                 {selectedStatus !== "" && (
-                  <Tag size="lg" variant="solid" h="43px" bg="#C4C4C4" color="#3E4059" colorScheme="#3E4059"> 
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
                     {selectedStatus}
-                    <Image 
+                    <Image
                       css={{ cursor: "pointer" }}
                       onClick={() => {
-                        setSelectedStatus(""); setSelectedStatusValue("")
-                      }} 
-                      src={IMAGE_PREFIX.CrossIcon} 
-                      pl={"4"} 
-                      alt="Angle Bracket" 
-                    /> 
+                        setSelectedStatus("");
+                        setSelectedStatusValue("");
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
+                    />
                   </Tag>
                 )}
               </HStack>
-              {(selectedLocation !== "" || wayBillReport !== "" || selectedStatus !== "") && (
-                <Text 
+              {(selectedLocation !== "" ||
+                wayBillReport !== "" ||
+                selectedStatus !== "") && (
+                <Text
                   css={{ cursor: "pointer" }}
                   onClick={() => {
-                    setSelectedLocation(""); setSelectedLocationValue("");
-                    setWayBillReport(""); setWayBillReportValue("");
-                    setSelectedStatus(""); setSelectedStatusValue("");
-                  }} 
-                  fontSize="xl" 
+                    setSelectedLocation("");
+                    setSelectedLocationValue("");
+                    setWayBillReport("");
+                    setWayBillReportValue("");
+                    setSelectedStatus("");
+                    setSelectedStatusValue("");
+                  }}
+                  fontSize="xl"
                   color={"#E8947A"}
-                > 
-                  Clear All Filters 
+                >
+                  Clear All Filters
                 </Text>
               )}
             </Flex>
@@ -402,7 +505,6 @@ export default function BankingReportsTabs<Data extends object>({
             </TabPanel>
           </TabPanels>
         </Tabs>
-
       </Box>
     </Center>
   );

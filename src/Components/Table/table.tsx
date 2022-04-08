@@ -1,34 +1,20 @@
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  chakra
-} from "@chakra-ui/react";
-import {
-  TriangleDownIcon,
-  TriangleUpIcon
-} from "@chakra-ui/icons";
+import { Table, Thead, Tbody, Tr, Th, Td, chakra } from "@chakra-ui/react";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { useTable, useSortBy, Column } from "react-table";
 
 export type DataTableProps<Data extends object> = {
   data: Data[];
   columns: Column<Data>[];
+  onClickRow?: (cell: any) => void;
 };
 
 function DataTable<Data extends object>({
   data,
-  columns
+  columns,
+  onClickRow,
 }: DataTableProps<Data>) {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow
-  } = useTable({ columns, data }, useSortBy);
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data }, useSortBy);
 
   return (
     <Table variant="simple" {...getTableProps()}>
@@ -37,9 +23,7 @@ function DataTable<Data extends object>({
           <Tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column: any) => (
               <Th
-                {...column.getHeaderProps(
-                  column.getSortByToggleProps()
-                )}
+                {...column.getHeaderProps(column.getSortByToggleProps())}
                 isNumeric={column.isNumeric}
               >
                 {column.render("Header")}
@@ -66,6 +50,10 @@ function DataTable<Data extends object>({
                 <Td
                   {...cell.getCellProps()}
                   isNumeric={cell.column.isNumeric}
+                  onClickRow
+                  onClick={() => {
+                    onClickRow && onClickRow(cell);
+                  }}
                 >
                   {cell.render("Cell")}
                 </Td>

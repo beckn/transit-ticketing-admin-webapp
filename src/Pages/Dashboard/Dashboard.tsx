@@ -6,9 +6,7 @@ import {
   Heading,
   Image,
   Divider,
-  Container,
   Flex,
-  Center,
 } from "@chakra-ui/react";
 import AuthContainer from "../../Components/AuthRoute/index";
 import IPageProps from "../../Interfaces/page";
@@ -28,12 +26,6 @@ const Dashboard: React.FC<IPageProps> = (props) => {
       setUser(parsedData);
     }
   }, []);
-  const handleWayBillReport = () => {
-    history.push("/way_Bill_Reports");
-  };
-  const handleBankingReport = () => {
-    history.push("/banking_Reports");
-  };
 
   return (
     <AuthContainer>
@@ -55,10 +47,13 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             >
               Reports :
             </Heading>
+
             <Divider
-              border="1px solid rgba(62, 64, 89, 0.4)"
+              backgroundColor={"black"}
+              height="2px"
               marginBottom="20px"
             />
+
             <SimpleGrid
               minChildWidth="300px"
               columns={[2, null, 2]}
@@ -114,7 +109,11 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             >
               Boats :
             </Heading>
-            <Divider border=" 1px solid #3E405966" marginBottom="20px" />
+            <Divider
+              backgroundColor={"black"}
+              height="2px"
+              marginBottom="20px"
+            />
             <SimpleGrid
               minChildWidth="280px"
               columns={[2, null, 3]}
@@ -198,7 +197,8 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               Assignments
             </Heading>
             <Divider
-              border="1px solid rgba(62, 64, 89, 0.4)"
+              backgroundColor={"black"}
+              height="2px"
               marginBottom="20px"
             />
             <SimpleGrid
@@ -206,52 +206,56 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               columns={[2, null, 2]}
               spacing="20px"
             >
-              <Box
-                _hover={{
-                  bg: "#E49076",
-                }}
-                bg="#3E4059"
-                display="flex"
-                borderRadius="24px"
-                flexDirection="column"
-                alignContent="center"
-                alignItems="center"
-                justifyContent="space-around"
-                height="286px"
-              >
-                <Heading as="h2" size="xl" color="white">
-                  Boats
-                </Heading>
-                <Image
-                  src={IMAGE_PREFIX.HomeBoatIcon}
-                  width="300"
-                  height="94"
-                  alt="Boats"
-                />
-              </Box>
-              <Box
-                _hover={{
-                  bg: "#E49076",
-                }}
-                bg="#3E4059"
-                display="flex"
-                flexDirection="column"
-                borderRadius="24px"
-                alignContent="center"
-                alignItems="center"
-                justifyContent="center"
-                height="286px"
-              >
-                <Heading as="h2" size="xl" color="white" marginBottom="20px">
-                  Counter
-                </Heading>
-                <Image
-                  src={IMAGE_PREFIX.HomeBoatIcon}
-                  width="300"
-                  height="94"
-                  alt="Banking Reports"
-                />
-              </Box>
+              <Link to="/boats">
+                <Box
+                  _hover={{
+                    bg: "#E49076",
+                  }}
+                  bg="#3E4059"
+                  display="flex"
+                  borderRadius="24px"
+                  flexDirection="column"
+                  alignContent="center"
+                  alignItems="center"
+                  justifyContent="space-around"
+                  height="286px"
+                >
+                  <Heading as="h2" size="xl" color="white">
+                    Boats
+                  </Heading>
+                  <Image
+                    src={IMAGE_PREFIX.HomeBoatIcon}
+                    width="300"
+                    height="94"
+                    alt="Boats"
+                  />
+                </Box>
+              </Link>
+              <Link to="/counter">
+                <Box
+                  _hover={{
+                    bg: "#E49076",
+                  }}
+                  bg="#3E4059"
+                  display="flex"
+                  flexDirection="column"
+                  borderRadius="24px"
+                  alignContent="center"
+                  alignItems="center"
+                  justifyContent="center"
+                  height="286px"
+                >
+                  <Heading as="h2" size="xl" color="white" marginBottom="20px">
+                    Counter
+                  </Heading>
+                  <Image
+                    src={IMAGE_PREFIX.HomeBoatIcon}
+                    width="300"
+                    height="94"
+                    alt="Banking Reports"
+                  />
+                </Box>
+              </Link>
             </SimpleGrid>
           </Box>
         </Flex>
