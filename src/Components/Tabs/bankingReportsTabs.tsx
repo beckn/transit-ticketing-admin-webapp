@@ -51,9 +51,14 @@ type MyOptionType = {
 };
 
 const options: MyOptionType[] = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" }
+  { value: "1102", label: "1102" },
+  { value: "1104", label: "1104" },
+  { value: "1108", label: "1108" },
+];
+const optionsForBoatMaster: MyOptionType[] = [
+  { value: "Navjeet Singh", label: "Navjeet SIngh" },
+  { value: "Navneet Singh", label: "Navneet Singh" },
+  { value: "Navjot Singh", label: "Navjot Singh" },
 ];
 
 const customControlStyles: CSSProperties = {
@@ -62,16 +67,6 @@ const customControlStyles: CSSProperties = {
 };
 
 type IsMulti = false;
-
-const selectStyle: StylesConfig<MyOptionType, IsMulti> = {
-    control: (provided, state) => {
-
-        return {
-            ...provided,
-            ...customControlStyles
-        };
-    }
-};
 
 const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     control: (base) => ({
@@ -99,9 +94,6 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
           boxShadow: "0px 0px 0.3rem #02b3e4 !important",
         },
       }),
-    // placeholder: () => ({
-    //     color: '#7d97ad',
-    // }),
     valueContainer: (provided) => ({
         ...provided,
         width: '90%',
@@ -166,32 +158,75 @@ export default function BankingReportsTabs<Data extends object>({
               <Tab>Old</Tab>
             </Stack>
 
-                    <Stack direction="row" marginTop={'10px'} display={'flex'} justifyContent={'flex-start'} width={'40%'}>
-                        <InputGroup>
-                            <InputRightElement
-                                className="InputLeft"
-                                pointerEvents="none"
-                                children={
-                                    <SearchIcon className="SearchIcon" color="#E79378" />
-                                }
-                            />
-                            <Input
-                                borderColor={'#E79378'}
-                                focusBorderColor={'#E79378'}
-                                height={"40px"}
-                                variant="outline"
-                                size="xs"
-                                placeholder={`Search`}
-                                borderRadius={'10px'}
-                                _hover={{ borderColor: "#E79378 !important" }}
-                            />
-                        </InputGroup>
-                        <Stack direction="row" spacing={4}>
-                            <Button _hover={{ bgColor: "#646782" }} leftIcon={<img src={Filter} />} bgColor="#3E4059" color={"#fff"} padding={"20px"} >
-                                Filter
-                            </Button>
-                        </Stack>
-                    </Stack>
+
+            <Flex marginBottom={"10px"}>
+              <Select
+                components={{ IndicatorSeparator: () => null }}
+                className="Select"
+                isSearchable={true}
+                placeholder={"Select Boat No"}
+                // onChange={(value) => {
+                //     form.setFieldValue('assignment_id', value)
+                // }}
+                // value={
+                //     field.value
+                //         ? {
+                //             id: field.value.id,
+                //             label: field.value.value,
+                //             value: field.value.value,
+                //         }
+                //         : ''
+                // }
+                styles={customStyles}
+                options={
+                  options.length === 0
+                    ? formattedArray([])
+                    : formattedArray(options)
+                }
+              />
+              <Select
+                components={{ IndicatorSeparator: () => null }}
+                className="Select"
+                isSearchable={true}
+                placeholder={"Select Boat Master"}
+                // onChange={(value) => {
+                //     form.setFieldValue('assignment_id', value)
+                // }}
+                // value={
+                //     field.value
+                //         ? {
+                //             id: field.value.id,
+                //             label: field.value.value,
+                //             value: field.value.value,
+                //         }
+                //         : ''
+                // }
+                styles={customStyles}
+                options={
+                  optionsForBoatMaster.length === 0
+                    ? formattedArray([])
+                    : formattedArray(optionsForBoatMaster)
+                }
+              />
+              <Stack
+                spacing={4}
+                direction="row"
+                align="center"
+                padding={"10px"}
+              >
+                <Button
+                  colorScheme="#E79378"
+                  size="md"
+                  _hover={{ bgColor: "#E79378" }}
+                  leftIcon={<img src={Filter} alt="Filter Icon" />}
+                  bgColor="#E79378"
+                  color={"#fff"}
+                  padding={"20px"}
+                >
+                  Apply
+                </Button>
+              </Stack>
+            </Flex>
         </TabList>
           <Stack direction="row" marginTop={"10px"} display={"flex"} justifyContent={"flex-start"} width={"full"}>
             
@@ -202,7 +237,16 @@ export default function BankingReportsTabs<Data extends object>({
                   pointerEvents="none"
                   children={<SearchIcon className="SearchIcon" color="gray.300" />}
                 />
-                <Input height={"40px"} variant="outline" size="xs" placeholder={`Search`} />
+                <Input 
+                  borderColor={'#E79378'}
+                  _focus={{borderColor:'#E79378'}}
+                  _hover={{borderColor:'#E79378'}}
+                  borderRadius={'10px'}
+                  height={"40px"}
+                  variant="outline"
+                  size="xs"
+                  placeholder={`Search`} 
+                  />
               </InputGroup>
               <Stack direction="row" spacing={4}>
                 <Menu>

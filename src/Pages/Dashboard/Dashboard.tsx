@@ -26,12 +26,6 @@ const Dashboard: React.FC<IPageProps> = (props) => {
       setUser(parsedData);
     }
   }, []);
-  const handleWayBillReport = () => {
-    history.push("/way_Bill_Reports");
-  };
-  const handleBankingReport = () => {
-    history.push("/banking_Reports");
-  };
 
   return (
     <AuthContainer>

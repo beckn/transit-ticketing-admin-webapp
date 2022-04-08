@@ -114,7 +114,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       <div>
-        <RouterLink to="/"><NavItem className="main-drawer-item">Home</NavItem></RouterLink>
+        <RouterLink exact={true} activeClassName="is-active" to="/"><NavItem className="main-drawer-item">Home</NavItem></RouterLink>
       </div>
       <Text ml="8" fontWeight="700" fontSize="24" color="#FFFFFF" fontFamily={'Roboto'}>Boats</Text>
       <Divider mb="3" />
@@ -133,7 +133,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <RouterLink exact={true} activeClassName="is-active" to="/counter"><NavItem className="sub-drawer-item">Counter</NavItem></RouterLink>
         </div>
       </Flex>
-      <HStack spacing={{ base: "0", md: "6" }}>
+      <HStack spacing={{ base: "0", md: "6" }} marginTop={'20px'}>
         <Flex alignItems={"center"}>
           <Menu>
             <MenuButton
@@ -207,7 +207,7 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       fontFamily={'Roboto'}
       _hover={{
         bg: "#E49076",
-        color: "black",
+        color: "#fff",
       }}
       {...rest}
     >

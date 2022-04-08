@@ -52,22 +52,17 @@ const options: MyOptionTypeForBoatNo[] = [
   { value: "1104", label: "1104" },
   { value: "1108", label: "1108" },
 ];
-
+const optionsForBoatMaster: MyOptionTypeForBoatNo[] = [
+  { value: "Navjeet Singh", label: "Navjeet SIngh" },
+  { value: "Navneet Singh", label: "Navneet Singh" },
+  { value: "Navjot Singh", label: "Navjot Singh" },
+];
 const customControlStyles: CSSProperties = {
   color: "white",
   borderColor: "pink",
 };
 
 type IsMulti = false;
-
-const selectStyle: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
-  control: (provided, state) => {
-    return {
-      ...provided,
-      ...customControlStyles,
-    };
-  },
-};
 
 const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   control: (base) => ({
@@ -205,9 +200,9 @@ export default function WayBillReportsTabs<Data extends object>({
                 // }
                 styles={customStyles}
                 options={
-                  options.length === 0
+                  optionsForBoatMaster.length === 0
                     ? formattedArray([])
-                    : formattedArray(options)
+                    : formattedArray(optionsForBoatMaster)
                 }
               />
               <Stack
@@ -247,7 +242,11 @@ export default function WayBillReportsTabs<Data extends object>({
                     <SearchIcon className="SearchIcon" color="gray.300" />
                   }
                 />
-                <Input
+                <Input 
+                  borderColor={'#E79378'}
+                  _focus={{borderColor:'#E79378'}}
+                  _hover={{borderColor:'#E79378'}}
+                  borderRadius={'10px'}
                   height={"40px"}
                   variant="outline"
                   size="xs"
