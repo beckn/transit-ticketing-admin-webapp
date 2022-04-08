@@ -48,7 +48,11 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               Reports :
             </Heading>
 
-            <Divider borderColor={"black"} border="1px" marginBottom="20px" />
+            <Divider
+              backgroundColor={"black"}
+              height="2px"
+              marginBottom="20px"
+            />
 
             <SimpleGrid
               minChildWidth="300px"
@@ -105,7 +109,11 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             >
               Boats :
             </Heading>
-            <Divider borderColor={"black"} border="1px" marginBottom="20px" />
+            <Divider
+              backgroundColor={"black"}
+              height="2px"
+              marginBottom="20px"
+            />
             <SimpleGrid
               minChildWidth="280px"
               columns={[2, null, 3]}
@@ -188,7 +196,11 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             >
               Assignments
             </Heading>
-            <Divider borderColor={"black"} border="1px" marginBottom="20px" />
+            <Divider
+              backgroundColor={"black"}
+              height="2px"
+              marginBottom="20px"
+            />
             <SimpleGrid
               minChildWidth="300px"
               columns={[2, null, 2]}

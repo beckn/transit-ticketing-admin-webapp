@@ -402,8 +402,8 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
     accessor: "download",
     Cell: (props) => <Link color="#EE9A7F">Download</Link>,
   },
-  {
-    Header: "",
-    accessor: "print",
-  },
+  // {
+  //   Header: "",
+  //   accessor: "print",
+  // },
 ];
