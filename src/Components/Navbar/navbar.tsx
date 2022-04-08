@@ -29,21 +29,27 @@ export default function Navbar(props: NavbarProps) {
         <Flex justifyContent={"space-around"}>
           <Box className="Nav-container">
             <Text className="Nav-content-head">{totalReport}</Text>
-            <Text className="Nav-content-child">{total || 0}</Text>
+            <Center>
+              <Text className="Nav-content-child">{total || 0}</Text>
+            </Center>
           </Box>
           <Box>
             <Image src={IMAGE_PREFIX.AngleBracket} alt="Angle Bracket" />
           </Box>
           <Box>
             <Text className="Nav-content-head">{wayBillReport}</Text>
-            <Text className="Nav-content-child">{available || 0}</Text>
+            <Center>
+              <Text className="Nav-content-child">{available || 0}</Text>
+            </Center>
           </Box>
           <Box>
             <Image src={IMAGE_PREFIX.Pipe} alt="Pipe" />
           </Box>
           <Box>
             <Text className="Nav-content-head">{BankingReport}</Text>
-            <Text className="Nav-content-child">{remaining || 0}</Text>
+            <Center>
+              <Text className="Nav-content-child">{remaining || 0}</Text>
+            </Center>
           </Box>
         </Flex>
         <Box className="Table-heading" letterSpacing={"2px"}>
