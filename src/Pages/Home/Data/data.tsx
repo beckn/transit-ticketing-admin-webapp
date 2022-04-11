@@ -78,7 +78,7 @@ export const boatColumns: Column<BoatTableData>[] = [
 // ---------------------Schudule----------------------
 
 type BoatsConversionForScchedule = {
-  bootNo: number;
+  boatNo: number;
   boatMasterName: string;
   startTime: string;
   endTime: string;
@@ -88,7 +88,7 @@ type BoatsConversionForScchedule = {
 
 export const dataForScchedule: BoatsConversionForScchedule[] = [
   {
-    bootNo: 1102,
+    boatNo: 1102,
     boatMasterName: "Navjeet Singh",
     startTime: "11:02 AM",
     endTime: "12:02 PM",
@@ -96,7 +96,7 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
     endLocation: "NEDUMUDY",
   },
   {
-    bootNo: 1102,
+    boatNo: 1102,
     boatMasterName: "Navjeet Singh",
     startTime: "11:02 AM",
     endTime: "12:02 PM",
@@ -104,7 +104,7 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
     endLocation: "NEDUMUDY",
   },
   {
-    bootNo: 1102,
+    boatNo: 1102,
     boatMasterName: "Navjeet Singh",
     startTime: "11:02 AM",
     endTime: "12:02 PM",
@@ -116,7 +116,7 @@ export const dataForScchedule: BoatsConversionForScchedule[] = [
 export const columnsForSchedule: Column<BoatsConversionForScchedule>[] = [
   {
     Header: "Boat No",
-    accessor: "bootNo",
+    accessor: "boatNo",
   },
   {
     Header: "Boat Master Name",

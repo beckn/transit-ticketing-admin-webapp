@@ -21,7 +21,7 @@ export default function OperationalBoats() {
         ) : (
           <>
             <Navbar
-              widgetData={getWidgetData(boatData, "status", "New")}
+              widgetData={getWidgetData(data, "status", "New")}
               pageTitle="Operational Boats"
               tableTitle="List of operational boats :"
               totalReport="Total Boats"
@@ -29,7 +29,7 @@ export default function OperationalBoats() {
               BankingReport="Boats Out Of Service"
             />
             <OperationalBoatsTabs
-              dataForBoat={boatData}
+              dataForBoat={data}
               columnsForBoat={boatColumns}
             />
           </>
