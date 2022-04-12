@@ -142,57 +142,57 @@ export const columnsForSchedule: Column<BoatsConversionForScchedule>[] = [
 
 // ------------------------staff-----------------------
 type BoatsConversionForStaff = {
-  boatMasterId: number;
-  boatMaster: string;
-  bootNo: number;
+  staffId: number;
+  staffName: string;
+  boatNumber: number;
   dateOfJoining: string;
   station: string;
-  postion: string;
+  position: string;
   shift: string;
 };
 
-export const dataForStaff: BoatsConversionForStaff[] = [
-  {
-    boatMasterId: 4321234,
-    boatMaster: "Navjeet Singh",
-    bootNo: 1102,
-    dateOfJoining: "01-11-22",
-    station: "EDATHUA",
-    postion: "Senior",
-    shift: "Morning",
-  },
-  {
-    boatMasterId: 4321234,
-    boatMaster: "Navjeet Singh",
-    bootNo: 1102,
-    dateOfJoining: "01-11-22",
-    station: "EDATHUA",
-    postion: "Junior",
-    shift: "Evening",
-  },
-  {
-    boatMasterId: 4321234,
-    boatMaster: "Navjeet Singh",
-    bootNo: 1102,
-    dateOfJoining: "01-11-22",
-    station: "EDATHUA",
-    postion: "New",
-    shift: "Morning",
-  },
-];
+// export const dataForStaff: BoatsConversionForStaff[] = [
+//   {
+//     boatMasterId: 4321234,
+//     boatMaster: "Navjeet Singh",
+//     bootNo: 1102,
+//     dateOfJoining: "01-11-22",
+//     station: "EDATHUA",
+//     postion: "Senior",
+//     shift: "Morning",
+//   },
+//   {
+//     boatMasterId: 4321234,
+//     boatMaster: "Navjeet Singh",
+//     bootNo: 1102,
+//     dateOfJoining: "01-11-22",
+//     station: "EDATHUA",
+//     postion: "Junior",
+//     shift: "Evening",
+//   },
+//   {
+//     boatMasterId: 4321234,
+//     boatMaster: "Navjeet Singh",
+//     bootNo: 1102,
+//     dateOfJoining: "01-11-22",
+//     station: "EDATHUA",
+//     postion: "New",
+//     shift: "Morning",
+//   },
+// ];
 
 export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
   {
     Header: "Boat Master ID",
-    accessor: "boatMasterId",
+    accessor: "staffId",
   },
   {
     Header: "Boat Master",
-    accessor: "boatMaster",
+    accessor: "staffName",
   },
   {
     Header: "Boat No",
-    accessor: "bootNo",
+    accessor: "boatNumber",
   },
   {
     Header: "Date of Joining",
@@ -204,7 +204,7 @@ export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
   },
   {
     Header: "Position",
-    accessor: "postion",
+    accessor: "position",
   },
   {
     Header: "Shift",

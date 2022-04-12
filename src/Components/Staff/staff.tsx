@@ -4,19 +4,18 @@ import Navbar from "../Navbar/navbar";
 import { useQueryClient } from "react-query";
 import { useApi } from "../../hooks/useApi";
 import { apiUrl } from "../../Config/apiUrl";
-import { dataForStaff, columnsForStaff } from "../../Pages/Home/Data/data";
+import { columnsForStaff } from "../../Pages/Home/Data/data";
 import StaffTabs from "../Tabs/staffTabs";
 import Loader from "../Loader/Loading";
 
 export default function Staff() {
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useApi(apiUrl.STAFF);
-  console.log(status, data, error, isFetching);
-
+  const { status, data, error, isFetching } = useApi(apiUrl.STAFF_BOATMASTER);
+  const ticketMasterData = useApi(apiUrl.STAFF_TICKETMASTER);
   return (
     <Box>
       <Navigation>
-        {isFetching ? (
+        {isFetching || ticketMasterData.isFetching ? (
           <Loader />
         ) : (
           <>
@@ -26,11 +25,16 @@ export default function Staff() {
               totalReport="Total Staff"
               wayBillReport="Boat Master"
               BankingReport="Ticket Master"
-              widgetData={{ total: 4, remaining: 5, available: 7 }}
+              widgetData={{
+                total: data.length + ticketMasterData?.data.length,
+                remaining: data.length,
+                available: ticketMasterData?.data.length,
+              }}
             />
             <StaffTabs
-              dataForBoat={dataForStaff}
+              dataForBoatMaster={data}
               columnsForBoat={columnsForStaff}
+              dataForTicketMaster={ticketMasterData?.data}
             />
           </>
         )}

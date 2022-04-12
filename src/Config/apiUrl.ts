@@ -2,6 +2,8 @@ export const apiUrl = {
 SCHEDULE:"/api/v1/secure/boat/schedules",
 TRIP_INVENTORIES:"/api/v1/secure/tripInventories",
 STAFF:"api/v1/secure/staffs",
+STAFF_BOATMASTER:"/api/v1/secure/staffs/boatmaster",
+STAFF_TICKETMASTER:"/api/v1/secure/staffs/ticketmaster",
 TRIPS_IN_SCHEDULE:"/api/v1/secure/tripsInSchedules",
 FARE_RULES:"/api/v1/secure/fareRules",
 SCHEDULED_JOURNEYS:"/api/v1/secure/scheduledJourneys",
