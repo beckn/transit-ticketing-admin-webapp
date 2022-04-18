@@ -33,98 +33,13 @@ import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import Select, { StylesConfig } from "react-select";
 import { CSSProperties, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
+import Dropdown from "../common/dropdown";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
   columnsForBoat: any;
-};
-
-type MyOptionTypeForBoatNo = {
-  label: string;
-  value: string;
-};
-
-const options: MyOptionTypeForBoatNo[] = [
-  { value: "1102", label: "1102" },
-  { value: "1104", label: "1104" },
-  { value: "1108", label: "1108" },
-];
-const optionsForBoatMaster: MyOptionTypeForBoatNo[] = [
-  { value: "Navjeet Singh", label: "Navjeet SIngh" },
-  { value: "Navneet Singh", label: "Navneet Singh" },
-  { value: "Navjot Singh", label: "Navjot Singh" },
-];
-const customControlStyles: CSSProperties = {
-  color: "white",
-  borderColor: "pink",
-};
-
-type IsMulti = false;
-
-const selectStyle: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
-  control: (provided, state) => {
-    return {
-      ...provided,
-      ...customControlStyles,
-    };
-  },
-};
-
-const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
-  control: (base) => ({
-    ...base,
-    "margin-top": "7px",
-    "font-size": "13px",
-    "font-family": "'Open Sans', sans-serif",
-    "padding-bottom": "4px",
-    "padding-top": "4px",
-    "padding-left": "10px",
-    "max-height": "42px",
-    display: "flex",
-    background: "#f5f8faad",
-    borderRadius: "4px",
-    borderColor: "#E79378",
-    focusBorderColor: "#E79378",
-    minWidth: "max-content",
-    width: "12rem",
-    "&:hover": {
-      borderColor: " #E79378 !important",
-    },
-    "&:focus": {
-      transition: "0.4 ease",
-      borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #02b3e4 !important",
-    },
-  }),
-  // placeholder: () => ({
-  //     color: '#7d97ad',
-  // }),
-  valueContainer: (provided) => ({
-    ...provided,
-    width: "90%",
-    paddingTop: "0",
-    paddingBottom: "0",
-  }),
-  indicatorSeparator: (provided) => ({
-    ...provided,
-    width: "10%",
-    minHeight: "1px",
-  }),
-  singleValue: () => ({
-    color: "#525c65",
-  }),
-};
-
-const formattedArray = (array: Array<MyOptionTypeForBoatNo>) => {
-  return array.map((item: MyOptionTypeForBoatNo) => {
-    return {
-      label: `${item.label}`,
-      value: `${item.value}`,
-    };
-  });
 };
 
 export default function WayBillReportsTabs<Data extends object>({
@@ -137,6 +52,8 @@ export default function WayBillReportsTabs<Data extends object>({
   const [wayBillReportValue, setWayBillReportValue] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
+  const [dropdownValue, setDropdownValue] = useState<any>();
+
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -151,6 +68,23 @@ export default function WayBillReportsTabs<Data extends object>({
     }
   };
 
+  const getDropdownOptionForBoatNo = (dataForBoat: any) => {
+    let result:any =[];
+    dataForBoat.map((key: any)=>{
+      result.push({value: key.bootNo, label: key.bootNo});
+    })
+    return result;
+  };
+
+  const getDropdownOptionForMasterName = (dataForBoat: any) => {
+    let result:any =[];
+    dataForBoat.map((key: any)=>{
+      result.push({value: key.nameOfBoatMaster, label: key.nameOfBoatMaster});
+    })
+    return result;
+  };
+  
+
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -163,54 +97,20 @@ export default function WayBillReportsTabs<Data extends object>({
             </Stack>
 
             <Flex marginBottom={"10px"}>
-              <Select
-                components={{ IndicatorSeparator: () => null }}
-                className="Select"
-                isSearchable={true}
-                placeholder={"Select Boat No"}
-                // onChange={(value) => {
-                //     form.setFieldValue('assignment_id', value)
-                // }}
-                // value={
-                //     field.value
-                //         ? {
-                //             id: field.value.id,
-                //             label: field.value.value,
-                //             value: field.value.value,
-                //         }
-                //         : ''
-                // }
-                styles={customStyles}
-                options={
-                  options.length === 0
-                    ? formattedArray([])
-                    : formattedArray(options)
-                }
+
+            <Dropdown  
+              placeholder="Boat No" 
+              dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={setDropdownValue}  
               />
-              <Select
-                components={{ IndicatorSeparator: () => null }}
-                className="Select"
-                isSearchable={true}
-                placeholder={"Select Boat Master"}
-                // onChange={(value) => {
-                //     form.setFieldValue('assignment_id', value)
-                // }}
-                // value={
-                //     field.value
-                //         ? {
-                //             id: field.value.id,
-                //             label: field.value.value,
-                //             value: field.value.value,
-                //         }
-                //         : ''
-                // }
-                styles={customStyles}
-                options={
-                  optionsForBoatMaster.length === 0
-                    ? formattedArray([])
-                    : formattedArray(optionsForBoatMaster)
-                }
+            <Dropdown 
+              placeholder="Boat Master Name"  
+              dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={setDropdownValue} 
               />
+
               <Stack
                 spacing={4}
                 direction="row"
@@ -287,26 +187,26 @@ export default function WayBillReportsTabs<Data extends object>({
                           item === 0
                             ? "Location"
                             : item === 1
-                            ? "WayBill Number"
-                            : "Status";
+                              ? "WayBill Number"
+                              : "Status";
                         const radioData =
                           item === 0
                             ? [
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                              ]
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                            ]
                             : item === 1
-                            ? ["0001", "0001", "0001", "0001", "0001"]
-                            : ["Complete", "Pending"];
+                              ? ["0001", "0001", "0001", "0001", "0001"]
+                              : ["Complete", "Pending"];
                         const radioValue =
                           item === 0
                             ? selectedLocationValue
                             : item === 1
-                            ? wayBillReportValue
-                            : selectedStatusValue;
+                              ? wayBillReportValue
+                              : selectedStatusValue;
 
                         return (
                           <AccordionItem key={item}>
@@ -395,20 +295,8 @@ export default function WayBillReportsTabs<Data extends object>({
                         );
                       })}
                     </Accordion>
-
-                    {/* <MenuItem>Create a Copy</MenuItem> */}
                   </MenuList>
                 </Menu>
-
-                {/* <Button
-                  _hover={{ bgColor: "#646782" }}
-                  leftIcon={<img src={Filter} />}
-                  bgColor="#3E4059"
-                  color={"#fff"}
-                  padding={"20px"}
-                >
-                  Filter
-                </Button> */}
               </Stack>
             </Flex>
 
@@ -484,22 +372,22 @@ export default function WayBillReportsTabs<Data extends object>({
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
                 selectedStatus !== "") && (
-                <Text
-                  css={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setSelectedLocation("");
-                    setSelectedLocationValue("");
-                    setWayBillReport("");
-                    setWayBillReportValue("");
-                    setSelectedStatus("");
-                    setSelectedStatusValue("");
-                  }}
-                  fontSize="xl"
-                  color={"#E8947A"}
-                >
-                  Clear All Filters
-                </Text>
-              )}
+                  <Text
+                    css={{ cursor: "pointer" }}
+                    onClick={() => {
+                      setSelectedLocation("");
+                      setSelectedLocationValue("");
+                      setWayBillReport("");
+                      setWayBillReportValue("");
+                      setSelectedStatus("");
+                      setSelectedStatusValue("");
+                    }}
+                    fontSize="xl"
+                    color={"#E8947A"}
+                  >
+                    Clear All Filters
+                  </Text>
+                )}
             </Flex>
           </Stack>
 

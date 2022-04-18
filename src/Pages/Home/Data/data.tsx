@@ -335,7 +335,7 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
 
 // ----------------------------BANKING REPORTS----------------------------
 
-type BoatsConversionForBanking = {
+export type BoatsConversionForBanking = {
   nameOfBoatMaster: string;
   bootNo: number;
   wayBillNo: number;
@@ -356,8 +356,8 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     print: "Print",
   },
   {
-    nameOfBoatMaster: "Navjeet Singh",
-    bootNo: 1102,
+    nameOfBoatMaster: "Rahul Ranjan",
+    bootNo: 1106,
     wayBillNo: 10101,
     date: "01/11",
     View: "View",
@@ -365,8 +365,26 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     print: "Print",
   },
   {
-    nameOfBoatMaster: "Navjeet Singh",
-    bootNo: 1102,
+    nameOfBoatMaster: "Deepak Singh",
+    bootNo: 1112,
+    wayBillNo: 10101,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print",
+  },
+  {
+    nameOfBoatMaster: "Varun Dev",
+    bootNo: 1321,
+    wayBillNo: 10101,
+    date: "01/11",
+    View: "View",
+    download: "Download",
+    print: "Print",
+  },
+  {
+    nameOfBoatMaster: "Narendra Singh",
+    bootNo: 1152,
     wayBillNo: 10101,
     date: "01/11",
     View: "View",
