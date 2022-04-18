@@ -54,10 +54,26 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
   
-  const [tableData, setTableData] = useState("");
-  const [boatNo, setBoatNo] = useState("");
+  const [tableData, setTableData] = useState(dataForBoat || []);
+  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
+  const [boatNumber, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
+
+  const handleDropDownFilters = () => {
+    if(boatNumber === "" && boatMasterName === "") return;
+    let filterData: BoatsConversionForBanking[] = [];
+    tableDataCopy.map((item: any) => {
+      if(boatNumber !== "") {
+        if(item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
+          filterData.push(item);
+        }
+      }
+    });
+
+    setTableData(filterData); 
+  };
+
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -74,7 +90,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result:any =[];
-    dataForBoat.map((key: any)=>{
+    dataForBoat.map((key: any) => {
       result.push({value: key.bootNo, label: key.bootNo});
     })
     return result;
@@ -82,7 +98,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
 
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
     let result:any =[];
-    dataForBoat.map((key: any)=>{
+    dataForBoat.map((key: any) => {
       result.push({value: key.nameOfBoatMaster, label: key.nameOfBoatMaster});
     })
     return result;
@@ -101,19 +117,19 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
             </Stack>
 
             <Flex marginBottom={"10px"}>
-              {console.log("Rahul", dropdownValue)}
+              {/* {console.log("Rahul", dropdownValue)} */}
             <Dropdown 
               placeholder="Boat No" 
               dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
               optionDropVal={dropdownValue}
-              setOptionDropVal={setDropdownValue} 
-              />
+              setOptionDropVal={(value: string) => setBoatNo(value)} 
+            />
             <Dropdown 
               placeholder="Boat Master Name"  
               dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
               optionDropVal={dropdownValue}
-              setOptionDropVal={setDropdownValue} 
-              />
+              setOptionDropVal={(value: string) =>  setBoatMasterName(value)} 
+            />
               <Stack
                 spacing={4}
                 direction="row"
@@ -128,12 +144,14 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                   bgColor="#E79378"
                   color={"#fff"}
                   padding={"20px"}
+                  onClick={() => handleDropDownFilters()}
                 >
                   Apply
                 </Button>
               </Stack>
             </Flex>
           </TabList>
+
           <Stack
             direction="row"
             marginTop={"10px"}
@@ -395,13 +413,13 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
           </TabPanels>
         </Tabs>

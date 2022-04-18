@@ -52,7 +52,27 @@ export default function WayBillReportsTabs<Data extends object>({
   const [wayBillReportValue, setWayBillReportValue] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
+
+  const [tableData, setTableData] = useState(dataForBoat || []);
+  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
+  const [boatNumber, setBoatNo] = useState("");
+  const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
+
+
+  const handleDropDownFilters = () => {
+    if(boatNumber === "" && boatMasterName === "") return;
+    let filterData: Data[] = [];
+    tableDataCopy.map((item: any) => {
+      if(boatNumber !== "") {
+        if(item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
+          filterData.push(item);
+        }
+      }
+    });
+
+    setTableData(filterData); 
+  };
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -95,17 +115,18 @@ export default function WayBillReportsTabs<Data extends object>({
             </Stack>
 
             <Flex marginBottom={"10px"}>
-              <Dropdown
-                placeholder="Boat No"
-                dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-                optionDropVal={dropdownValue}
-                setOptionDropVal={setDropdownValue}
+
+            <Dropdown  
+              placeholder="Boat No" 
+              dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={(value: string) => setBoatNo(value)}  
               />
-              <Dropdown
-                placeholder="Boat Master Name"
-                dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-                optionDropVal={dropdownValue}
-                setOptionDropVal={setDropdownValue}
+            <Dropdown 
+              placeholder="Boat Master Name"  
+              dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={(value: string) => setBoatMasterName(value)} 
               />
 
               <Stack
@@ -122,6 +143,7 @@ export default function WayBillReportsTabs<Data extends object>({
                   bgColor="#E79378"
                   color={"#fff"}
                   padding={"20px"}
+                  onClick={() => handleDropDownFilters()}
                 >
                   Apply
                 </Button>
