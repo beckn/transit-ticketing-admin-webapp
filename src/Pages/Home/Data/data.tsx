@@ -215,79 +215,79 @@ export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
 // ----------------------------WAY BILL REPORTS----------------------------
 
 type BoatsConversionForWayBill = {
-  nameOfBoatMaster: string;
+  boatMasterName: string;
   boatMasterId: number;
-  bootNo: number;
-  wayBillNo: number;
-  status: boolean;
+  boatNumber: number;
+  wayBillNumber: number;
+  status: string;
   date: string;
   View: string;
   download: string;
   print: string;
 };
 
-export const dataForWayBill: BoatsConversionForWayBill[] = [
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: true,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: false,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: false,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: false,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    boatMasterId: 4321234,
-    bootNo: 1102,
-    wayBillNo: 10101,
-    status: true,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-];
+// export const dataForWayBill: BoatsConversionForWayBill[] = [
+//   {
+//     nameOfBoatMaster: "Navjeet Singh",
+//     boatMasterId: 4321234,
+//     bootNo: 1102,
+//     wayBillNo: 10101,
+//     status: true,
+//     date: "01/11",
+//     View: "View",
+//     download: "Download",
+//     print: "Print",
+//   },
+//   {
+//     nameOfBoatMaster: "Navjeet Singh",
+//     boatMasterId: 4321234,
+//     bootNo: 1102,
+//     wayBillNo: 10101,
+//     status: false,
+//     date: "01/11",
+//     View: "View",
+//     download: "Download",
+//     print: "Print",
+//   },
+//   {
+//     nameOfBoatMaster: "Navjeet Singh",
+//     boatMasterId: 4321234,
+//     bootNo: 1102,
+//     wayBillNo: 10101,
+//     status: false,
+//     date: "01/11",
+//     View: "View",
+//     download: "Download",
+//     print: "Print",
+//   },
+//   {
+//     nameOfBoatMaster: "Navjeet Singh",
+//     boatMasterId: 4321234,
+//     bootNo: 1102,
+//     wayBillNo: 10101,
+//     status: false,
+//     date: "01/11",
+//     View: "View",
+//     download: "Download",
+//     print: "Print",
+//   },
+//   {
+//     nameOfBoatMaster: "Navjeet Singh",
+//     boatMasterId: 4321234,
+//     bootNo: 1102,
+//     wayBillNo: 10101,
+//     status: true,
+//     date: "01/11",
+//     View: "View",
+//     download: "Download",
+//     print: "Print",
+//   },
+// ];
 
 export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "Name Of Boat Master",
-    accessor: "nameOfBoatMaster",
+    accessor: "boatMasterName",
   },
   {
     Header: "Boat Master ID",
@@ -295,11 +295,11 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   },
   {
     Header: "Boat No",
-    accessor: "bootNo",
+    accessor: "boatNumber",
   },
   {
     Header: "Way Bill No",
-    accessor: "wayBillNo",
+    accessor: "wayBillNumber",
   },
   {
     Header: "Status",
@@ -307,7 +307,7 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
       <Divider
         w="42"
         h="21"
-        bg={props.status ? "#51FC15" : "#FCF315"}
+        bg={props.status === "Completed" ? "#51FC15" : "#FCF315"}
         p="1"
       ></Divider>
     ),

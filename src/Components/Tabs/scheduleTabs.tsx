@@ -36,7 +36,7 @@ export default function ScheduleTabs<Data extends object>({
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
               <Tab _focus={{ borderColor: "none" }}>Schedule</Tab>
-              <Tab _focus={{ borderColor: "none" }}>Timetable</Tab>
+              {/* <Tab _focus={{ borderColor: "none" }}>Timetable</Tab> */}
             </Stack>
             <Stack direction="row" marginBottom={"10px"}>
               <InputGroup>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   Box,
   Tab,
@@ -15,11 +15,17 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import DataTable from "../Table/table";
+import { TableSelect } from "../Table/TableSelect";
+
 import { SearchIcon } from "@chakra-ui/icons";
 import "./operationalBoatsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
+import { CustomSelect } from "../CustomSelect";
 
+export const defaultColumn = {
+  Cell: CustomSelect,
+};
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
   columnsForBoat: Column<Data>[];
@@ -29,12 +35,22 @@ export default function CounterTabs<Data extends object>({
   dataForBoat,
   columnsForBoat,
 }: DataTableForBoatProps<Data>) {
-  const [rowData, setRowData] = useState([]);
+  const [data, setData] = useState(dataForBoat);
 
-  const handleClickRow = (cell: any) => {
-    // console.log("dropdown", cell.column.id);
-    console.log("cell", cell.row.original);
-  };
+  const updateMyData = useCallback((rowIndex, columnId, value) => {
+    setData((old) =>
+      old.map((row, index) => {
+        if (index === rowIndex) {
+          return {
+            ...old[rowIndex],
+            [columnId]: value,
+          };
+        }
+        return row;
+      })
+    );
+  }, []);
+  console.log("oldData", data);
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -79,10 +95,11 @@ export default function CounterTabs<Data extends object>({
 
           <TabPanels>
             <TabPanel>
-              <DataTable
+              <TableSelect
                 columns={columnsForBoat}
-                data={dataForBoat}
-                onClickRow={(row: any) => handleClickRow(row)}
+                data={data}
+                defaultColumn={defaultColumn}
+                updateMyData={updateMyData}
               />
             </TabPanel>
           </TabPanels>

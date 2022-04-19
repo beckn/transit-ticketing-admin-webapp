@@ -1,6 +1,6 @@
 import AssignmentDropdownTable from "../../Components/Table/assignmentDropdownForTable";
 import { Column } from "react-table";
-import CustomSelect from "../../Components/CustomSelect";
+import { CustomSelect } from "../../Components/CustomSelect";
 
 // ------------------------------Assignment Boats-------------------------------
 
@@ -113,6 +113,10 @@ const options: MyOptionTypeForBoatNo[] = [
   { value: "1104", label: "1104" },
   { value: "1108", label: "1108" },
 ];
+
+export const defaultColumn = {
+  Cell: CustomSelect,
+};
 export const columns: Column<BoatsConversionForAssignment>[] = [
   {
     Header: "Boat No",
@@ -122,23 +126,14 @@ export const columns: Column<BoatsConversionForAssignment>[] = [
   {
     Header: "Station",
     accessor: "station",
-    Cell: (props: any) => {
-      return <CustomSelect options={props.station} />;
-    },
   },
   {
     Header: "Schedule",
     accessor: "schedule",
-    Cell: () => {
-      return <CustomSelect options={options} />;
-    },
   },
   {
     Header: "Boat Master",
     accessor: "boatMaster",
-    Cell: () => {
-      return <CustomSelect options={options} />;
-    },
   },
 ];
 
@@ -159,11 +154,11 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
       { value: "1108", label: "1108" },
     ],
     counterSchedule: [
-      "open",
-      "closed",
-      "resolved",
-      "acknowldged",
-      "suppressed",
+      { value: "open", label: "open" },
+      { value: "closed", label: "closed" },
+      { value: "resolved", label: "resolved" },
+      { value: "acknowldged", label: "acknowledged" },
+      { value: "suppressed", label: "suppressed" },
     ],
     ticketMaster: [
       { value: "1102", label: "1102" },
@@ -179,11 +174,11 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
       { value: "1108", label: "1108" },
     ],
     counterSchedule: [
-      "open",
-      "closed",
-      "resolved",
-      "acknowldged",
-      "suppressed",
+      { value: "open", label: "open" },
+      { value: "closed", label: "closed" },
+      { value: "resolved", label: "resolved" },
+      { value: "acknowldged", label: "acknowledged" },
+      { value: "suppressed", label: "suppressed" },
     ],
     ticketMaster: [
       { value: "1102", label: "1102" },
@@ -192,18 +187,18 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1105,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
       { value: "1108", label: "1108" },
     ],
     counterSchedule: [
-      "open",
-      "closed",
-      "resolved",
-      "acknowldged",
-      "suppressed",
+      { value: "open", label: "open" },
+      { value: "closed", label: "closed" },
+      { value: "resolved", label: "resolved" },
+      { value: "acknowldged", label: "acknowledged" },
+      { value: "suppressed", label: "suppressed" },
     ],
     ticketMaster: [
       { value: "1102", label: "1102" },
@@ -212,18 +207,18 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1104,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
       { value: "1108", label: "1108" },
     ],
     counterSchedule: [
-      "open",
-      "closed",
-      "resolved",
-      "acknowldged",
-      "suppressed",
+      { value: "open", label: "open" },
+      { value: "closed", label: "closed" },
+      { value: "resolved", label: "resolved" },
+      { value: "acknowldged", label: "acknowledged" },
+      { value: "suppressed", label: "suppressed" },
     ],
     ticketMaster: [
       { value: "1102", label: "1102" },
@@ -232,23 +227,23 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1103,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
       { value: "1108", label: "1108" },
     ],
     counterSchedule: [
-      "open",
-      "closed",
-      "resolved",
-      "acknowldged",
-      "suppressed",
+      { value: "open", label: "open" },
+      { value: "closed", label: "closed" },
+      { value: "resolved", label: "resolved" },
+      { value: "acknowldged", label: "acknowledged" },
+      { value: "suppressed", label: "suppressed" },
     ],
     ticketMaster: [
-      { value: "1102", label: "1102" },
-      { value: "1104", label: "1104" },
-      { value: "1108", label: "1108" },
+      { value: "1102", label: "Rahul" },
+      { value: "1104", label: "Ankit" },
+      { value: "1108", label: "Varun" },
     ],
   },
 ];
@@ -257,27 +252,26 @@ export const columnsForCounter: Column<BoatsConversionForAssignmentCounter>[] =
     {
       Header: "Boat No",
       accessor: "boatNo",
+      Cell: (row: any) => {
+        return <span>{row.value}</span>;
+      },
     },
 
     {
       Header: "Station",
       accessor: "station",
-      Cell: () => {
-        return <CustomSelect options={options} />;
-      },
+      Cell: (props) => <CustomSelect {...props} />,
     },
     {
       Header: "Counter Schedule",
       accessor: "counterSchedule",
-      Cell: () => {
-        return <CustomSelect options={options} />;
-      },
+      Cell: (props) => <CustomSelect {...props} />,
     },
     {
       Header: "Ticket Master",
       accessor: "ticketMaster",
-      Cell: () => {
-        return <CustomSelect options={options} />;
+      Cell: (props) => {
+        return <CustomSelect {...props} />;
       },
     },
   ];

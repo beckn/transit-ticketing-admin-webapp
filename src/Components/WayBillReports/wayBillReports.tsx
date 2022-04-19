@@ -4,26 +4,36 @@ import Navbar from "../Navbar/navbar";
 import { useQueryClient } from "react-query";
 import { useApi } from "../../hooks/useApi";
 import { apiUrl } from "../../Config/apiUrl";
-import { dataForWayBill, columnsForWayBill } from "../../Pages/Home/Data/data";
+import { columnsForWayBill } from "../../Pages/Home/Data/data";
 import WayBillReportsTabs from "../Tabs/wayBillReportsTabs";
 import { getWidgetData } from "../../utils/helpers";
+import Loader from "../Loader/Loading";
 
 export default function WayBillReport() {
+  const queryClient = useQueryClient();
+  const { status, data, error, isLoading } = useApi(apiUrl.WAY_BILL_REPORTS);
+  console.log(status, data, error, isLoading);
   return (
     <Box>
       <Navigation>
-        <Navbar
-          widgetData={getWidgetData(dataForWayBill, "status", true)}
-          pageTitle="Reports"
-          tableTitle="Way Bill Reports :"
-          totalReport="Total Reports"
-          wayBillReport="Way Bill Reports"
-          BankingReport="Banking Reports"
-        />
-        <WayBillReportsTabs
-          dataForBoat={dataForWayBill}
-          columnsForBoat={columnsForWayBill}
-        />
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <Navbar
+              widgetData={getWidgetData(data, "status", "Completed")}
+              pageTitle="Reports"
+              tableTitle="Way Bill Reports :"
+              totalReport="Total Reports"
+              wayBillReport="Way Bill Reports"
+              BankingReport="Banking Reports"
+            />
+            <WayBillReportsTabs
+              dataForBoat={data}
+              columnsForBoat={columnsForWayBill}
+            />
+          </>
+        )}
       </Navigation>
     </Box>
   );

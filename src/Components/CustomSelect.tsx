@@ -56,18 +56,42 @@ interface CustomSelectProps {
   options: any;
 }
 
-const CustomSelect = (props: CustomSelectProps) => {
-  const { options } = props;
+const cellOptions: any = [
+  { label: "watermelon", value: 1 },
+  { label: "kiwi", value: 2 },
+];
+interface SelectCellProps {
+  value: any;
+  index: any;
+  id: any;
+  updateMyData: any;
+}
+const SelectCell = React.memo(
+  ({ value, index, id, updateMyData }: SelectCellProps) => {
+    const onChange = (e: any) => {
+      updateMyData(index, id, e.value);
+    };
+
+    return (
+      <Select
+        options={value}
+        components={{ IndicatorSeparator: () => null }}
+        isSearchable={false}
+        value={value.value}
+        onChange={onChange}
+        styles={customStyles}
+      />
+    );
+  }
+);
+
+export const CustomSelect = (props: any) => {
   return (
-    <Select
-      components={{ IndicatorSeparator: () => null }}
-      className="Select"
-      isSearchable={true}
-      placeholder={"Assign"}
-      styles={customStyles}
-      options={options}
+    <SelectCell
+      index={props.row.index}
+      id={props.column.id}
+      value={props.value}
+      updateMyData={props.updateMyData}
     />
   );
 };
-
-export default CustomSelect;

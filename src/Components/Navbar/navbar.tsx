@@ -1,7 +1,7 @@
 import { Heading, Box, Center, Flex, Text, Image } from "@chakra-ui/react";
 import "./navbar.css";
 import IMAGE_PREFIX from "../../Config/image";
-
+import { Link } from "react-router-dom";
 interface NavbarProps {
   pageTitle: string;
   tableTitle: string;
@@ -20,6 +20,13 @@ export default function Navbar(props: NavbarProps) {
     widgetData,
   } = props;
   const { total, remaining, available } = widgetData || {};
+  const availableText = (
+    <Text className="Nav-content-head">{wayBillReport}</Text>
+  );
+  const remainingText = (
+    <Text className="Nav-content-head">{BankingReport}</Text>
+  );
+
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"1232px"} h="354px" w={"full"}>
@@ -37,7 +44,11 @@ export default function Navbar(props: NavbarProps) {
             <Image src={IMAGE_PREFIX.AngleBracket} alt="Angle Bracket" />
           </Box>
           <Box>
-            <Text className="Nav-content-head">{wayBillReport}</Text>
+            {wayBillReport === "Way Bill Reports" ? (
+              <Link to="/way_Bill_Reports">{availableText}</Link>
+            ) : (
+              availableText
+            )}
             <Center>
               <Text className="Nav-content-child">{available || 0}</Text>
             </Center>
@@ -46,7 +57,12 @@ export default function Navbar(props: NavbarProps) {
             <Image src={IMAGE_PREFIX.Pipe} alt="Pipe" />
           </Box>
           <Box>
-            <Text className="Nav-content-head">{BankingReport}</Text>
+            {BankingReport === "Banking Reports" ? (
+              <Link to="/banking_Reports">{remainingText}</Link>
+            ) : (
+              remainingText
+            )}
+
             <Center>
               <Text className="Nav-content-child">{remaining || 0}</Text>
             </Center>

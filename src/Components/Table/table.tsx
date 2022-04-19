@@ -5,13 +5,11 @@ import { useTable, useSortBy, Column } from "react-table";
 export type DataTableProps<Data extends object> = {
   data: Data[];
   columns: Column<Data>[];
-  onClickRow?: (cell: any) => void;
 };
 
 function DataTable<Data extends object>({
   data,
   columns,
-  onClickRow,
 }: DataTableProps<Data>) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);
@@ -47,14 +45,7 @@ function DataTable<Data extends object>({
           return (
             <Tr {...row.getRowProps()}>
               {row.cells.map((cell: any) => (
-                <Td
-                  {...cell.getCellProps()}
-                  isNumeric={cell.column.isNumeric}
-                  onClickRow
-                  onClick={() => {
-                    onClickRow && onClickRow(cell);
-                  }}
-                >
+                <Td {...cell.getCellProps()} isNumeric={cell.column.isNumeric}>
                   {cell.render("Cell")}
                 </Td>
               ))}

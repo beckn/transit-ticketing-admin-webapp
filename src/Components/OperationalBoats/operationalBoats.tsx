@@ -11,12 +11,12 @@ import { getWidgetData } from "../../utils/helpers";
 
 export default function OperationalBoats() {
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useApi(apiUrl.OPERATIONAL_BOATS);
-  console.log(status, data, error, isFetching);
+  const { status, data, error, isLoading } = useApi(apiUrl.OPERATIONAL_BOATS);
+  console.log(status, data, error, isLoading);
   return (
     <Box>
       <Navigation>
-        {isFetching ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>

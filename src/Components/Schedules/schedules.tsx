@@ -13,13 +13,13 @@ import Loader from "../Loader/Loading";
 
 export default function Schedules() {
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useApi(apiUrl.SCHEDULE);
-  console.log(status, data, error, isFetching);
+  const { status, data, error, isLoading } = useApi(apiUrl.SCHEDULE);
+  console.log(status, data, error, isLoading);
 
   return (
     <Box>
       <Navigation>
-        {isFetching ? (
+        {isLoading ? (
           <Loader />
         ) : (
           <>

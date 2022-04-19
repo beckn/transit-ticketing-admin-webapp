@@ -10,12 +10,12 @@ import Loader from "../Loader/Loading";
 
 export default function Staff() {
   const queryClient = useQueryClient();
-  const { status, data, error, isFetching } = useApi(apiUrl.STAFF_BOATMASTER);
+  const { status, data, error, isLoading } = useApi(apiUrl.STAFF_BOATMASTER);
   const ticketMasterData = useApi(apiUrl.STAFF_TICKETMASTER);
   return (
     <Box>
       <Navigation>
-        {isFetching || ticketMasterData.isFetching ? (
+        {isLoading || ticketMasterData.isLoading ? (
           <Loader />
         ) : (
           <>
