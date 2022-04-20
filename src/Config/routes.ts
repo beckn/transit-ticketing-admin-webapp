@@ -9,6 +9,7 @@ import WayBillReport from "../Components/WayBillReports/wayBillReports";
 import BankingReports from "../Components/BankingReports/bankingReports";
 import Boats from '../Pages/Assignment/Boat/boats'
 import Counter from "../Pages/Assignment/Counter/counter";
+import PdfComponent from "../Components/PDF/index";
 
 const routes: IRoute[] = [
   {
@@ -79,6 +80,13 @@ const routes: IRoute[] = [
   exact: true, 
   component: Counter,
   name: "Counter",
+  protected: false
+},
+{
+  path: "/pdf",
+  exact: true, 
+  component: PdfComponent,
+  name: "PDF",
   protected: false
 },
 
