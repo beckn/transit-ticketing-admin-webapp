@@ -69,24 +69,22 @@ export default function Dropdown(props: DropdownProp) {
   const { placeholder, dropdownOption, optionDropVal, setOptionDropVal } =
     props;
 
-  return (
-    <Box>
-      <Select
-        components={{ IndicatorSeparator: () => null }}
-        className="Select"
-        isSearchable={true}
-        placeholder={placeholder}
-        styles={customStyles}
-        onChange={(e) => {
-          setOptionDropVal(e?.value);
-        }}
-        options={
-          dropdownOption.length === 0
-            ? formattedArray([])
-            : formattedArray(dropdownOption)
-        }
-        // value={optionDropVal}
-      />
-    </Box>
-  );
+    return (
+        <Box>
+            <Select
+                components={{ IndicatorSeparator: () => null }}
+                className="Select"
+                isSearchable={true}
+                placeholder={placeholder}
+                styles={customStyles}
+                onChange={e => { setOptionDropVal(e?.value) }}
+                options={
+                    dropdownOption.length === 0
+                        ? formattedArray([])
+                        : formattedArray(dropdownOption)
+                }
+                value={optionDropVal}
+            />
+        </Box>
+    );
 }

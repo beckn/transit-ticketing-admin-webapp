@@ -39,13 +39,13 @@ import Dropdown from "../common/dropdown";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
-  columnsForBoat: any;
+  columnsForBoat: Column<Data>[];
 };
 
-export default function WayBillReportsTabs<Data extends object>({
+export default function WayBillReportsTabs<BoatsConversionForWayBill extends object>({
   dataForBoat,
   columnsForBoat,
-}: DataTableForBoatProps<Data>) {
+}: DataTableForBoatProps<BoatsConversionForWayBill>) {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedLocationValue, setSelectedLocationValue] = useState("");
   const [wayBillReport, setWayBillReport] = useState("");
@@ -58,11 +58,12 @@ export default function WayBillReportsTabs<Data extends object>({
   const [boatNumber, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
+  const [serachInput, setSearchInput] = useState<any>("");
 
 
   const handleDropDownFilters = () => {
     if(boatNumber === "" && boatMasterName === "") return;
-    let filterData: Data[] = [];
+    let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
       if(boatNumber !== "") {
         if(item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
@@ -72,6 +73,21 @@ export default function WayBillReportsTabs<Data extends object>({
     });
 
     setTableData(filterData); 
+  };
+
+  const handleSearchFilters = (searchData: string) => {
+    let filterData: BoatsConversionForWayBill[] = [];
+    tableDataCopy.map((item: any) => {
+      console.log("searchData", item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()))
+        if (item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) ) {
+          filterData.push(item);
+        }
+    });
+    setSearchInput(searchData);
+    setTableData(filterData);
+    if(searchData===""){
+      setTableData(tableDataCopy);
+    }
   };
 
   const handleFilter = (title: string, value: string, index: string): void => {
@@ -176,6 +192,7 @@ export default function WayBillReportsTabs<Data extends object>({
                   variant="outline"
                   size="xs"
                   placeholder={`Search`}
+                  onChange={e => { handleSearchFilters(e.target.value) }}
                 />
               </InputGroup>
               <Stack direction="row" spacing={4}>
@@ -412,7 +429,7 @@ export default function WayBillReportsTabs<Data extends object>({
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData}/>
             </TabPanel>
             <TabPanel>
               <DataTable
