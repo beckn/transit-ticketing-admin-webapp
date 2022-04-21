@@ -16,7 +16,13 @@ export default function WayBillReport() {
   const { status, data, error, isLoading } = useApi(apiUrl.WAY_BILL_REPORTS);
 
   if (status === "error") {
-    return <ServerError />;
+    return (
+      <Box>
+        <Navigation>
+          <ServerError />
+        </Navigation>
+      </Box>
+    );
   }
 
   return (

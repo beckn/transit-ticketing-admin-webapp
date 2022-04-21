@@ -15,7 +15,13 @@ export default function OperationalBoats() {
   const { status, data, error, isLoading } = useApi(apiUrl.OPERATIONAL_BOATS);
   console.log(status, data, error, isLoading);
   if (status === "error") {
-    return <ServerError />;
+    return (
+      <Box>
+        <Navigation>
+          <ServerError />
+        </Navigation>
+      </Box>
+    );
   }
   return (
     <Box>

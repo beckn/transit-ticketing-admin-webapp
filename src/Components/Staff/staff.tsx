@@ -14,7 +14,13 @@ export default function Staff() {
   const { status, data, error, isLoading } = useApi(apiUrl.STAFF_BOATMASTER);
   const ticketMasterData = useApi(apiUrl.STAFF_TICKETMASTER);
   if (status === "error" || ticketMasterData.status === "error") {
-    return <ServerError />;
+    return (
+      <Box>
+        <Navigation>
+          <ServerError />
+        </Navigation>
+      </Box>
+    );
   }
   return (
     <Box>
