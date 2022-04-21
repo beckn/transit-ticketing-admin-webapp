@@ -7,11 +7,15 @@ import { apiUrl } from "../../Config/apiUrl";
 import { columnsForStaff } from "../../Pages/Home/Data/data";
 import StaffTabs from "../Tabs/staffTabs";
 import Loader from "../Loader/Loading";
+import ServerError from "../../Pages/ErrorPages/ServerError";
 
 export default function Staff() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.STAFF_BOATMASTER);
   const ticketMasterData = useApi(apiUrl.STAFF_TICKETMASTER);
+  if (status === "error" || ticketMasterData.status === "error") {
+    return <ServerError />;
+  }
   return (
     <Box>
       <Navigation>

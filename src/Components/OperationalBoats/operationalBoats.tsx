@@ -8,11 +8,15 @@ import { boatData, boatColumns } from "../../Pages/Home/Data/data";
 import OperationalBoatsTabs from "../Tabs/operationalBoatsTabs";
 import Loader from "../Loader/Loading";
 import { getWidgetData } from "../../utils/helpers";
+import ServerError from "../../Pages/ErrorPages/ServerError";
 
 export default function OperationalBoats() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.OPERATIONAL_BOATS);
   console.log(status, data, error, isLoading);
+  if (status === "error") {
+    return <ServerError />;
+  }
   return (
     <Box>
       <Navigation>

@@ -10,12 +10,15 @@ import {
 } from "../../Pages/Home/Data/data";
 import ScheduleTabs from "../Tabs/scheduleTabs";
 import Loader from "../Loader/Loading";
+import ServerError from "../../Pages/ErrorPages/ServerError";
 
 export default function Schedules() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.SCHEDULE);
   console.log(status, data, error, isLoading);
-
+  if (status === "error") {
+    return <ServerError />;
+  }
   return (
     <Box>
       <Navigation>

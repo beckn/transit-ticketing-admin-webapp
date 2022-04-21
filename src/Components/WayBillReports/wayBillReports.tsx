@@ -8,11 +8,17 @@ import { columnsForWayBill } from "../../Pages/Home/Data/data";
 import WayBillReportsTabs from "../Tabs/wayBillReportsTabs";
 import { getWidgetData } from "../../utils/helpers";
 import Loader from "../Loader/Loading";
+import { Server } from "http";
+import ServerError from "../../Pages/ErrorPages/ServerError";
 
 export default function WayBillReport() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.WAY_BILL_REPORTS);
-  console.log(status, data, error, isLoading);
+
+  if (status === "error") {
+    return <ServerError />;
+  }
+
   return (
     <Box>
       <Navigation>
