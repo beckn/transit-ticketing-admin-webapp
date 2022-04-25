@@ -132,6 +132,12 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
             <Flex marginBottom={"10px"}>
 
+            <Stack
+                spacing={4}
+                direction="row"
+                align="center"
+                padding={"10px"}
+              >
             <Dropdown  
               placeholder="Boat No" 
               dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
@@ -145,12 +151,6 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
               setOptionDropVal={(value: string) => setBoatMasterName(value)} 
               />
 
-              <Stack
-                spacing={4}
-                direction="row"
-                align="center"
-                padding={"10px"}
-              >
                 <Button
                   colorScheme="#E79378"
                   size="md"

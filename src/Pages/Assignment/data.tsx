@@ -167,7 +167,7 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1302,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },

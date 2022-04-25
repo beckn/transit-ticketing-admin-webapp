@@ -130,12 +130,17 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
             </Stack>
 
             <Flex marginBottom={"10px"}>
+            <Stack
+                spacing={4}
+                direction="row"
+                align="center"
+                padding={"10px"}
+              >
               <Dropdown
                 placeholder="Boat No"
                 dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                 optionDropVal={dropdownValue}
                 setOptionDropVal={(value: string) => {
-                  console.log("Rahul==>", value);
                   setBoatNo(value)
                 }}
               />
@@ -144,16 +149,10 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                 dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                 optionDropVal={dropdownValue}
                 setOptionDropVal={(value: string) => {
-                  console.log("Ranjan==>", value);
                   setBoatMasterName(value)
                 }}
               />
-              <Stack
-                spacing={4}
-                direction="row"
-                align="center"
-                padding={"10px"}
-              >
+             
                 <Button
                   colorScheme="#E79378"
                   size="md"
