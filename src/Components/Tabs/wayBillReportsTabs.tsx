@@ -54,7 +54,6 @@ export default function WayBillReportsTabs<Data extends object>({
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
 
-
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
       setSelectedLocation(value);
@@ -69,21 +68,20 @@ export default function WayBillReportsTabs<Data extends object>({
   };
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
-    let result:any =[];
-    dataForBoat.map((key: any)=>{
-      result.push({value: key.bootNo, label: key.bootNo});
-    })
+    let result: any = [];
+    dataForBoat.map((key: any) => {
+      result.push({ value: key.bootNo, label: key.bootNo });
+    });
     return result;
   };
 
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
-    let result:any =[];
-    dataForBoat.map((key: any)=>{
-      result.push({value: key.nameOfBoatMaster, label: key.nameOfBoatMaster});
-    })
+    let result: any = [];
+    dataForBoat.map((key: any) => {
+      result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
+    });
     return result;
   };
-  
 
   return (
     <Center display={"flex"} justifyContent="end">
@@ -97,18 +95,17 @@ export default function WayBillReportsTabs<Data extends object>({
             </Stack>
 
             <Flex marginBottom={"10px"}>
-
-            <Dropdown  
-              placeholder="Boat No" 
-              dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-              optionDropVal={dropdownValue}
-              setOptionDropVal={setDropdownValue}  
+              <Dropdown
+                placeholder="Boat No"
+                dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+                optionDropVal={dropdownValue}
+                setOptionDropVal={setDropdownValue}
               />
-            <Dropdown 
-              placeholder="Boat Master Name"  
-              dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-              optionDropVal={dropdownValue}
-              setOptionDropVal={setDropdownValue} 
+              <Dropdown
+                placeholder="Boat Master Name"
+                dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+                optionDropVal={dropdownValue}
+                setOptionDropVal={setDropdownValue}
               />
 
               <Stack
@@ -187,26 +184,26 @@ export default function WayBillReportsTabs<Data extends object>({
                           item === 0
                             ? "Location"
                             : item === 1
-                              ? "WayBill Number"
-                              : "Status";
+                            ? "WayBill Number"
+                            : "Status";
                         const radioData =
                           item === 0
                             ? [
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                            ]
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                              ]
                             : item === 1
-                              ? ["0001", "0001", "0001", "0001", "0001"]
-                              : ["Complete", "Pending"];
+                            ? ["0001", "0001", "0001", "0001", "0001"]
+                            : ["Complete", "Pending"];
                         const radioValue =
                           item === 0
                             ? selectedLocationValue
                             : item === 1
-                              ? wayBillReportValue
-                              : selectedStatusValue;
+                            ? wayBillReportValue
+                            : selectedStatusValue;
 
                         return (
                           <AccordionItem key={item}>
@@ -372,22 +369,22 @@ export default function WayBillReportsTabs<Data extends object>({
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
                 selectedStatus !== "") && (
-                  <Text
-                    css={{ cursor: "pointer" }}
-                    onClick={() => {
-                      setSelectedLocation("");
-                      setSelectedLocationValue("");
-                      setWayBillReport("");
-                      setWayBillReportValue("");
-                      setSelectedStatus("");
-                      setSelectedStatusValue("");
-                    }}
-                    fontSize="xl"
-                    color={"#E8947A"}
-                  >
-                    Clear All Filters
-                  </Text>
-                )}
+                <Text
+                  css={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setSelectedLocation("");
+                    setSelectedLocationValue("");
+                    setWayBillReport("");
+                    setWayBillReportValue("");
+                    setSelectedStatus("");
+                    setSelectedStatusValue("");
+                  }}
+                  fontSize="xl"
+                  color={"#E8947A"}
+                >
+                  Clear All Filters
+                </Text>
+              )}
             </Flex>
           </Stack>
 
@@ -396,10 +393,20 @@ export default function WayBillReportsTabs<Data extends object>({
               <DataTable columns={columnsForBoat} data={dataForBoat} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable
+                columns={columnsForBoat}
+                data={dataForBoat.filter(
+                  (data: any) => data.status === "Completed"
+                )}
+              />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable
+                columns={columnsForBoat}
+                data={dataForBoat.filter(
+                  (data: any) => data.status === "Pending"
+                )}
+              />
             </TabPanel>
           </TabPanels>
         </Tabs>

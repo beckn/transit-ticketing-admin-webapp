@@ -214,13 +214,13 @@ export const columnsForStaff: Column<BoatsConversionForStaff>[] = [
 
 // ----------------------------WAY BILL REPORTS----------------------------
 
-type BoatsConversionForWayBill = {
+export type BoatsConversionForWayBill = {
   boatMasterName: string;
   boatMasterId: number;
   boatNumber: number;
   wayBillNumber: number;
   status: string;
-  date: string;
+  wayBillDate: string;
   View: string;
   download: string;
   print: string;
@@ -314,7 +314,7 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   },
   {
     Header: "Date",
-    accessor: "date",
+    accessor: "wayBillDate",
   },
 
   {
