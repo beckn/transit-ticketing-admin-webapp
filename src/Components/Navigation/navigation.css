@@ -51,6 +51,7 @@
   margin-bottom: 25px;
 }
 
+
 .main-drawer-item:hover {
   background-color: #E79378;
 }
@@ -88,4 +89,13 @@
   line-height: 28px;
   color: #FFFFFF;
   /* margin-left: 31px; */
+}
+
+@media (max-width: 1300px) {
+  .main-drawer-item {
+    width: 90%;
+  }
+  .sub-drawer-item {
+    width: 95%;
+  }
 }

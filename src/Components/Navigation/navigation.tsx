@@ -30,6 +30,7 @@ import { TriangleDownIcon } from "@chakra-ui/icons";
 import { auth } from "../../Config/firebase";
 import { deleteLocalStorage } from "../../utils/helpers";
 import logging from "../../Config/logging";
+import useWindowSize from "../../hooks/useWidth";
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -41,6 +42,9 @@ export default function Navigation({ children }: { children: ReactNode }) {
     // onOpen,
     onClose,
   } = useDisclosure();
+
+  const size = useWindowSize();
+
   return (
     <Box
       minH="100vh"
@@ -68,7 +72,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml={"450px"} w={"70%"} p="4">
+      <Box ml={size.width && size.width > 1300 ? "450px" : "390px"} w={"100%"} p="4">
         {children}
       </Box>
     </Box>
@@ -81,6 +85,8 @@ interface SidebarProps extends BoxProps {
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const history = useHistory();
+  const size = useWindowSize();
+
   let parsedData = null;
   let data = localStorage.getItem("firebaseData");
   if (data) {
@@ -105,7 +111,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
-      w="448px"
+      w={size.width && size.width > 1300 ?  "448px" : "390px" }
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -153,7 +159,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         ml="8"
         fontWeight="700"
         fontSize="24"
-        color="#FFFFFF"
+        color="#FFF"
         fontFamily={"Roboto"}
         marginTop={"20px"}
       >

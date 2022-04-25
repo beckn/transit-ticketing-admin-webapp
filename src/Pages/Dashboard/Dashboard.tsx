@@ -14,10 +14,12 @@ import { getLocalStorage } from "../../utils/helpers";
 import Navigation from "../../Components/Navigation/navigation";
 import IMAGE_PREFIX from "../../Config/image";
 import { useHistory } from "react-router-dom";
+import useWindowSize from "../../hooks/useWidth";
 
 const Dashboard: React.FC<IPageProps> = (props) => {
   const [user, setUser] = useState<string>("");
   const history = useHistory();
+  const size = useWindowSize();
 
   useEffect(() => {
     const data = getLocalStorage("firebaseData");
@@ -30,12 +32,12 @@ const Dashboard: React.FC<IPageProps> = (props) => {
   return (
     <AuthContainer>
       <Navigation>
-        <Flex w={"100vw"}>
+        <Box w={"100%"}>
           <Box
             padding="5"
             maxHeight="100vh"
             overflowY="scroll"
-            maxW={"70%"}
+            maxW={"100%"}
             w={"full"}
           >
             <Heading
@@ -258,7 +260,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               </Link>
             </SimpleGrid>
           </Box>
-        </Flex>
+        </Box>
       </Navigation>
     </AuthContainer>
   );

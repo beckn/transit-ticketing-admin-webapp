@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { history } from "../index";
+// import { history } from "../index";
 import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
 import { auth } from "../Config/firebase";
 import logging from "../Config/logging";
@@ -12,7 +12,7 @@ export const logout = () => {
     .signOut()
     .then(() => {
       deleteLocalStorage("firebaseData");
-      history.push("/signin");
+      // history.push("/signin");
     })
     .catch((error) => logging.error(error));
 };
