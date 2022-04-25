@@ -32,7 +32,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
   return (
     <AuthContainer>
       <Navigation>
-        <Box w={"100%"}>
+        <Box w={"101%"}>
           <Box
             padding="5"
             maxHeight="100vh"
