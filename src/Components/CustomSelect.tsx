@@ -11,13 +11,11 @@ type IsMulti = false;
 const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   control: (base) => ({
     ...base,
-    "margin-top": "7px",
-    "font-size": "13px",
-    "font-family": "'Open Sans', sans-serif",
-    "padding-bottom": "4px",
-    "padding-top": "4px",
-    "padding-left": "10px",
-    "max-height": "42px",
+    margintop: "7px",
+    fontSize: "13px",
+    fontFamily: "'Open Sans', sans-serif",
+    padding: "4px 0px 4px 10px",
+    maxHeight: "42px",
     display: "flex",
     background: "#f5f8faad",
     borderRadius: "4px",

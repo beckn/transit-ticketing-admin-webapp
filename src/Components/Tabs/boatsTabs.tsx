@@ -42,7 +42,7 @@ export default function BoatsTabs<Data extends object>({
         if (index === rowIndex) {
           return {
             ...old[rowIndex],
-            [columnId]: value,
+            //[columnId]: value,
           };
         }
         return row;
