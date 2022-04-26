@@ -390,7 +390,7 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     View: "View",
     download: "Download",
     print: "Print",
-  },
+  }
 ];
 
 export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
@@ -419,7 +419,7 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
     Header: "",
     accessor: "download",
     Cell: (props) => <Link color="#EE9A7F">Download</Link>,
-  },
+  }
   // {
   //   Header: "",
   //   accessor: "print",

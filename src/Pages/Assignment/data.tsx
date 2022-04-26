@@ -30,7 +30,7 @@ export const data: Array<BoatsConversionForAssignment> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1104,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
@@ -48,7 +48,7 @@ export const data: Array<BoatsConversionForAssignment> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1202,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
@@ -66,7 +66,7 @@ export const data: Array<BoatsConversionForAssignment> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1402,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
@@ -84,7 +84,7 @@ export const data: Array<BoatsConversionForAssignment> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1502,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },
@@ -167,7 +167,7 @@ export const dataForCounter: Array<BoatsConversionForAssignmentCounter> = [
     ],
   },
   {
-    boatNo: 1102,
+    boatNo: 1302,
     station: [
       { value: "1102", label: "1102" },
       { value: "1104", label: "1104" },

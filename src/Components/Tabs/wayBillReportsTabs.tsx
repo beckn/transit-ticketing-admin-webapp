@@ -39,20 +39,56 @@ import Dropdown from "../common/dropdown";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
-  columnsForBoat: any;
+  columnsForBoat: Column<Data>[];
 };
 
-export default function WayBillReportsTabs<Data extends object>({
+export default function WayBillReportsTabs<BoatsConversionForWayBill extends object>({
   dataForBoat,
   columnsForBoat,
-}: DataTableForBoatProps<Data>) {
+}: DataTableForBoatProps<BoatsConversionForWayBill>) {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [selectedLocationValue, setSelectedLocationValue] = useState("");
   const [wayBillReport, setWayBillReport] = useState("");
   const [wayBillReportValue, setWayBillReportValue] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
+
+  const [tableData, setTableData] = useState(dataForBoat || []);
+  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
+  const [boatNumber, setBoatNo] = useState("");
+  const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
+  const [serachInput, setSearchInput] = useState<any>("");
+
+
+  const handleDropDownFilters = () => {
+    if(boatNumber === "" && boatMasterName === "") return;
+    let filterData: BoatsConversionForWayBill[] = [];
+    tableDataCopy.map((item: any) => {
+      if(boatNumber !== "") {
+        if(item.bootNo === Number(boatNumber) || item.boatMasterName === boatMasterName) {
+          filterData.push(item);
+        }
+      }
+    });
+
+    setTableData(filterData); 
+  };
+
+  const handleSearchFilters = (searchData: string) => {
+    let filterData: BoatsConversionForWayBill[] = [];
+    tableDataCopy.map((item: any) => {
+      console.log("searchData", item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()))
+        if (item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()) ) {
+          filterData.push(item);
+        }
+    });
+    setSearchInput(searchData);
+    setTableData(filterData);
+    if(searchData===""){
+      setTableData(tableDataCopy);
+    }
+  };
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -69,8 +105,9 @@ export default function WayBillReportsTabs<Data extends object>({
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
+    console.log("results", dataForBoat)
     dataForBoat.map((key: any) => {
-      result.push({ value: key.bootNo, label: key.bootNo });
+      result.push({ value: key.boatNumber, label: key.boatNumber });
     });
     return result;
   };
@@ -78,7 +115,7 @@ export default function WayBillReportsTabs<Data extends object>({
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
     let result: any = [];
     dataForBoat.map((key: any) => {
-      result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
+      result.push({ value: key.boatMasterName, label: key.boatMasterName });
     });
     return result;
   };
@@ -95,25 +132,26 @@ export default function WayBillReportsTabs<Data extends object>({
             </Stack>
 
             <Flex marginBottom={"10px"}>
-              <Dropdown
-                placeholder="Boat No"
-                dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-                optionDropVal={dropdownValue}
-                setOptionDropVal={setDropdownValue}
-              />
-              <Dropdown
-                placeholder="Boat Master Name"
-                dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-                optionDropVal={dropdownValue}
-                setOptionDropVal={setDropdownValue}
-              />
 
-              <Stack
+            <Stack
                 spacing={4}
                 direction="row"
                 align="center"
                 padding={"10px"}
               >
+            <Dropdown  
+              placeholder="Boat No" 
+              dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={(value: string) => setBoatNo(value)}  
+              />
+            <Dropdown 
+              placeholder="Boat Master Name"  
+              dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+              optionDropVal={dropdownValue}
+              setOptionDropVal={(value: string) => setBoatMasterName(value)} 
+              />
+
                 <Button
                   colorScheme="#E79378"
                   size="md"
@@ -122,6 +160,7 @@ export default function WayBillReportsTabs<Data extends object>({
                   bgColor="#E79378"
                   color={"#fff"}
                   padding={"20px"}
+                  onClick={() => handleDropDownFilters()}
                 >
                   Apply
                 </Button>
@@ -154,6 +193,7 @@ export default function WayBillReportsTabs<Data extends object>({
                   variant="outline"
                   size="xs"
                   placeholder={`Search`}
+                  onChange={e => { handleSearchFilters(e.target.value) }}
                 />
               </InputGroup>
               <Stack direction="row" spacing={4}>
@@ -390,7 +430,7 @@ export default function WayBillReportsTabs<Data extends object>({
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData}/>
             </TabPanel>
             <TabPanel>
               <DataTable
