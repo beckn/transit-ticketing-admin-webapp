@@ -54,7 +54,7 @@ export default function CounterTabs<Data extends object>({
   }, []);
   console.log("oldData", data);
 
-  const [rowData, setRowData] = useState([]);
+    // const [rowData, setRowData] = useState([]);
     const [dropdownValue, setDropdownValue] = useState<any>();
     const [boatNumber, setBoatNo] = useState("");
     const [tableData, setTableData] = useState(dataForBoat || []);

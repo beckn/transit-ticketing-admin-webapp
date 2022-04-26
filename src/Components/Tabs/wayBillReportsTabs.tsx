@@ -66,7 +66,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
       if(boatNumber !== "") {
-        if(item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
+        if(item.bootNo === Number(boatNumber) || item.boatMasterName === boatMasterName) {
           filterData.push(item);
         }
       }
@@ -78,8 +78,8 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      console.log("searchData", item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()))
-        if (item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) ) {
+      console.log("searchData", item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()))
+        if (item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()) ) {
           filterData.push(item);
         }
     });
@@ -105,8 +105,9 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
+    console.log("results", dataForBoat)
     dataForBoat.map((key: any) => {
-      result.push({ value: key.bootNo, label: key.bootNo });
+      result.push({ value: key.boatNumber, label: key.boatNumber });
     });
     return result;
   };
@@ -114,7 +115,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
     let result: any = [];
     dataForBoat.map((key: any) => {
-      result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
+      result.push({ value: key.boatMasterName, label: key.boatMasterName });
     });
     return result;
   };
