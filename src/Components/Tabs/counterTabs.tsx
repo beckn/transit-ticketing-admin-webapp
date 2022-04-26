@@ -131,7 +131,7 @@ export default function CounterTabs<Data extends object>({
             <TabPanel>
               <TableSelect
                 columns={columnsForBoat}
-                data={data}
+                data={tableData}
                 defaultColumn={defaultColumn}
                 updateMyData={updateMyData}
               />
