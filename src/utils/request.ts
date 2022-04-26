@@ -7,12 +7,11 @@ import logging from "../Config/logging";
 const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
 
 export const logout = () => {
-  console.log("i am running")
   auth
     .signOut()
     .then(() => {
       deleteLocalStorage("firebaseData");
-      // history.push("/signin");
+      window.location.reload()
     })
     .catch((error) => logging.error(error));
 };

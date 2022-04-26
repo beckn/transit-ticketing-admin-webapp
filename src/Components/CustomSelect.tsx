@@ -83,7 +83,7 @@ const SelectCell = React.memo(
   }
 );
 
-export const CustomSelect = (props: any) => {
+const CustomSelect = (props: any) => {
   return (
     <SelectCell
       index={props.row.index}
@@ -93,3 +93,5 @@ export const CustomSelect = (props: any) => {
     />
   );
 };
+
+export default CustomSelect;

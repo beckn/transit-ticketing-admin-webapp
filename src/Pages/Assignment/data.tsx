@@ -1,6 +1,6 @@
 import AssignmentDropdownTable from "../../Components/Table/assignmentDropdownForTable";
 import { Column } from "react-table";
-import { CustomSelect } from "../../Components/CustomSelect";
+import CustomSelect from "../../Components/CustomSelect";
 
 // ------------------------------Assignment Boats-------------------------------
 
