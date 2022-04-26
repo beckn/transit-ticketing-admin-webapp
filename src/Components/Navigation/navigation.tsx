@@ -87,6 +87,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
+
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const history = useHistory();
   const size = useWindowSize();
@@ -232,7 +233,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               display={"flex"}
               justifyContent={"center"}
             >
-              <Text
+              
+              <Text 
+            
                 onClick={() => logout()}
                 display={"flex"}
                 justifyContent={"left"}
@@ -245,16 +248,18 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 borderRadius={"20px"}
                 _hover={{
                   bg: "#FFFFFF",
-                  color: "#FF0000",
+                  color: "#FF0000", 
                 }}
-                color={"	#FF0000"}
-                background={"#FFFFFF"}
-                borderColor={"#FFFFFF"}
+                color= {"	#FF0000"}
+                background = {"#FFFFFF"}
+                borderColor = {"#FFFFFF"}
+                
               >
+                
                 Sign Out
               </Text>
-              <span className="triangle"></span>
-            </MenuList>
+              <span className = "triangle"></span>
+            </MenuList> 
           </Menu>
         </Flex>
       </HStack>
