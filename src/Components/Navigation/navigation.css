@@ -89,3 +89,39 @@
   color: #FFFFFF;
   /* margin-left: 31px; */
 }
+
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+ padding: 2em;
+}
+
+.text{
+ position: relative;
+ background-color: s#FFFFFF;
+ width: 200px;
+ height: 50px;
+ border-radius: 0.25em;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.triangle {
+ display: block;
+ height: 15px;
+ width: 5px;
+ border: 16px solid transparent;
+ border-top-color: #FFFFFF;
+ position: absolute;
+ bottom: -24px;
+ left: calc(100% - 67px);
+ 
+}

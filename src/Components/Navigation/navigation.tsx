@@ -26,7 +26,7 @@ import "./navigation.css";
 // import Navbar from "../Navbar/navbar";
 import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
-import { TriangleDownIcon } from "@chakra-ui/icons";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { auth } from "../../Config/firebase";
 import { deleteLocalStorage } from "../../utils/helpers";
 import logging from "../../Config/logging";
@@ -78,6 +78,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
 interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
+
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const history = useHistory();
@@ -191,7 +192,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                       : parsedData.email}
                   </Text>
                 </VStack>
-                <TriangleDownIcon />
+                <TriangleUpIcon color={"#E49076"} />
               </HStack>
             </MenuButton>
             <MenuList
@@ -202,25 +203,33 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               display={"flex"}
               justifyContent={"center"}
             >
-              <Text
+              
+              <Text 
+            
                 onClick={() => logout()}
                 display={"flex"}
-                justifyContent={"center"}
+                justifyContent={"left"}
                 cursor={"pointer"}
                 fontFamily={"Roboto"}
                 border={"1px solid"}
-                w={"7rem"}
-                p={"5px"}
+                w={"18rem"}
+                p={"10px"}
                 fontWeight={"bold"}
                 borderRadius={"20px"}
                 _hover={{
-                  bg: "#E49076",
-                  color: "Black",
+                  bg: "#FFFFFF",
+                  color: "#FF0000", 
                 }}
+                color= {"	#FF0000"}
+                background = {"#FFFFFF"}
+                borderColor = {"#FFFFFF"}
+                
               >
-                Sign out
+                
+                Sign Out
               </Text>
-            </MenuList>
+              <span className = "triangle"></span>
+            </MenuList> 
           </Menu>
         </Flex>
       </HStack>
