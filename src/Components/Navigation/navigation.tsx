@@ -26,7 +26,7 @@ import "./navigation.css";
 // import Navbar from "../Navbar/navbar";
 import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
-import { TriangleDownIcon } from "@chakra-ui/icons";
+import { TriangleUpIcon } from "@chakra-ui/icons";
 import { auth } from "../../Config/firebase";
 import { deleteLocalStorage } from "../../utils/helpers";
 import logging from "../../Config/logging";
@@ -72,7 +72,11 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml={size.width && size.width > 1300 ? "450px" : "390px"} w={"100%"} p="4">
+      <Box
+        ml={size.width && size.width > 1300 ? "450px" : "390px"}
+        w={"100%"}
+        p="4"
+      >
         {children}
       </Box>
     </Box>
@@ -111,7 +115,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
-      w={size.width && size.width > 1300 ?  "448px" : "390px" }
+      w={size.width && size.width > 1300 ? "448px" : "390px"}
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -197,7 +201,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                       : parsedData.email}
                   </Text>
                 </VStack>
-                <TriangleDownIcon />
+                <TriangleUpIcon color={"#E49076"} />
               </HStack>
             </MenuButton>
             <MenuList
@@ -211,21 +215,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               <Text
                 onClick={() => logout()}
                 display={"flex"}
-                justifyContent={"center"}
+                justifyContent={"left"}
                 cursor={"pointer"}
                 fontFamily={"Roboto"}
                 border={"1px solid"}
-                w={"7rem"}
-                p={"5px"}
+                w={"18rem"}
+                p={"10px"}
                 fontWeight={"bold"}
                 borderRadius={"20px"}
                 _hover={{
-                  bg: "#E49076",
-                  color: "Black",
+                  bg: "#FFFFFF",
+                  color: "#FF0000",
                 }}
+                color={"	#FF0000"}
+                background={"#FFFFFF"}
+                borderColor={"#FFFFFF"}
               >
-                Sign out
+                Sign Out
               </Text>
+              <span className="triangle"></span>
             </MenuList>
           </Menu>
         </Flex>
