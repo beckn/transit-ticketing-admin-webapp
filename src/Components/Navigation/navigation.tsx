@@ -143,6 +143,26 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         color="#FFFFFF"
         fontFamily={"Roboto"}
       >
+        Reports
+      </Text>
+      <Divider mb="3" />
+      <Flex alignItems="center" mx="14" justifyContent="space-between">
+        <div>
+          <RouterLink exact={true} activeClassName="is-active" to="/way_Bill_Reports">
+            <NavItem className="sub-drawer-item">Way Bill Report</NavItem>
+          </RouterLink>
+          <RouterLink exact={true} activeClassName="is-active" to="/banking_Reports">
+            <NavItem className="sub-drawer-item">Banking Report</NavItem>
+          </RouterLink>
+        </div>
+      </Flex>
+      <Text
+        ml="8"
+        fontWeight="700"
+        fontSize="24"
+        color="#FFFFFF"
+        fontFamily={"Roboto"}
+      >
         Boats
       </Text>
       <Divider mb="3" />
