@@ -41,7 +41,7 @@ export default function Schedules() {
               widgetData={{ total: 4, remaining: 5, available: 7 }}
             />
             <ScheduleTabs
-              dataForBoat={data}
+              dataForBoat={data.boatSchedules}
               columnsForBoat={columnsForSchedule}
             />
           </>

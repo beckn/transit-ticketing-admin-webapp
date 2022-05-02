@@ -33,7 +33,11 @@ export default function WayBillReport() {
         ) : (
           <>
             <Navbar
-              widgetData={getWidgetData(data, "status", "Completed")}
+              widgetData={getWidgetData(
+                data?.waybillReports,
+                "status",
+                "Completed"
+              )}
               pageTitle="Reports"
               tableTitle="Way Bill Reports :"
               totalReport="Total Reports"
@@ -41,7 +45,7 @@ export default function WayBillReport() {
               BankingReport="Banking Reports"
             />
             <WayBillReportsTabs
-              dataForBoat={data}
+              dataForBoat={data?.waybillReports}
               columnsForBoat={columnsForWayBill}
             />
           </>
