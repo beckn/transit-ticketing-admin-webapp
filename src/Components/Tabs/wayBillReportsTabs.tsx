@@ -192,6 +192,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                   height={"40px"}
                   variant="outline"
                   size="xs"
+                  type="text"
                   placeholder={`Search`}
                   onChange={e => { handleSearchFilters(e.target.value) }}
                 />
@@ -285,6 +286,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                   bg="#fff"
                                   color="#000"
                                   size="xs"
+                                  type="text"
                                   placeholder={`Search`}
                                 />
                               </InputGroup>

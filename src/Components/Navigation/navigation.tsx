@@ -120,12 +120,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       pos="fixed"
       overflow="scroll"
+      
+      //className="page-wrap"
       {...rest}
     >
       <RouterLink to="/">
         <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" />
       </RouterLink>
-      <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
+      <Flex h="100" alignItems="center" mx="8" justifyContent="space-between">
         <Text className="drawer-header">Government of Kerala</Text>
         <Text className="drawer-sub-header">
           State Water Transport Department
@@ -178,10 +180,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <RouterLink exact={true} activeClassName="is-active" to="/staff">
             <NavItem className="sub-drawer-item">Staff</NavItem>
           </RouterLink>
-        </div>
+        </div>      
       </Flex>
       <Text
-        ml="8"
+        ml="3"
         fontWeight="700"
         fontSize="24"
         color="#FFF"
