@@ -43,7 +43,7 @@ export type DataTableForBoatProps<Data extends object> = {
 };
 
 export default function WayBillReportsTabs<BoatsConversionForWayBill extends object>({
-  dataForBoat,
+    dataForBoat,
   columnsForBoat,
 }: DataTableForBoatProps<BoatsConversionForWayBill>) {
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -65,10 +65,27 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
     if(boatNumber === "" && boatMasterName === "") return;
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      if(boatNumber !== "") {
-        if(item.bootNo === Number(boatNumber) || item.boatMasterName === boatMasterName) {
+      
+      if (boatNumber !== "" || boatMasterName !== "") {
+        console.log(boatNumber + " " + boatMasterName);  
+        if (item.boatNumber === Number(boatNumber) || item.boatMasterName === boatMasterName) {
           filterData.push(item);
         }
+      }
+      else if(boatNumber === ""){
+        console.log(boatMasterName); 
+        if (item.boatMasterName === boatMasterName) {
+          filterData.push(item);
+        }
+      }
+      else if(boatMasterName === ""){
+        console.log(boatNumber); 
+        if (item.boatNumber === Number(boatNumber)) {
+          filterData.push(item);
+        }
+      }
+      else{
+        filterData.push(item);
       }
     });
 

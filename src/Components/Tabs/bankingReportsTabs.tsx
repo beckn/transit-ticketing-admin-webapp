@@ -64,10 +64,23 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
     if (boatNumber === "" && boatMasterName === "") return;
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
-      if (boatNumber !== "") {
+      if (boatNumber !== "" && boatMasterName !== "") {
         if (item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
           filterData.push(item);
         }
+      }
+      else if(boatNumber === ""){
+        if (item.nameOfBoatMaster === boatMasterName) {
+          filterData.push(item);
+        }
+      }
+      else if(boatMasterName === ""){
+        if (item.bootNo === Number(boatNumber)) {
+          filterData.push(item);
+        }
+      }
+      else{
+        filterData.push(item);
       }
     });
 
