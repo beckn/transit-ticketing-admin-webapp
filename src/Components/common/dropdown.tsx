@@ -68,23 +68,21 @@ interface DropdownProp {
 export default function Dropdown(props: DropdownProp) {
   const { placeholder, dropdownOption, optionDropVal, setOptionDropVal } =
     props;
-
-    return (
-        <Box>
-            <Select
-                components={{ IndicatorSeparator: () => null }}
-                className="Select"
-                isSearchable={true}
-                placeholder={placeholder}
-                styles={customStyles}
-                onChange={e => { setOptionDropVal(e?.value) }}
-                options={
-                    dropdownOption.length === 0
-                        ? formattedArray([])
-                        : formattedArray(dropdownOption)
-                }
-                value={optionDropVal}
-            />
-        </Box>
-    );
+    // debugger;
+  console.log("optionDropVal============> ", dropdownOption.find((i: string) => i === optionDropVal));
+  return (
+    <Box>
+      <Select
+        components={{ IndicatorSeparator: () => null }}
+        className="Select"
+        isSearchable={true}
+        placeholder={placeholder}
+        styles={customStyles}
+        onChange={(e: any) => { setOptionDropVal(e?.value) }}
+        options={formattedArray(dropdownOption) || []}
+        // value={optionDropVal ? {label: optionDropVal, value: optionDropVal} : "" }
+        value={optionDropVal ? dropdownOption.find((i: string) => i.toString() === optionDropVal.toString()) : "" }
+      />
+    </Box>
+  );
 }

@@ -29,7 +29,11 @@ export default function Navbar(props: NavbarProps) {
 
   return (
     <Center display={"flex"} justifyContent="end">
-      <Box maxW={"1232px"} h="354px" w={"full"}>
+      <Box 
+        // maxW={"1232px"} 
+        h="354px" 
+        w={"full"}
+      >
         <Box className="Nav-heading" letterSpacing={"2px"}>
           <Text>{pageTitle}</Text>
         </Box>

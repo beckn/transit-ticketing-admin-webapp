@@ -55,24 +55,25 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
 
   const [tableData, setTableData] = useState(dataForBoat || []);
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
-  const [boatNumber, setBoatNo] = useState("");
+  const [boatNo, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
   const [serachInput, setSearchInput] = useState<any>("");
 
-  const handleDropDownFilters = () => {
-    if (boatNumber === "" && boatMasterName === "") return;
-    let filterData: BoatsConversionForBanking[] = [];
-    tableDataCopy.map((item: any) => {
-      if (boatNumber !== "") {
-        if (item.bootNo === Number(boatNumber) || item.nameOfBoatMaster === boatMasterName) {
-          filterData.push(item);
-        }
-      }
-    });
+  // const handleDropDownFilters = () => {
+  //   if (boatNo === "" && boatMasterName === "") return;
+  //   let filterData: BoatsConversionForBanking[] = [];
+  //   tableDataCopy.map((item: any) => {
+  //     if (boatNo !== "" || item.nameOfBoatMaster !== "") {
+  //       if (item.bootNo === Number(boatNo) || item.nameOfBoatMaster.toLowerCase() === boatMasterName.toLowerCase()) {
+  //       // if (item.boatNumber === Number(boatNo) || item.nameOfBoatMaster === boatMasterName) {
+  //         filterData.push(item);
+  //       }
+  //     }
+  //   });
 
-    setTableData(filterData);
-  };
+  //   setTableData(filterData);
+  // };
 
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForBanking[] = [];
@@ -87,6 +88,27 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
       setTableData(tableDataCopy);
     }
   };
+
+  const filterData = () => {
+    let filterData: BoatsConversionForBanking[] = [];
+    tableDataCopy.map((item: any) => {
+      if(
+        item.wayBillNo === Number(wayBillReport) || 
+        item.nameOfBoatMaster.toLowerCase() === boatMasterName.toLowerCase() ||
+        item.bootNo === Number(boatNo)
+      ) {
+        filterData.push(item);
+      }
+    });
+    setTableData(filterData); 
+  }
+
+  useEffect(() => {
+    if(wayBillReport === "" && selectedLocation === "" && boatNo === "" && boatMasterName === "") return setTableData(tableDataCopy);
+    else{
+      filterData();
+    }
+  }, [ wayBillReport, selectedLocation, boatNo, boatMasterName ]);
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -117,6 +139,14 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
     return result;
   };
 
+  const getOptionForWayBillNumber = (dataForBoat: any) => {
+    let result: any = [];
+    dataForBoat.map((key: any) => {
+      result.push(key.wayBillNo.toString());
+    });
+    return result;
+  };
+
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -139,7 +169,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
               <Dropdown
                 placeholder="Boat No"
                 dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-                optionDropVal={dropdownValue}
+                optionDropVal={boatNo}
                 setOptionDropVal={(value: string) => {
                   setBoatNo(value)
                 }}
@@ -147,13 +177,13 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
               <Dropdown
                 placeholder="Boat Master Name"
                 dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-                optionDropVal={dropdownValue}
+                optionDropVal={boatMasterName}
                 setOptionDropVal={(value: string) => {
                   setBoatMasterName(value)
                 }}
               />
              
-                <Button
+                {/* <Button
                   colorScheme="#E79378"
                   size="md"
                   _hover={{ bgColor: "#E79378" }}
@@ -164,7 +194,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                   onClick={() => handleDropDownFilters()}
                 >
                   Apply
-                </Button>
+                </Button> */}
               </Stack>
             </Flex>
           </TabList>
@@ -221,13 +251,11 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     borderRadius="lg"
                   >
                     <Accordion allowToggle borderRadius="lg">
-                      {[0, 1, 2].map((item) => {
+                      {[0, 1].map((item) => {
                         const accordingHeading =
                           item === 0
                             ? "Location"
-                            : item === 1
-                              ? "WayBill Number"
-                              : "Status";
+                            :  "WayBill Number";
                         const radioData =
                           item === 0
                             ? [
@@ -237,15 +265,12 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                               "Edathua",
                               "Edathua",
                             ]
-                            : item === 1
-                              ? ["0001", "0001", "0001", "0001", "0001"]
-                              : ["Complete", "Pending"];
+                            : getOptionForWayBillNumber(dataForBoat);
+
                         const radioValue =
                           item === 0
                             ? selectedLocationValue
-                            : item === 1
-                              ? wayBillReportValue
-                              : selectedStatusValue;
+                            : wayBillReportValue;
 
                         return (
                           <AccordionItem key={item}>
@@ -310,7 +335,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                               >
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
-                                    {radioData.map((data, index) => (
+                                  {radioData && radioData.length > 0 && radioData.map((data: string, index: number) => (
                                       <Stack
                                         onClick={() =>
                                           handleFilter(
@@ -407,13 +432,62 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     />
                   </Tag>
                 )}
+                {boatNo !== "" && (
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {boatNo}
+                    <Image
+                      css={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setBoatNo("");
+                        filterData();
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
+                    />
+                  </Tag>
+                )}
+                {boatMasterName !== "" && (
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {boatMasterName}
+                    <Image
+                      css={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setBoatMasterName("");
+                        filterData();
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
+                    />
+                  </Tag>
+                )}
               </HStack>
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
-                selectedStatus !== "") && (
+                selectedStatus !== "" || 
+                boatNo !== "" || 
+                boatMasterName !== ""
+              ) && (
                   <Text
                     css={{ cursor: "pointer" }}
                     onClick={() => {
+                      setBoatNo("");
+                      setBoatMasterName("");
                       setSelectedLocation("");
                       setSelectedLocationValue("");
                       setWayBillReport("");

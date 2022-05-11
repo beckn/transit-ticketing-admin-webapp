@@ -4,7 +4,7 @@ import {getLocalStorage,deleteLocalStorage} from "../utils/helpers";
 import { auth } from "../Config/firebase";
 import logging from "../Config/logging";
 
-const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/"
+const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/";
 
 export const logout = () => {
   auth
@@ -40,8 +40,8 @@ export const request = ({...options}) => {
       logout()
     }
     if(error.response.status === 500) {
-      console.log("i am internal server error",error)
-      logout()
+      console.log("i am internal server error",error.response.data.status)
+      // logout()
       
     }
     return error

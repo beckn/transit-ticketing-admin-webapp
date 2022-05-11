@@ -33,7 +33,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { CSSProperties, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 
@@ -55,25 +55,26 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
   const [tableData, setTableData] = useState(dataForBoat || []);
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
-  const [boatNumber, setBoatNo] = useState("");
+  const [boatNo, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
   const [serachInput, setSearchInput] = useState<any>("");
+  const [filterSearchInput, setFilterSearchInput] = useState<any>("");
 
 
-  const handleDropDownFilters = () => {
-    if(boatNumber === "" && boatMasterName === "") return;
-    let filterData: BoatsConversionForWayBill[] = [];
-    tableDataCopy.map((item: any) => {
-      if(boatNumber !== "") {
-        if(item.bootNo === Number(boatNumber) || item.boatMasterName === boatMasterName) {
-          filterData.push(item);
-        }
-      }
-    });
+  // const handleDropDownFilters = () => {
+  //   if(boatNo === "" && boatMasterName === "") return;
+  //   let filterData: BoatsConversionForWayBill[] = [];
+  //   tableDataCopy.map((item: any) => {
+  //     if(boatNo !== "") {
+  //       if(item.boatNumber === Number(boatNo) || item.boatMasterName === boatMasterName) {
+  //         filterData.push(item);
+  //       }
+  //     }
+  //   });
 
-    setTableData(filterData); 
-  };
+  //   setTableData(filterData); 
+  // };
 
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForWayBill[] = [];
@@ -90,6 +91,29 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
     }
   };
 
+  const filterData = () => {
+    let filterData: BoatsConversionForWayBill[] = [];
+    tableDataCopy.map((item: any) => {
+      if(
+        item.wayBillNumber === Number(wayBillReport) || 
+        item.status.toLowerCase() === selectedStatus.toLowerCase() ||
+        item.boatMasterName.toLowerCase() === boatMasterName.toLowerCase() ||
+        item.boatNumber === Number(boatNo)
+      ) {
+        filterData.push(item);
+      }
+    });
+    setTableData(filterData); 
+  }
+
+  useEffect(() => {
+    if(wayBillReport === "" && selectedLocation === "" && selectedStatus === "" && boatNo === "" && boatMasterName === "") return setTableData(tableDataCopy);
+    else{
+      filterData();
+    }
+  }, [ wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName ]);
+
+
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
       setSelectedLocation(value);
@@ -97,9 +121,11 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
     } else if (title === "WayBill Number") {
       setWayBillReport(value);
       setWayBillReportValue(index);
+      // filterData();
     } else {
       setSelectedStatus(value);
       setSelectedStatusValue(index);
+      // filterData();
     }
   };
 
@@ -120,6 +146,22 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
     return result;
   };
 
+  const getOptionForWayBillNumber = (dataForBoat: any) => {
+    let result: any = [];
+    dataForBoat.map((key: any) => {
+      result.push(key.wayBillNumber.toString());
+    });
+    return result;
+  };
+
+  const getOptionForStatus = (dataForBoat: any) => {
+    let result: any = [];
+    dataForBoat.map((key: any) => {
+      result.push(key.status);
+    });
+    return result;
+  };
+
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -133,26 +175,28 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
             <Flex marginBottom={"10px"}>
 
-            <Stack
+              <Stack
                 spacing={4}
                 direction="row"
                 align="center"
                 padding={"10px"}
               >
-            <Dropdown  
-              placeholder="Boat No" 
-              dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-              optionDropVal={dropdownValue}
-              setOptionDropVal={(value: string) => setBoatNo(value)}  
-              />
-            <Dropdown 
-              placeholder="Boat Master Name"  
-              dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-              optionDropVal={dropdownValue}
-              setOptionDropVal={(value: string) => setBoatMasterName(value)} 
-              />
+                <Dropdown  
+                  placeholder="Boat No" 
+                  dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+                  optionDropVal={boatNo}
+                  setOptionDropVal={(value: string) => {
+                    setBoatNo(value)
+                  }}  
+                />
+                <Dropdown 
+                  placeholder="Boat Master Name"  
+                  dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+                  optionDropVal={boatMasterName}
+                  setOptionDropVal={(value: string) => setBoatMasterName(value)} 
+                />
 
-                <Button
+                {/* <Button
                   colorScheme="#E79378"
                   size="md"
                   _hover={{ bgColor: "#E79378" }}
@@ -163,7 +207,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                   onClick={() => handleDropDownFilters()}
                 >
                   Apply
-                </Button>
+                </Button> */}
               </Stack>
             </Flex>
           </TabList>
@@ -226,7 +270,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                             : item === 1
                             ? "WayBill Number"
                             : "Status";
-                        const radioData =
+                        let radioData =
                           item === 0
                             ? [
                                 "Edathua",
@@ -236,14 +280,48 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                 "Edathua",
                               ]
                             : item === 1
-                            ? ["0001", "0001", "0001", "0001", "0001"]
-                            : ["Complete", "Pending"];
+                            ?  getOptionForWayBillNumber(dataForBoat) || []
+                            : getOptionForStatus(dataForBoat) || [];
+                        let radioDataCopy =
+                          item === 0
+                            ? [
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                              ]
+                            : item === 1
+                            ?  getOptionForWayBillNumber(dataForBoat) || []
+                            : getOptionForStatus(dataForBoat) || [];
                         const radioValue =
                           item === 0
                             ? selectedLocationValue
                             : item === 1
                             ? wayBillReportValue
                             : selectedStatusValue;
+
+                        const searchData = (value: string) => {
+                          if(item === 0){
+                            radioDataCopy.filter((data: any) => {
+                              console.log(data);
+                              return;
+                            });
+                          }
+                          if(item === 1) {
+                            if(value === "") radioData = radioDataCopy;
+                            let filterWayBill: any = [];
+                            radioDataCopy.filter((data: any) => {
+                              if(data.includes(value)){
+                                filterWayBill.push(data);
+                              }
+                            });
+                            setTimeout(() => {
+                              radioData = filterWayBill.length > 0 ? getOptionForWayBillNumber(filterWayBill) : []
+                            }, 0)
+                          }
+                        }
+                        // console.log("data======>>>>", radioData);
 
                         return (
                           <AccordionItem key={item}>
@@ -286,6 +364,13 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                   color="#000"
                                   size="xs"
                                   placeholder={`Search`}
+                                  value={ filterSearchInput }
+                                  onChange={(e) => {
+                                    setFilterSearchInput(e.target.value);
+                                    searchData(e.target.value);
+                                    
+                                    console.log("data=====>>> ", radioDataCopy, radioData);
+                                  }}
                                 />
                               </InputGroup>
 
@@ -308,7 +393,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                               >
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
-                                    {radioData.map((data, index) => (
+                                    {radioData && radioData.length > 0 && radioData.map((data: string, index: number) => (
                                       <Stack
                                         onClick={() =>
                                           handleFilter(
@@ -354,6 +439,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                       onClick={() => {
                         setSelectedLocation("");
                         setSelectedLocationValue("");
+                        filterData();
                       }}
                       src={IMAGE_PREFIX.CrossIcon}
                       pl={"4"}
@@ -376,6 +462,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                       onClick={() => {
                         setWayBillReport("");
                         setWayBillReportValue("");
+                        filterData();
                       }}
                       src={IMAGE_PREFIX.CrossIcon}
                       pl={"4"}
@@ -398,6 +485,51 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                       onClick={() => {
                         setSelectedStatus("");
                         setSelectedStatusValue("");
+                        filterData();
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
+                    />
+                  </Tag>
+                )}
+                {boatNo !== "" && (
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {boatNo}
+                    <Image
+                      css={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setBoatNo("");
+                        filterData();
+                      }}
+                      src={IMAGE_PREFIX.CrossIcon}
+                      pl={"4"}
+                      alt="Angle Bracket"
+                    />
+                  </Tag>
+                )}
+                {boatMasterName !== "" && (
+                  <Tag
+                    size="lg"
+                    variant="solid"
+                    h="43px"
+                    bg="#C4C4C4"
+                    color="#3E4059"
+                    colorScheme="#3E4059"
+                  >
+                    {boatMasterName}
+                    <Image
+                      css={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setBoatMasterName("");
+                        filterData();
                       }}
                       src={IMAGE_PREFIX.CrossIcon}
                       pl={"4"}
@@ -408,16 +540,22 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
               </HStack>
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
-                selectedStatus !== "") && (
+                selectedStatus !== "" ||
+                boatNo !== "" || 
+                boatMasterName !== ""
+              ) && (
                 <Text
                   css={{ cursor: "pointer" }}
                   onClick={() => {
+                    setBoatNo("");
+                    setBoatMasterName("");
                     setSelectedLocation("");
                     setSelectedLocationValue("");
                     setWayBillReport("");
                     setWayBillReportValue("");
                     setSelectedStatus("");
                     setSelectedStatusValue("");
+                    filterData();
                   }}
                   fontSize="xl"
                   color={"#E8947A"}

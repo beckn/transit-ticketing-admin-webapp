@@ -320,12 +320,12 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => <Link color="#EE9A7F">View</Link>,
+    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">View</Link>,
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => <Link color="#EE9A7F">Download</Link>,
+    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">Download</Link>,
   },
   // {
   //   Header: "",
@@ -413,12 +413,12 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => <Link color="#EE9A7F">View</Link>,
+    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">View</Link>,
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => <Link color="#EE9A7F">Download</Link>,
+    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">Download</Link>,
   }
   // {
   //   Header: "",
