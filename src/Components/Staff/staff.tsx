@@ -13,7 +13,7 @@ export default function Staff() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.STAFF_BOATMASTER);
   const ticketMasterData = useApi(apiUrl.STAFF_TICKETMASTER);
-  if (status === "error" || ticketMasterData.status === "error") {
+  if (data?.code === 500 || ticketMasterData?.data?.code === 500) {
     return (
       <Box>
         <Navigation>

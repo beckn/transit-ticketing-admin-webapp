@@ -15,8 +15,7 @@ import ServerError from "../../Pages/ErrorPages/ServerError";
 export default function Schedules() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.SCHEDULE);
-  console.log(status, data, error, isLoading);
-  if (status === "error") {
+  if (status === "error" || data?.code === 500) {
     return (
       <Box>
         <Navigation>

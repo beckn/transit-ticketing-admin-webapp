@@ -40,11 +40,11 @@ export const request = ({...options}) => {
       logout()
     }
     if(error.response.status === 500) {
-      console.log("i am internal server error",error.response.data.status)
       // logout()
       
+      return error.response
     }
-    return error
+    return error.response
   };
 return axiosInstance(options).then(onSuccess).catch(onError);
 }
