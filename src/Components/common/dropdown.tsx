@@ -21,6 +21,7 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     background: "#f5f8faad",
     borderRadius: "4px",
     borderColor: "#E79378",
+    boxShadow: "none",
     focusBorderColor: "#E79378",
     minWidth: "max-content",
     width: "12rem",
@@ -30,7 +31,7 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     "&:focus": {
       transition: "0.4 ease",
       borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #02b3e4 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important",
     },
   }),
   valueContainer: (provided) => ({
@@ -46,6 +47,23 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   }),
   singleValue: () => ({
     color: "#525c65",
+  }),
+  option: (base, state) => ({
+    ...base,
+    margin: "2px",
+    backgroundColor: state.isFocused
+      ? "#E79378"
+      : state.isSelected
+      ? "#E79378"
+      : "white",
+    "&:hover": {
+      borderColor: " #E79378 !important",
+    },
+    "&:focus": {
+      transition: "0.4 ease",
+      borderColor: "#E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important",
+    },
   }),
 };
 
@@ -68,8 +86,11 @@ interface DropdownProp {
 export default function Dropdown(props: DropdownProp) {
   const { placeholder, dropdownOption, optionDropVal, setOptionDropVal } =
     props;
-    // debugger;
-  console.log("optionDropVal============> ", dropdownOption.find((i: string) => i === optionDropVal));
+  // debugger;
+  console.log(
+    "optionDropVal============> ",
+    dropdownOption.find((i: string) => i === optionDropVal)
+  );
   return (
     <Box>
       <Select
@@ -78,10 +99,18 @@ export default function Dropdown(props: DropdownProp) {
         isSearchable={true}
         placeholder={placeholder}
         styles={customStyles}
-        onChange={(e: any) => { setOptionDropVal(e?.value) }}
+        onChange={(e: any) => {
+          setOptionDropVal(e?.value);
+        }}
         options={formattedArray(dropdownOption) || []}
         // value={optionDropVal ? {label: optionDropVal, value: optionDropVal} : "" }
-        value={optionDropVal ? dropdownOption.find((i: string) => i.toString() === optionDropVal.toString()) : "" }
+        value={
+          optionDropVal
+            ? dropdownOption.find(
+                (i: string) => i.toString() === optionDropVal.toString()
+              )
+            : ""
+        }
       />
     </Box>
   );

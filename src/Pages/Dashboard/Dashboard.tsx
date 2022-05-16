@@ -240,14 +240,14 @@ const Dashboard: React.FC<IPageProps> = (props) => {
                   }}
                   bg="#3E4059"
                   display="flex"
-                  flexDirection="column"
                   borderRadius="24px"
+                  flexDirection="column"
                   alignContent="center"
                   alignItems="center"
-                  justifyContent="center"
+                  justifyContent="space-around"
                   height="286px"
                 >
-                  <Heading as="h2" size="xl" color="white" marginBottom="20px">
+                  <Heading as="h2" size="xl" color="white">
                     Counter
                   </Heading>
                   <Image

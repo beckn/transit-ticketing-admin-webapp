@@ -37,8 +37,18 @@ export default function StaffTabs<Data extends object>({
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab _focus={{ borderColor: "none" }}>Boat Master</Tab>
-              <Tab _focus={{ borderColor: "none" }}>Ticket Master</Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                Boat Master
+              </Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                Ticket Master
+              </Tab>
             </Stack>
             <Stack direction="row" marginBottom={"10px"}>
               <InputGroup>

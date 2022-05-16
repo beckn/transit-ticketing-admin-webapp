@@ -42,7 +42,9 @@ export type DataTableForBoatProps<Data extends object> = {
   columnsForBoat: Column<Data>[];
 };
 
-export default function WayBillReportsTabs<BoatsConversionForWayBill extends object>({
+export default function WayBillReportsTabs<
+  BoatsConversionForWayBill extends object
+>({
   dataForBoat,
   columnsForBoat,
 }: DataTableForBoatProps<BoatsConversionForWayBill>) {
@@ -61,7 +63,6 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
   const [serachInput, setSearchInput] = useState<any>("");
   const [filterSearchInput, setFilterSearchInput] = useState<any>("");
 
-
   // const handleDropDownFilters = () => {
   //   if(boatNo === "" && boatMasterName === "") return;
   //   let filterData: BoatsConversionForWayBill[] = [];
@@ -73,20 +74,25 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
   //     }
   //   });
 
-  //   setTableData(filterData); 
+  //   setTableData(filterData);
   // };
 
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      console.log("searchData", item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()))
-        if (item.boatMasterName.toLowerCase().includes(searchData.toLowerCase()) ) {
-          filterData.push(item);
-        }
+      console.log(
+        "searchData",
+        item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
+      );
+      if (
+        item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
+      ) {
+        filterData.push(item);
+      }
     });
     setSearchInput(searchData);
     setTableData(filterData);
-    if(searchData===""){
+    if (searchData === "") {
       setTableData(tableDataCopy);
     }
   };
@@ -94,8 +100,8 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
   const filterData = () => {
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      if(
-        item.wayBillNumber === Number(wayBillReport) || 
+      if (
+        item.wayBillNumber === Number(wayBillReport) ||
         item.status.toLowerCase() === selectedStatus.toLowerCase() ||
         item.boatMasterName.toLowerCase() === boatMasterName.toLowerCase() ||
         item.boatNumber === Number(boatNo)
@@ -103,16 +109,22 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
         filterData.push(item);
       }
     });
-    setTableData(filterData); 
-  }
+    setTableData(filterData);
+  };
 
   useEffect(() => {
-    if(wayBillReport === "" && selectedLocation === "" && selectedStatus === "" && boatNo === "" && boatMasterName === "") return setTableData(tableDataCopy);
-    else{
+    if (
+      wayBillReport === "" &&
+      selectedLocation === "" &&
+      selectedStatus === "" &&
+      boatNo === "" &&
+      boatMasterName === ""
+    )
+      return setTableData(tableDataCopy);
+    else {
       filterData();
     }
-  }, [ wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName ]);
-
+  }, [wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName]);
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -131,7 +143,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
-    console.log("results", dataForBoat)
+    console.log("results", dataForBoat);
     dataForBoat.map((key: any) => {
       result.push({ value: key.boatNumber, label: key.boatNumber });
     });
@@ -168,32 +180,46 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab _focus={{ borderColor: "none" }}>All</Tab>
-              <Tab _focus={{ borderColor: "none" }}>Completed</Tab>
-              <Tab _focus={{ borderColor: "none" }}>Pending</Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                All
+              </Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                Completed
+              </Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                Pending
+              </Tab>
             </Stack>
 
             <Flex marginBottom={"10px"}>
-
               <Stack
                 spacing={4}
                 direction="row"
                 align="center"
                 padding={"10px"}
               >
-                <Dropdown  
-                  placeholder="Boat No" 
+                <Dropdown
+                  placeholder="Boat No"
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
-                    setBoatNo(value)
-                  }}  
+                    setBoatNo(value);
+                  }}
                 />
-                <Dropdown 
-                  placeholder="Boat Master Name"  
+                <Dropdown
+                  placeholder="Boat Master Name"
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
-                  setOptionDropVal={(value: string) => setBoatMasterName(value)} 
+                  setOptionDropVal={(value: string) => setBoatMasterName(value)}
                 />
 
                 {/* <Button
@@ -237,7 +263,9 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                   variant="outline"
                   size="xs"
                   placeholder={`Search`}
-                  onChange={e => { handleSearchFilters(e.target.value) }}
+                  onChange={(e) => {
+                    handleSearchFilters(e.target.value);
+                  }}
                 />
               </InputGroup>
               <Stack direction="row" spacing={4}>
@@ -280,7 +308,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                 "Edathua",
                               ]
                             : item === 1
-                            ?  getOptionForWayBillNumber(dataForBoat) || []
+                            ? getOptionForWayBillNumber(dataForBoat) || []
                             : getOptionForStatus(dataForBoat) || [];
                         let radioDataCopy =
                           item === 0
@@ -292,7 +320,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                 "Edathua",
                               ]
                             : item === 1
-                            ?  getOptionForWayBillNumber(dataForBoat) || []
+                            ? getOptionForWayBillNumber(dataForBoat) || []
                             : getOptionForStatus(dataForBoat) || [];
                         const radioValue =
                           item === 0
@@ -302,25 +330,28 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                             : selectedStatusValue;
 
                         const searchData = (value: string) => {
-                          if(item === 0){
+                          if (item === 0) {
                             radioDataCopy.filter((data: any) => {
                               console.log(data);
                               return;
                             });
                           }
-                          if(item === 1) {
-                            if(value === "") radioData = radioDataCopy;
+                          if (item === 1) {
+                            if (value === "") radioData = radioDataCopy;
                             let filterWayBill: any = [];
                             radioDataCopy.filter((data: any) => {
-                              if(data.includes(value)){
+                              if (data.includes(value)) {
                                 filterWayBill.push(data);
                               }
                             });
                             setTimeout(() => {
-                              radioData = filterWayBill.length > 0 ? getOptionForWayBillNumber(filterWayBill) : []
-                            }, 0)
+                              radioData =
+                                filterWayBill.length > 0
+                                  ? getOptionForWayBillNumber(filterWayBill)
+                                  : [];
+                            }, 0);
                           }
-                        }
+                        };
                         // console.log("data======>>>>", radioData);
 
                         return (
@@ -364,12 +395,16 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                                   color="#000"
                                   size="xs"
                                   placeholder={`Search`}
-                                  value={ filterSearchInput }
+                                  value={filterSearchInput}
                                   onChange={(e) => {
                                     setFilterSearchInput(e.target.value);
                                     searchData(e.target.value);
-                                    
-                                    console.log("data=====>>> ", radioDataCopy, radioData);
+
+                                    console.log(
+                                      "data=====>>> ",
+                                      radioDataCopy,
+                                      radioData
+                                    );
                                   }}
                                 />
                               </InputGroup>
@@ -393,22 +428,26 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
                               >
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
-                                    {radioData && radioData.length > 0 && radioData.map((data: string, index: number) => (
-                                      <Stack
-                                        onClick={() =>
-                                          handleFilter(
-                                            accordingHeading,
-                                            data,
-                                            `${index + 1}`
-                                          )
-                                        }
-                                      >
-                                        <Radio value={`${index + 1}`}>
-                                          {" "}
-                                          {data}{" "}
-                                        </Radio>
-                                      </Stack>
-                                    ))}
+                                    {radioData &&
+                                      radioData.length > 0 &&
+                                      radioData.map(
+                                        (data: string, index: number) => (
+                                          <Stack
+                                            onClick={() =>
+                                              handleFilter(
+                                                accordingHeading,
+                                                data,
+                                                `${index + 1}`
+                                              )
+                                            }
+                                          >
+                                            <Radio value={`${index + 1}`}>
+                                              {" "}
+                                              {data}{" "}
+                                            </Radio>
+                                          </Stack>
+                                        )
+                                      )}
                                   </Stack>
                                 </RadioGroup>
                               </Flex>
@@ -541,9 +580,8 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
                 selectedStatus !== "" ||
-                boatNo !== "" || 
-                boatMasterName !== ""
-              ) && (
+                boatNo !== "" ||
+                boatMasterName !== "") && (
                 <Text
                   css={{ cursor: "pointer" }}
                   onClick={() => {
@@ -568,7 +606,7 @@ export default function WayBillReportsTabs<BoatsConversionForWayBill extends obj
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={tableData}/>
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
               <DataTable

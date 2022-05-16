@@ -1,6 +1,6 @@
 import { Column } from "react-table";
 import { date } from "yup/lib/locale";
-import { Box, Link, Divider } from "@chakra-ui/react";
+import { Box, Link, Divider, Stack } from "@chakra-ui/react";
 
 // ----------------------Opereational Boats---------------------
 
@@ -220,7 +220,7 @@ export type BoatsConversionForWayBill = {
   boatNumber: number;
   wayBillNumber: number;
   status: string;
-  wayBillDate: string;
+  endingTime: string;
   View: string;
   download: string;
   print: string;
@@ -314,18 +314,32 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   },
   {
     Header: "Date",
-    accessor: "wayBillDate",
+    accessor: (props) => (
+      <div style={{ width: "100px" }}>
+        {props?.endingTime.split(" ").at(0) || ""}
+      </div>
+    ),
   },
 
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">View</Link>,
+    Cell: (props) => {
+      return (
+        <Link href={"/pdf"} color="#EE9A7F">
+          View
+        </Link>
+      );
+    },
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">Download</Link>,
+    Cell: (props) => (
+      <Link href={"/pdf"} color="#EE9A7F">
+        Download
+      </Link>
+    ),
   },
   // {
   //   Header: "",
@@ -390,7 +404,7 @@ export const dataForBanking: BoatsConversionForBanking[] = [
     View: "View",
     download: "Download",
     print: "Print",
-  }
+  },
 ];
 
 export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
@@ -413,13 +427,21 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">View</Link>,
+    Cell: (props) => (
+      <Link href={"/pdf"} color="#EE9A7F">
+        View
+      </Link>
+    ),
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => <Link href={"/pdf"} color="#EE9A7F">Download</Link>,
-  }
+    Cell: (props) => (
+      <Link href={"/pdf"} color="#EE9A7F">
+        Download
+      </Link>
+    ),
+  },
   // {
   //   Header: "",
   //   accessor: "print",

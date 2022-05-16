@@ -35,7 +35,12 @@ export default function ScheduleTabs<Data extends object>({
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab _focus={{ borderColor: "none" }}>Schedule</Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                Schedule
+              </Tab>
               {/* <Tab _focus={{ borderColor: "none" }}>Timetable</Tab> */}
             </Stack>
             <Stack direction="row" marginBottom={"10px"}>

@@ -42,7 +42,9 @@ export type DataTableForBoatProps<Data extends object> = {
   columnsForBoat: Column<Data>[];
 };
 
-export default function BankingReportsTabs<BoatsConversionForBanking extends object>({
+export default function BankingReportsTabs<
+  BoatsConversionForBanking extends object
+>({
   dataForBoat,
   columnsForBoat,
 }: DataTableForBoatProps<BoatsConversionForBanking>) {
@@ -78,13 +80,15 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
-        if (item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) ) {
-          filterData.push(item);
-        }
+      if (
+        item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase())
+      ) {
+        filterData.push(item);
+      }
     });
     setSearchInput(searchData);
     setTableData(filterData);
-    if(searchData===""){
+    if (searchData === "") {
       setTableData(tableDataCopy);
     }
   };
@@ -92,23 +96,29 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
   const filterData = () => {
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
-      if(
-        item.wayBillNo === Number(wayBillReport) || 
+      if (
+        item.wayBillNo === Number(wayBillReport) ||
         item.nameOfBoatMaster.toLowerCase() === boatMasterName.toLowerCase() ||
         item.bootNo === Number(boatNo)
       ) {
         filterData.push(item);
       }
     });
-    setTableData(filterData); 
-  }
+    setTableData(filterData);
+  };
 
   useEffect(() => {
-    if(wayBillReport === "" && selectedLocation === "" && boatNo === "" && boatMasterName === "") return setTableData(tableDataCopy);
-    else{
+    if (
+      wayBillReport === "" &&
+      selectedLocation === "" &&
+      boatNo === "" &&
+      boatMasterName === ""
+    )
+      return setTableData(tableDataCopy);
+    else {
       filterData();
     }
-  }, [ wayBillReport, selectedLocation, boatNo, boatMasterName ]);
+  }, [wayBillReport, selectedLocation, boatNo, boatMasterName]);
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -127,7 +137,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
     let result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.bootNo, label: key.bootNo });
-    })
+    });
     return result;
   };
 
@@ -135,7 +145,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
     let result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
-    })
+    });
     return result;
   };
 
@@ -150,39 +160,43 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
-
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab>All</Tab>
-              <Tab>New</Tab>
-              <Tab>Old</Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                All
+              </Tab>
+              {/* <Tab>New</Tab>
+              <Tab>Old</Tab> */}
             </Stack>
 
             <Flex marginBottom={"10px"}>
-            <Stack
+              <Stack
                 spacing={4}
                 direction="row"
                 align="center"
                 padding={"10px"}
               >
-              <Dropdown
-                placeholder="Boat No"
-                dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
-                optionDropVal={boatNo}
-                setOptionDropVal={(value: string) => {
-                  setBoatNo(value)
-                }}
-              />
-              <Dropdown
-                placeholder="Boat Master Name"
-                dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
-                optionDropVal={boatMasterName}
-                setOptionDropVal={(value: string) => {
-                  setBoatMasterName(value)
-                }}
-              />
-             
+                <Dropdown
+                  placeholder="Boat No"
+                  dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
+                  optionDropVal={boatNo}
+                  setOptionDropVal={(value: string) => {
+                    setBoatNo(value);
+                  }}
+                />
+                <Dropdown
+                  placeholder="Boat Master Name"
+                  dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
+                  optionDropVal={boatMasterName}
+                  setOptionDropVal={(value: string) => {
+                    setBoatMasterName(value);
+                  }}
+                />
+
                 {/* <Button
                   colorScheme="#E79378"
                   size="md"
@@ -224,8 +238,9 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                   variant="outline"
                   size="xs"
                   placeholder={`Search`}
-                  onChange={e => { handleSearchFilters(e.target.value) }}
-
+                  onChange={(e) => {
+                    handleSearchFilters(e.target.value);
+                  }}
                 />
               </InputGroup>
               <Stack direction="row" spacing={4}>
@@ -253,18 +268,16 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     <Accordion allowToggle borderRadius="lg">
                       {[0, 1].map((item) => {
                         const accordingHeading =
-                          item === 0
-                            ? "Location"
-                            :  "WayBill Number";
+                          item === 0 ? "Location" : "WayBill Number";
                         const radioData =
                           item === 0
                             ? [
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                              "Edathua",
-                            ]
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                                "Edathua",
+                              ]
                             : getOptionForWayBillNumber(dataForBoat);
 
                         const radioValue =
@@ -335,22 +348,26 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                               >
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
-                                  {radioData && radioData.length > 0 && radioData.map((data: string, index: number) => (
-                                      <Stack
-                                        onClick={() =>
-                                          handleFilter(
-                                            accordingHeading,
-                                            data,
-                                            `${index + 1}`
-                                          )
-                                        }
-                                      >
-                                        <Radio value={`${index + 1}`}>
-                                          {" "}
-                                          {data}{" "}
-                                        </Radio>
-                                      </Stack>
-                                    ))}
+                                    {radioData &&
+                                      radioData.length > 0 &&
+                                      radioData.map(
+                                        (data: string, index: number) => (
+                                          <Stack
+                                            onClick={() =>
+                                              handleFilter(
+                                                accordingHeading,
+                                                data,
+                                                `${index + 1}`
+                                              )
+                                            }
+                                          >
+                                            <Radio value={`${index + 1}`}>
+                                              {" "}
+                                              {data}{" "}
+                                            </Radio>
+                                          </Stack>
+                                        )
+                                      )}
                                   </Stack>
                                 </RadioGroup>
                               </Flex>
@@ -372,8 +389,8 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     variant="solid"
                     h="43px"
                     bg="#C4C4C4"
-                    color="#3E4059"
-                    colorScheme="#3E4059"
+                    color="#F8F8F8"
+                    colorScheme="#F8F8F8"
                   >
                     {selectedLocation}
                     <Image
@@ -437,7 +454,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     size="lg"
                     variant="solid"
                     h="43px"
-                    bg="#C4C4C4"
+                    bg="#f0f0f0"
                     color="#3E4059"
                     colorScheme="#3E4059"
                   >
@@ -459,7 +476,7 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
                     size="lg"
                     variant="solid"
                     h="43px"
-                    bg="#C4C4C4"
+                    bg="#f0f0f0"
                     color="#3E4059"
                     colorScheme="#3E4059"
                   >
@@ -479,41 +496,40 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
               </HStack>
               {(selectedLocation !== "" ||
                 wayBillReport !== "" ||
-                selectedStatus !== "" || 
-                boatNo !== "" || 
-                boatMasterName !== ""
-              ) && (
-                  <Text
-                    css={{ cursor: "pointer" }}
-                    onClick={() => {
-                      setBoatNo("");
-                      setBoatMasterName("");
-                      setSelectedLocation("");
-                      setSelectedLocationValue("");
-                      setWayBillReport("");
-                      setWayBillReportValue("");
-                      setSelectedStatus("");
-                      setSelectedStatusValue("");
-                    }}
-                    fontSize="xl"
-                    color={"#E8947A"}
-                  >
-                    Clear All Filters
-                  </Text>
-                )}
+                selectedStatus !== "" ||
+                boatNo !== "" ||
+                boatMasterName !== "") && (
+                <Text
+                  css={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setBoatNo("");
+                    setBoatMasterName("");
+                    setSelectedLocation("");
+                    setSelectedLocationValue("");
+                    setWayBillReport("");
+                    setWayBillReportValue("");
+                    setSelectedStatus("");
+                    setSelectedStatusValue("");
+                  }}
+                  fontSize="xl"
+                  color={"#E8947A"}
+                >
+                  Clear All Filters
+                </Text>
+              )}
             </Flex>
           </Stack>
-            <TabPanels>
-              <TabPanel>
-                <DataTable columns={columnsForBoat} data={tableData}/>
-              </TabPanel>
-              <TabPanel>
-                <DataTable columns={columnsForBoat} data={tableData}/>
-              </TabPanel>
-              <TabPanel>
-                <DataTable columns={columnsForBoat} data={tableData}/>
-              </TabPanel>
-            </TabPanels>
+          <TabPanels>
+            <TabPanel>
+              <DataTable columns={columnsForBoat} data={tableData} />
+            </TabPanel>
+            <TabPanel>
+              <DataTable columns={columnsForBoat} data={tableData} />
+            </TabPanel>
+            <TabPanel>
+              <DataTable columns={columnsForBoat} data={tableData} />
+            </TabPanel>
+          </TabPanels>
         </Tabs>
       </Box>
     </Center>
@@ -522,4 +538,3 @@ export default function BankingReportsTabs<BoatsConversionForBanking extends obj
 function key(key: any) {
   throw new Error("Function not implemented.");
 }
-

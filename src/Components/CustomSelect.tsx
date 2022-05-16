@@ -1,5 +1,13 @@
 import React from "react";
 import Select, { StylesConfig } from "react-select";
+import {
+  Box,
+  SimpleGrid,
+  Button,
+  Flex,
+  FormLabel,
+  Stack,
+} from "@chakra-ui/react";
 
 type MyOptionTypeForBoatNo = {
   label: string;
@@ -9,6 +17,10 @@ type MyOptionTypeForBoatNo = {
 type IsMulti = false;
 
 const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
+  container: (base) => ({
+    ...base,
+    width: "100%",
+  }),
   control: (base) => ({
     ...base,
     margintop: "7px",
@@ -19,10 +31,11 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
     display: "flex",
     background: "#f5f8faad",
     borderRadius: "4px",
+    boxShadow: "none",
     borderColor: "#E79378",
     focusBorderColor: "#E79378",
     minWidth: "max-content",
-    width: "12rem",
+    //width: "12rem",
     "&:hover": {
       borderColor: " #E79378 !important",
     },
@@ -48,6 +61,23 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   }),
   singleValue: () => ({
     color: "#525c65",
+  }),
+  option: (base, state) => ({
+    ...base,
+    margin: "2px",
+    backgroundColor: state.isFocused
+      ? "#E79378"
+      : state.isSelected
+      ? "#E79378"
+      : "white",
+    "&:hover": {
+      borderColor: " #E79378 !important",
+    },
+    "&:focus": {
+      transition: "0.4 ease",
+      borderColor: "#E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important",
+    },
   }),
 };
 interface CustomSelectProps {
@@ -95,3 +125,36 @@ const CustomSelect = (props: any) => {
 };
 
 export default CustomSelect;
+
+export const MySelect: any = (props: any) => {
+  const handleChange = (value: any) => {
+    // this is going to call setFieldValue and manually update values.topcis
+    props.onChange(props.id, value);
+  };
+
+  const handleBlur = () => {
+    // this is going to call setFieldTouched and manually update touched.topcis
+    props.onBlur(props.id, true);
+  };
+  // console.log("errors", props);
+  return (
+    <div style={{ margin: "1rem 0" }}>
+      <FormLabel mt="3">{props.placeholder}</FormLabel>
+      <Select
+        // components={{ ValueContainer: CustomValueContainer }}
+        id={props.id}
+        options={props.options}
+        //placeholder={props.placeholder}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={props.value}
+        styles={customStyles}
+      />
+      {props.error && props.touched && (
+        <FormLabel color="red" mt="3">
+          {props.error}
+        </FormLabel>
+      )}
+    </div>
+  );
+};

@@ -35,7 +35,12 @@ export default function OperationalBoatsTabs<Data extends object>({
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
-              <Tab _focus={{ borderColor: "none" }}>All</Tab>
+              <Tab
+                _focus={{ borderColor: "none" }}
+                _selected={{ borderBottom: "5px solid #E79378" }}
+              >
+                All
+              </Tab>
               {/* <Tab _focus={{ borderColor: 'none' }}>New</Tab>
                             <Tab _focus={{ borderColor: 'none' }}>Old</Tab> */}
             </Stack>
@@ -59,7 +64,7 @@ export default function OperationalBoatsTabs<Data extends object>({
                   _hover={{ borderColor: "#E79378 !important" }}
                 />
               </InputGroup>
-              <Stack direction="row" spacing={4}>
+              {/* <Stack direction="row" spacing={4}>
                 <Button
                   _hover={{ bgColor: "#646782" }}
                   leftIcon={<img src={Filter} />}
@@ -69,7 +74,7 @@ export default function OperationalBoatsTabs<Data extends object>({
                 >
                   Filter
                 </Button>
-              </Stack>
+              </Stack> */}
             </Stack>
           </TabList>
 
