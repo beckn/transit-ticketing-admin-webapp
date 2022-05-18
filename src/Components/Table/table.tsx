@@ -1,4 +1,4 @@
-import { Table, Thead, Tbody, Tr, Th, Td, chakra } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, chakra, Center } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { useTable, useSortBy, Column } from "react-table";
 
@@ -40,7 +40,9 @@ function DataTable<Data extends object>({
         ))}
       </Thead>
       <Tbody {...getTableBodyProps()}>
-        {rows.map((row: any) => {
+        
+        {rows.length > 0 ?(rows.map((row: any) => {
+           console.log(row)
           prepareRow(row);
           return (
             <Tr {...row.getRowProps()}>
@@ -51,7 +53,15 @@ function DataTable<Data extends object>({
               ))}
             </Tr>
           );
-        })}
+        })) : (
+          <Tr verticalAlign= "middle" textAlign={"center"}>
+            <Center background={'#E79378'} fontFamily = {'Roboto'} borderRadius={'3xl'} color='white'>
+              No Data ... 
+              </Center>
+          </Tr>
+        )
+        }
+        
       </Tbody>
     </Table>
   );
