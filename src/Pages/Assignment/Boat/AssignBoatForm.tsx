@@ -57,9 +57,9 @@ const formikEnhancer = withFormik({
 });
 
 const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
+  { value: "chocolate", label: "KERALA" },
+  { value: "strawberry", label: "EDATHUA" },
+  { value: "vanilla", label: "CHENNAI" },
 ];
 
 function AssignBoat(props: any) {
