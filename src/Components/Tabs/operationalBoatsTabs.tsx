@@ -19,6 +19,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import "./operationalBoatsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
+import { CSSProperties, useEffect, useState } from "react";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
@@ -27,8 +28,36 @@ export type DataTableForBoatProps<Data extends object> = {
 
 export default function OperationalBoatsTabs<Data extends object>({
   dataForBoat,
-  columnsForBoat,
+  columnsForBoat,  
 }: DataTableForBoatProps<Data>) {
+
+  const [wayBillReport, setWayBillReport] = useState("");
+
+  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
+  const [serachInput, setSearchInput] = useState<any>("");
+  const [tableData, setTableData] = useState(dataForBoat || []);
+  const [boatNo, setBoatNo] = useState("");
+  const [boatMasterName, setBoatMasterName] = useState("");
+
+  const handleSearchFilters = (searchData: string) => {
+    let filterData: Data[] = [];
+    tableDataCopy.map((item: any) => {
+      if (
+        item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
+        item.bootNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
+      ) {
+        filterData.push(item);
+      }
+    });
+    setSearchInput(searchData);
+    setTableData(filterData);
+    if (searchData === "") {
+      setTableData(tableDataCopy);
+    }
+  };
+
+
+
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -62,6 +91,9 @@ export default function OperationalBoatsTabs<Data extends object>({
                   placeholder={`Search`}
                   borderRadius={"10px"}
                   _hover={{ borderColor: "#E79378 !important" }}
+                  onChange={(e) => {
+                    handleSearchFilters(e.target.value);
+                  }}
                 />
               </InputGroup>
               {/* <Stack direction="row" spacing={4}>
@@ -80,13 +112,13 @@ export default function OperationalBoatsTabs<Data extends object>({
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoat} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
           </TabPanels>
         </Tabs>

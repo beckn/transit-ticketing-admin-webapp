@@ -76,13 +76,15 @@ export default function BankingReportsTabs<
 
   //   setTableData(filterData);
   // };
-
+  
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
-        item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase())
-      ) {
+        item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) || 
+        item.bootNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
+        || item.wayBillNo.toString().toLowerCase().includes(searchData.toLowerCase())
+      ){
         filterData.push(item);
       }
     });
@@ -521,9 +523,9 @@ export default function BankingReportsTabs<
           </Stack>
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={tableData} />
+               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
-            <TabPanel>
+             <TabPanel>
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
