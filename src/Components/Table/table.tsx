@@ -1,11 +1,14 @@
 import { Table, Thead, Tbody, Tr, Th, Td, chakra, Center } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { useTable, useSortBy, Column } from "react-table";
+import { columns } from '../../Pages/Assignment/data';
 
 export type DataTableProps<Data extends object> = {
   data: Data[];
   columns: Column<Data>[];
 };
+
+
 
 function DataTable<Data extends object>({
   data,
@@ -13,7 +16,9 @@ function DataTable<Data extends object>({
 }: DataTableProps<Data>) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);
-
+    
+  let columnCount = columns?.length < 0 ? 1 : columns?.length;
+    
   return (
     <Table variant="simple" {...getTableProps()}>
       <Thead>
@@ -39,10 +44,8 @@ function DataTable<Data extends object>({
           </Tr>
         ))}
       </Thead>
-      <Tbody {...getTableBodyProps()}>
-        
+      <Tbody {...getTableBodyProps()}>      
         {rows.length > 0 ?(rows.map((row: any) => {
-           console.log(row)
           prepareRow(row);
           return (
             <Tr {...row.getRowProps()}>
@@ -55,12 +58,20 @@ function DataTable<Data extends object>({
           );
         })) : (
           <Tr verticalAlign= "middle" textAlign={"center"}>
-            <Center background={'#E79378'} fontFamily = {'Roboto'} borderRadius={'3xl'} color='white'>
+            <Td
+            colSpan={columnCount} 
+             textAlign={"center"}
+             fontFamily={"Roboto"}           
+             height={"225"}
+             > 
+                    No Data ...                    
+            </Td>     
+            {/* <Center background={'#E79378'} fontFamily = {'Roboto'} borderRadius={'3xl'} color='white'>
               No Data ... 
-              </Center>
+              </Center> */}
           </Tr>
         )
-        }
+        }  
         
       </Tbody>
     </Table>
