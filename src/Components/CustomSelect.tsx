@@ -75,7 +75,14 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
     },
     "&:focus": {
       transition: "0.4 ease",
+      backgroundColor: "#E79378",
       borderColor: "#E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important",
+    },
+    "&:active": {
+      transition: "0.4 ease",
+      borderColor: "#E79378 !important",
+      backgroundColor: "#E79378",
       boxShadow: "0px 0px 0.3rem #E79378 !important",
     },
   }),
@@ -138,7 +145,7 @@ export const MySelect: any = (props: any) => {
   };
   // console.log("errors", props);
   return (
-    <div style={{ margin: "1rem 0" }}>
+    <div style={{ margin: "2rem 0" }}>
       <FormLabel mt="3">{props.placeholder}</FormLabel>
       <Select
         // components={{ ValueContainer: CustomValueContainer }}
@@ -151,7 +158,7 @@ export const MySelect: any = (props: any) => {
         styles={customStyles}
       />
       {props.error && props.touched && (
-        <FormLabel color="red" mt="3">
+        <FormLabel color="red" mt="3" mb="3">
           {props.error}
         </FormLabel>
       )}

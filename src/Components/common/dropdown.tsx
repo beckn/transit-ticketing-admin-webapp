@@ -9,7 +9,7 @@ type MyOptionType = {
 
 type IsMulti = false;
 
-const customStyles: StylesConfig<MyOptionType, IsMulti> = {
+export const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   control: (base) => ({
     ...base,
     margintop: "7px",
@@ -61,7 +61,14 @@ const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     },
     "&:focus": {
       transition: "0.4 ease",
+      backgroundColor: "#E79378",
       borderColor: "#E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important",
+    },
+    "&:active": {
+      transition: "0.4 ease",
+      borderColor: "#E79378 !important",
+      backgroundColor: "#E79378",
       boxShadow: "0px 0px 0.3rem #E79378 !important",
     },
   }),
