@@ -1,39 +1,18 @@
 import {
-  Box,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  Image,
-  InputRightElement,
-  HStack,
-  Tag,
-  Flex,
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Menu,
-  MenuButton,
-  MenuList,
-  Radio,
-  RadioGroup,
-  Text,
+  Box, Tab, Tabs, TabList, TabPanel,
+  TabPanels, Center, Input, Stack, Button,
+  InputGroup, Image, InputRightElement, HStack,
+  Tag, Flex, Accordion, AccordionButton, AccordionIcon,
+  AccordionItem, AccordionPanel, Menu, MenuButton, MenuList,
+  Radio, RadioGroup, Text
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+// import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 
@@ -279,7 +258,8 @@ export default function WayBillReportsTabs<
                     color={"#fff"}
                     padding={"20px"}
                     as={Button}
-                    rightIcon={<ChevronDownIcon />}
+                    paddingRight={"40px"}
+                    // rightIcon={<ChevronDownIcon />}
                   >
                     Filter
                   </MenuButton>
