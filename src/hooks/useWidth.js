@@ -11,7 +11,7 @@ const useWindowSize = () => {
         width: window.innerWidth,
         height: window.innerHeight
       });
-    };
+    }
 
     window.addEventListener("resize", handleResize);
     handleResize();
@@ -20,6 +20,6 @@ const useWindowSize = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
   return windowSize;
-}
+};
 
 export default useWindowSize;

@@ -34,7 +34,7 @@ export default function OperationalBoats() {
               widgetData={{
                 total: data?.boatsCount,
                 remaining: data?.boatsOutOfService,
-                available: data?.boatsAvailable,
+                available: data?.boatsAvailable
               }}
               pageTitle="Operational Boats"
               tableTitle="List of operational boats :"

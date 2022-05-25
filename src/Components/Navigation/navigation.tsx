@@ -45,7 +45,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
   const {
     isOpen,
     // onOpen,
-    onClose,
+    onClose
   } = useDisclosure();
 
   const size = useWindowSize();
@@ -97,7 +97,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const size = useWindowSize();
 
   let parsedData = null;
-  let data = localStorage.getItem("firebaseData");
+  const data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
   }
@@ -345,7 +345,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 borderRadius={"20px"}
                 _hover={{
                   bg: "#FFFFFF",
-                  color: "#FF0000",
+                  color: "#FF0000"
                 }}
                 color={"	#FF0000"}
                 background={"#FFFFFF"}
@@ -377,7 +377,7 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       fontFamily={"Roboto"}
       _hover={{
         bg: "#E49076",
-        color: "#fff",
+        color: "#fff"
       }}
       {...rest}
     >

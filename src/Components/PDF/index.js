@@ -98,7 +98,7 @@ const PdfComponent = () => {
           {TableLastData.map((item, key) => wayBillLastRows(item, key))}
         </tbody>
       </table>
-      <PrintButton refsToPrint={[tableRef]} />
+      <PrintButton refsToPrint={[ tableRef ]} />
     </Box>
   );
 };
