@@ -38,7 +38,7 @@ export default function Staff() {
               widgetData={{
                 total: data.length + ticketMasterData?.data.length,
                 remaining: data.length,
-                available: ticketMasterData?.data.length,
+                available: ticketMasterData?.data.length
               }}
             />
             <StaffTabs

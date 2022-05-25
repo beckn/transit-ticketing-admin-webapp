@@ -25,7 +25,7 @@ import {
   Radio,
   RadioGroup,
   HStack,
-  Tag,
+  Tag
 } from "@chakra-ui/react";
 import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import DataTable from "../Table/table";
@@ -46,21 +46,21 @@ export default function BankingReportsTabs<
   BoatsConversionForBanking extends object
 >({
   dataForBoat,
-  columnsForBoat,
+  columnsForBoat
 }: DataTableForBoatProps<BoatsConversionForBanking>) {
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedLocationValue, setSelectedLocationValue] = useState("");
-  const [wayBillReport, setWayBillReport] = useState("");
-  const [wayBillReportValue, setWayBillReportValue] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedStatusValue, setSelectedStatusValue] = useState("");
+  const [ selectedLocation, setSelectedLocation ] = useState("");
+  const [ selectedLocationValue, setSelectedLocationValue ] = useState("");
+  const [ wayBillReport, setWayBillReport ] = useState("");
+  const [ wayBillReportValue, setWayBillReportValue ] = useState("");
+  const [ selectedStatus, setSelectedStatus ] = useState("");
+  const [ selectedStatusValue, setSelectedStatusValue ] = useState("");
 
-  const [tableData, setTableData] = useState(dataForBoat || []);
-  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
-  const [boatNo, setBoatNo] = useState("");
-  const [boatMasterName, setBoatMasterName] = useState("");
-  const [dropdownValue, setDropdownValue] = useState<any>();
-  const [serachInput, setSearchInput] = useState<any>("");
+  const [ tableData, setTableData ] = useState(dataForBoat || []);
+  const [ tableDataCopy, setTableDataCopy ] = useState(dataForBoat || []);
+  const [ boatNo, setBoatNo ] = useState("");
+  const [ boatMasterName, setBoatMasterName ] = useState("");
+  const [ dropdownValue, setDropdownValue ] = useState<any>();
+  const [ serachInput, setSearchInput ] = useState<any>("");
 
   // const handleDropDownFilters = () => {
   //   if (boatNo === "" && boatMasterName === "") return;
@@ -78,7 +78,7 @@ export default function BankingReportsTabs<
   // };
   
   const handleSearchFilters = (searchData: string) => {
-    let filterData: BoatsConversionForBanking[] = [];
+    const filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
         item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) || 
@@ -96,7 +96,7 @@ export default function BankingReportsTabs<
   };
 
   const filterData = () => {
-    let filterData: BoatsConversionForBanking[] = [];
+    const filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
         item.wayBillNo === Number(wayBillReport) ||
@@ -120,7 +120,7 @@ export default function BankingReportsTabs<
     else {
       filterData();
     }
-  }, [wayBillReport, selectedLocation, boatNo, boatMasterName]);
+  }, [ wayBillReport, selectedLocation, boatNo, boatMasterName ]);
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -136,7 +136,7 @@ export default function BankingReportsTabs<
   };
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.bootNo, label: key.bootNo });
     });
@@ -144,7 +144,7 @@ export default function BankingReportsTabs<
   };
 
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
     });
@@ -152,7 +152,7 @@ export default function BankingReportsTabs<
   };
 
   const getOptionForWayBillNumber = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.wayBillNo.toString());
     });
@@ -239,7 +239,7 @@ export default function BankingReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={"Search"}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
                   }}
@@ -269,18 +269,18 @@ export default function BankingReportsTabs<
                     borderRadius="lg"
                   >
                     <Accordion allowToggle borderRadius="lg">
-                      {[0, 1].map((item) => {
+                      {[ 0, 1 ].map((item) => {
                         const accordingHeading =
                           item === 0 ? "Location" : "WayBill Number";
                         const radioData =
                           item === 0
                             ? [
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                              ]
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua"
+                            ]
                             : getOptionForWayBillNumber(dataForBoat);
 
                         const radioValue =
@@ -328,7 +328,7 @@ export default function BankingReportsTabs<
                                   bg="#fff"
                                   color="#000"
                                   size="xs"
-                                  placeholder={`Search`}
+                                  placeholder={"Search"}
                                 />
                               </InputGroup>
 
@@ -338,15 +338,15 @@ export default function BankingReportsTabs<
                                 overflow={"auto"}
                                 css={{
                                   "&::-webkit-scrollbar": {
-                                    width: "4px",
+                                    width: "4px"
                                   },
                                   "&::-webkit-scrollbar-track": {
-                                    width: "4px",
+                                    width: "4px"
                                   },
                                   "&::-webkit-scrollbar-thumb": {
                                     background: "#E79379",
-                                    borderRadius: "24px",
-                                  },
+                                    borderRadius: "24px"
+                                  }
                                 }}
                               >
                                 <RadioGroup value={radioValue} w="100%">
@@ -524,9 +524,9 @@ export default function BankingReportsTabs<
           </Stack>
           <TabPanels>
             <TabPanel>
-               <DataTable columns={columnsForBoat} data={tableData} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
-             <TabPanel>
+            <TabPanel>
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>

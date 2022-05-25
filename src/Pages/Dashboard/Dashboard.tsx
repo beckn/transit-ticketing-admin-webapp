@@ -6,7 +6,7 @@ import {
   Heading,
   Image,
   Divider,
-  Flex,
+  Flex
 } from "@chakra-ui/react";
 import AuthContainer from "../../Components/AuthRoute/index";
 import IPageProps from "../../Interfaces/page";
@@ -17,7 +17,7 @@ import { useHistory } from "react-router-dom";
 import useWindowSize from "../../hooks/useWidth";
 
 const Dashboard: React.FC<IPageProps> = (props) => {
-  const [user, setUser] = useState<string>("");
+  const [ user, setUser ] = useState<string>("");
   const history = useHistory();
   const size = useWindowSize();
 
@@ -58,13 +58,13 @@ const Dashboard: React.FC<IPageProps> = (props) => {
 
             <SimpleGrid
               minChildWidth="300px"
-              columns={[2, null, 2]}
+              columns={[ 2, null, 2 ]}
               spacing="20px"
             >
               <Link to="/way_Bill_Reports">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -84,7 +84,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Link to="/banking_Reports">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -118,13 +118,13 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             />
             <SimpleGrid
               minChildWidth="280px"
-              columns={[2, null, 3]}
+              columns={[ 2, null, 3 ]}
               spacing="20px"
             >
               <Link to="/opBoats">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -148,7 +148,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Link to="/schedules">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -171,7 +171,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Link to="/staff">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -205,13 +205,13 @@ const Dashboard: React.FC<IPageProps> = (props) => {
             />
             <SimpleGrid
               minChildWidth="300px"
-              columns={[2, null, 2]}
+              columns={[ 2, null, 2 ]}
               spacing="20px"
             >
               <Link to="/boats">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"
@@ -236,7 +236,7 @@ const Dashboard: React.FC<IPageProps> = (props) => {
               <Link to="/counter">
                 <Box
                   _hover={{
-                    bg: "#E49076",
+                    bg: "#E49076"
                   }}
                   bg="#3E4059"
                   display="flex"

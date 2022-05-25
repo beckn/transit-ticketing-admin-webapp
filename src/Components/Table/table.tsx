@@ -9,7 +9,7 @@ export type DataTableProps<Data extends object> = {
 
 function DataTable<Data extends object>({
   data,
-  columns,
+  columns
 }: DataTableProps<Data>) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useSortBy);
@@ -42,7 +42,7 @@ function DataTable<Data extends object>({
       <Tbody {...getTableBodyProps()}>
         
         {rows.length > 0 ?(rows.map((row: any) => {
-           console.log(row)
+          console.log(row);
           prepareRow(row);
           return (
             <Tr {...row.getRowProps()}>
@@ -55,9 +55,9 @@ function DataTable<Data extends object>({
           );
         })) : (
           <Tr verticalAlign= "middle" textAlign={"center"}>
-            <Center background={'#E79378'} fontFamily = {'Roboto'} borderRadius={'3xl'} color='white'>
+            <Center background={"#E79378"} fontFamily = {"Roboto"} borderRadius={"3xl"} color='white'>
               No Data ... 
-              </Center>
+            </Center>
           </Tr>
         )
         }

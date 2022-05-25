@@ -6,7 +6,7 @@ import {
   Button,
   Flex,
   FormLabel,
-  Stack,
+  Stack
 } from "@chakra-ui/react";
 
 type MyOptionTypeForBoatNo = {
@@ -19,7 +19,7 @@ type IsMulti = false;
 const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
   container: (base) => ({
     ...base,
-    width: "100%",
+    width: "100%"
   }),
   control: (base) => ({
     ...base,
@@ -37,13 +37,13 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
     minWidth: "max-content",
     //width: "12rem",
     "&:hover": {
-      borderColor: " #E79378 !important",
+      borderColor: " #E79378 !important"
     },
     "&:focus": {
       transition: "0.4 ease",
       borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #02b3e4 !important",
-    },
+      boxShadow: "0px 0px 0.3rem #02b3e4 !important"
+    }
   }),
   // placeholder: () => ({
   //     color: '#7d97ad',
@@ -52,15 +52,15 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
     ...provided,
     width: "90%",
     paddingTop: "0",
-    paddingBottom: "0",
+    paddingBottom: "0"
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
     width: "10%",
-    minHeight: "1px",
+    minHeight: "1px"
   }),
   singleValue: () => ({
-    color: "#525c65",
+    color: "#525c65"
   }),
   option: (base, state) => ({
     ...base,
@@ -68,24 +68,24 @@ const customStyles: StylesConfig<MyOptionTypeForBoatNo, IsMulti> = {
     backgroundColor: state.isFocused
       ? "#E79378"
       : state.isSelected
-      ? "#E79378"
-      : "white",
+        ? "#E79378"
+        : "white",
     "&:hover": {
-      borderColor: " #E79378 !important",
+      borderColor: " #E79378 !important"
     },
     "&:focus": {
       transition: "0.4 ease",
       backgroundColor: "#E79378",
       borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important"
     },
     "&:active": {
       transition: "0.4 ease",
       borderColor: "#E79378 !important",
       backgroundColor: "#E79378",
-      boxShadow: "0px 0px 0.3rem #E79378 !important",
-    },
-  }),
+      boxShadow: "0px 0px 0.3rem #E79378 !important"
+    }
+  })
 };
 interface CustomSelectProps {
   options: any;
@@ -93,7 +93,7 @@ interface CustomSelectProps {
 
 const cellOptions: any = [
   { label: "watermelon", value: 1 },
-  { label: "kiwi", value: 2 },
+  { label: "kiwi", value: 2 }
 ];
 interface SelectCellProps {
   value: any;

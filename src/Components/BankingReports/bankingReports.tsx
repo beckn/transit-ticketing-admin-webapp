@@ -1,13 +1,13 @@
 import {
-  Box,
-} from '@chakra-ui/react';
-import Navigation from '../../Components/Navigation/navigation';
-import Navbar from '../Navbar/navbar';
+  Box
+} from "@chakra-ui/react";
+import Navigation from "../../Components/Navigation/navigation";
+import Navbar from "../Navbar/navbar";
 // import { useQueryClient } from "react-query";
 // import { useApi } from "../../hooks/useApi";
 // import { apiUrl } from "../../Config/apiUrl";
-import { dataForBanking, columnsForBanking } from '../../Pages/Home/Data/data';
-import BankingReportsTabs from '../Tabs/bankingReportsTabs';
+import { dataForBanking, columnsForBanking } from "../../Pages/Home/Data/data";
+import BankingReportsTabs from "../Tabs/bankingReportsTabs";
 
 export default function BankingReports() {
   return (

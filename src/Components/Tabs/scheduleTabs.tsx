@@ -12,7 +12,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  background,
+  background
 } from "@chakra-ui/react";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -27,7 +27,7 @@ export type DataTableForBoatProps<Data extends object> = {
 
 export default function ScheduleTabs<Data extends object>({
   dataForBoat,
-  columnsForBoat,
+  columnsForBoat
 }: DataTableForBoatProps<Data>) {
   return (
     <Center display={"flex"} justifyContent="end">
@@ -58,7 +58,7 @@ export default function ScheduleTabs<Data extends object>({
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={"Search"}
                   borderRadius={"10px"}
                   _hover={{ borderColor: "#E79378 !important" }}
                 />

@@ -7,10 +7,10 @@ import { getLocalStorage } from "../../utils/helpers";
 import Navigation from "../../Components/Navigation/navigation";
 import DataTable from "../../Components/Table/table";
 // import { data, columns } from "./Data/data";
-import TabNavigation from '../../Components/TabNavigation/tabNavigation';
+import TabNavigation from "../../Components/TabNavigation/tabNavigation";
 
 const HomeScreen: React.FC<IPageProps> = (props) => {
-  const [user, setUser] = useState<string>("");
+  const [ user, setUser ] = useState<string>("");
 
   useEffect(() => {
     const data = getLocalStorage("firebaseData");
@@ -30,6 +30,6 @@ const HomeScreen: React.FC<IPageProps> = (props) => {
       </Navigation>
     </AuthContainer>
   );
-}
+};
 
 export default HomeScreen;
