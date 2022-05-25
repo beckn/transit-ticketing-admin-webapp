@@ -256,7 +256,8 @@ export default function BankingReportsTabs<
                     color={"#fff"}
                     padding={"20px"}
                     as={Button}
-                    rightIcon={<ChevronDownIcon />}
+                    paddingRight={"40px"}
+                    // rightIcon={<ChevronDownIcon />}
                   >
                     Filter
                   </MenuButton>
