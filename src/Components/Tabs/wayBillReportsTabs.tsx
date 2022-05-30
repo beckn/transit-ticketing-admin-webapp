@@ -1,39 +1,18 @@
 import {
-  Box,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  Image,
-  InputRightElement,
-  HStack,
-  Tag,
-  Flex,
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Menu,
-  MenuButton,
-  MenuList,
-  Radio,
-  RadioGroup,
-  Text,
+  Box, Tab, Tabs, TabList, TabPanel,
+  TabPanels, Center, Input, Stack, Button,
+  InputGroup, Image, InputRightElement, HStack,
+  Tag, Flex, Accordion, AccordionButton, AccordionIcon,
+  AccordionItem, AccordionPanel, Menu, MenuButton, MenuList,
+  Radio, RadioGroup, Text
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+// import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 
@@ -46,22 +25,22 @@ export default function WayBillReportsTabs<
   BoatsConversionForWayBill extends object
 >({
   dataForBoat,
-  columnsForBoat,
+  columnsForBoat
 }: DataTableForBoatProps<BoatsConversionForWayBill>) {
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedLocationValue, setSelectedLocationValue] = useState("");
-  const [wayBillReport, setWayBillReport] = useState("");
-  const [wayBillReportValue, setWayBillReportValue] = useState("");
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [selectedStatusValue, setSelectedStatusValue] = useState("");
+  const [ selectedLocation, setSelectedLocation ] = useState("");
+  const [ selectedLocationValue, setSelectedLocationValue ] = useState("");
+  const [ wayBillReport, setWayBillReport ] = useState("");
+  const [ wayBillReportValue, setWayBillReportValue ] = useState("");
+  const [ selectedStatus, setSelectedStatus ] = useState("");
+  const [ selectedStatusValue, setSelectedStatusValue ] = useState("");
 
-  const [tableData, setTableData] = useState(dataForBoat || []);
-  const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
-  const [boatNo, setBoatNo] = useState("");
-  const [boatMasterName, setBoatMasterName] = useState("");
-  const [dropdownValue, setDropdownValue] = useState<any>();
-  const [serachInput, setSearchInput] = useState<any>("");
-  const [filterSearchInput, setFilterSearchInput] = useState<any>("");
+  const [ tableData, setTableData ] = useState(dataForBoat || []);
+  const [ tableDataCopy, setTableDataCopy ] = useState(dataForBoat || []);
+  const [ boatNo, setBoatNo ] = useState("");
+  const [ boatMasterName, setBoatMasterName ] = useState("");
+  const [ dropdownValue, setDropdownValue ] = useState<any>();
+  const [ serachInput, setSearchInput ] = useState<any>("");
+  const [ filterSearchInput, setFilterSearchInput ] = useState<any>("");
 
   // const handleDropDownFilters = () => {
   //   if(boatNo === "" && boatMasterName === "") return;
@@ -78,7 +57,7 @@ export default function WayBillReportsTabs<
   // };
 
   const handleSearchFilters = (searchData: string) => {
-    let filterData: BoatsConversionForWayBill[] = [];
+    const filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
       console.log(
         "searchData",
@@ -98,7 +77,7 @@ export default function WayBillReportsTabs<
   };
 
   const filterData = () => {
-    let filterData: BoatsConversionForWayBill[] = [];
+    const filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
       if (
         item.wayBillNumber === Number(wayBillReport) ||
@@ -124,7 +103,7 @@ export default function WayBillReportsTabs<
     else {
       filterData();
     }
-  }, [wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName]);
+  }, [ wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName ]);
 
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
@@ -142,7 +121,7 @@ export default function WayBillReportsTabs<
   };
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     console.log("results", dataForBoat);
     dataForBoat.map((key: any) => {
       result.push({ value: key.boatNumber, label: key.boatNumber });
@@ -151,7 +130,7 @@ export default function WayBillReportsTabs<
   };
 
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.boatMasterName, label: key.boatMasterName });
     });
@@ -159,7 +138,7 @@ export default function WayBillReportsTabs<
   };
 
   const getOptionForWayBillNumber = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.wayBillNumber.toString());
     });
@@ -167,7 +146,7 @@ export default function WayBillReportsTabs<
   };
 
   const getOptionForStatus = (dataForBoat: any) => {
-    let result: any = [];
+    const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.status);
     });
@@ -262,7 +241,7 @@ export default function WayBillReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={"Search"}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
                   }}
@@ -279,7 +258,8 @@ export default function WayBillReportsTabs<
                     color={"#fff"}
                     padding={"20px"}
                     as={Button}
-                    rightIcon={<ChevronDownIcon />}
+                    paddingRight={"40px"}
+                    // rightIcon={<ChevronDownIcon />}
                   >
                     Filter
                   </MenuButton>
@@ -291,43 +271,43 @@ export default function WayBillReportsTabs<
                     borderRadius="lg"
                   >
                     <Accordion allowToggle borderRadius="lg">
-                      {[0, 1, 2].map((item) => {
+                      {[ 0, 1, 2 ].map((item) => {
                         const accordingHeading =
                           item === 0
                             ? "Location"
                             : item === 1
-                            ? "WayBill Number"
-                            : "Status";
+                              ? "WayBill Number"
+                              : "Status";
                         let radioData =
                           item === 0
                             ? [
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                              ]
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua"
+                            ]
                             : item === 1
-                            ? getOptionForWayBillNumber(dataForBoat) || []
-                            : getOptionForStatus(dataForBoat) || [];
-                        let radioDataCopy =
+                              ? getOptionForWayBillNumber(dataForBoat) || []
+                              : getOptionForStatus(dataForBoat) || [];
+                        const radioDataCopy =
                           item === 0
                             ? [
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                                "Edathua",
-                              ]
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua",
+                              "Edathua"
+                            ]
                             : item === 1
-                            ? getOptionForWayBillNumber(dataForBoat) || []
-                            : getOptionForStatus(dataForBoat) || [];
+                              ? getOptionForWayBillNumber(dataForBoat) || []
+                              : getOptionForStatus(dataForBoat) || [];
                         const radioValue =
                           item === 0
                             ? selectedLocationValue
                             : item === 1
-                            ? wayBillReportValue
-                            : selectedStatusValue;
+                              ? wayBillReportValue
+                              : selectedStatusValue;
 
                         const searchData = (value: string) => {
                           if (item === 0) {
@@ -338,7 +318,7 @@ export default function WayBillReportsTabs<
                           }
                           if (item === 1) {
                             if (value === "") radioData = radioDataCopy;
-                            let filterWayBill: any = [];
+                            const filterWayBill: any = [];
                             radioDataCopy.filter((data: any) => {
                               if (data.includes(value)) {
                                 filterWayBill.push(data);
@@ -394,7 +374,7 @@ export default function WayBillReportsTabs<
                                   bg="#fff"
                                   color="#000"
                                   size="xs"
-                                  placeholder={`Search`}
+                                  placeholder={"Search"}
                                   value={filterSearchInput}
                                   onChange={(e) => {
                                     setFilterSearchInput(e.target.value);
@@ -415,15 +395,15 @@ export default function WayBillReportsTabs<
                                 overflow={"auto"}
                                 css={{
                                   "&::-webkit-scrollbar": {
-                                    width: "4px",
+                                    width: "4px"
                                   },
                                   "&::-webkit-scrollbar-track": {
-                                    width: "4px",
+                                    width: "4px"
                                   },
                                   "&::-webkit-scrollbar-thumb": {
                                     background: "#E79379",
-                                    borderRadius: "24px",
-                                  },
+                                    borderRadius: "24px"
+                                  }
                                 }}
                               >
                                 <RadioGroup value={radioValue} w="100%">

@@ -31,4 +31,4 @@ export {
   TableHeading,
   TableHeading2,
   TableLastData
-}
+};

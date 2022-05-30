@@ -1,19 +1,19 @@
 import {
-    Box,Center,CircularProgress
-} from '@chakra-ui/react';
+  Box,Center,CircularProgress
+} from "@chakra-ui/react";
 
 
- const Loader=()=> {
-    return (
-        <Center h="100vh">
-        <CircularProgress isIndeterminate 
+const Loader=() => {
+  return (
+    <Center h="100vh">
+      <CircularProgress isIndeterminate 
 
-color="#D27F65"
+        color="#D27F65"
 
- />
-        </Center>
-    )
-}
+      />
+    </Center>
+  );
+};
 
 export default Loader;
 

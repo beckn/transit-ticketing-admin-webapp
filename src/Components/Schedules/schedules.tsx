@@ -6,7 +6,7 @@ import { apiUrl } from "../../Config/apiUrl";
 import { useQueryClient } from "react-query";
 import {
   dataForScchedule,
-  columnsForSchedule,
+  columnsForSchedule
 } from "../../Pages/Home/Data/data";
 import ScheduleTabs from "../Tabs/scheduleTabs";
 import Loader from "../Loader/Loading";

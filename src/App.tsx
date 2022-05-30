@@ -9,7 +9,7 @@ import PageNotFound from "./Pages/ErrorPages/NotFound";
 export interface IApplicationProps {}
 
 const App: React.FC<IApplicationProps> = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [ loading, setLoading ] = useState<boolean>(true);
 
   useEffect(() => {
     auth.onAuthStateChanged((user: any) => {

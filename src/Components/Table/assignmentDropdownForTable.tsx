@@ -11,7 +11,7 @@ const AssignmentDropdownTable = ():ReactElement => {
   return (
     <div style={{ display: "flex" }}>
       <select
-        onClick={(e) => {handleDropdown(e)}}
+        onClick={(e) => {handleDropdown(e);}}
         onChange={(e) => {
           onOpen();
         }}

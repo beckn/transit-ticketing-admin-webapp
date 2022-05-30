@@ -13,14 +13,19 @@ import {
   useDisclosure,
   BoxProps,
   FlexProps,
-  Divider,
+  // Divider,
   HStack,
   MenuButton,
   VStack,
   Menu,
   MenuList,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon
 } from "@chakra-ui/react";
-import { FiChevronDown } from "react-icons/fi";
+// import { FiChevronDown } from "react-icons/fi";
 import { IconType } from "react-icons";
 import "./navigation.css";
 // import Navbar from "../Navbar/navbar";
@@ -40,7 +45,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
   const {
     isOpen,
     // onOpen,
-    onClose,
+    onClose
   } = useDisclosure();
 
   const size = useWindowSize();
@@ -92,7 +97,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const size = useWindowSize();
 
   let parsedData = null;
-  let data = localStorage.getItem("firebaseData");
+  const data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
   }
@@ -136,7 +141,102 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <NavItem className="main-drawer-item">Home</NavItem>
         </RouterLink>
       </div>
-      <Text
+
+      <Accordion defaultIndex={0} allowToggle>
+        <AccordionItem style={{ border: "none", borderBottom: "1px solid #fff" }}>
+          <h2>
+            <AccordionButton>
+              <Box 
+                ml="4"
+                flex="1" 
+                color="#FFFFFF" 
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Reports
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink exact={true} activeClassName="is-active" to="/way_Bill_Reports">
+                  <NavItem className="sub-drawer-item">Way Bill Report</NavItem>
+                </RouterLink>
+                <RouterLink exact={true} activeClassName="is-active" to="/banking_Reports">
+                  <NavItem className="sub-drawer-item">Banking Report</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem style={{ border: "none", borderBottom: "1px solid #fff" }}>
+          <h2>
+            <AccordionButton>
+              <Box 
+                ml="4"
+                flex="1" 
+                color="#FFFFFF" 
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Boats
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink exact={true} activeClassName="is-active" to="/opBoats">
+                  <NavItem className="sub-drawer-item">Operational Boats</NavItem>
+                </RouterLink>
+                <RouterLink exact={true} activeClassName="is-active" to="/schedules">
+                  <NavItem className="sub-drawer-item">Schedules</NavItem>
+                </RouterLink>
+                <RouterLink exact={true} activeClassName="is-active" to="/staff">
+                  <NavItem className="sub-drawer-item">Staff</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem style={{ border: "none", borderBottom: "1px solid #fff" }}>
+          <h2>
+            <AccordionButton>
+              <Box 
+                ml="4"
+                flex="1" 
+                color="#FFFFFF" 
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Assignments
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink exact={true} activeClassName="is-active" to="/boats">
+                  <NavItem className="sub-drawer-item">Boats</NavItem>
+                </RouterLink>
+                <RouterLink exact={true} activeClassName="is-active" to="/counter">
+                  <NavItem className="sub-drawer-item">Counter</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      {/* <Text
         ml="8"
         fontWeight="700"
         fontSize="24"
@@ -155,7 +255,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <NavItem className="sub-drawer-item">Banking Report</NavItem>
           </RouterLink>
         </div>
-      </Flex>
+      </Flex> 
       <Text
         ml="8"
         fontWeight="700"
@@ -199,7 +299,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <NavItem className="sub-drawer-item">Counter</NavItem>
           </RouterLink>
         </div>
-      </Flex>
+      </Flex> */}
       <HStack spacing={{ base: "0", md: "6" }} marginTop={"20px"}>
         <Flex alignItems={"center"}>
           <Menu>
@@ -245,7 +345,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
                 borderRadius={"20px"}
                 _hover={{
                   bg: "#FFFFFF",
-                  color: "#FF0000",
+                  color: "#FF0000"
                 }}
                 color={"	#FF0000"}
                 background={"#FFFFFF"}
@@ -277,7 +377,7 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       fontFamily={"Roboto"}
       _hover={{
         bg: "#E49076",
-        color: "#fff",
+        color: "#fff"
       }}
       {...rest}
     >

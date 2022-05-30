@@ -17,7 +17,7 @@ export default function Navbar(props: NavbarProps) {
     totalReport,
     wayBillReport,
     BankingReport,
-    widgetData,
+    widgetData
   } = props;
   const { total, remaining, available } = widgetData || {};
   const availableText = (

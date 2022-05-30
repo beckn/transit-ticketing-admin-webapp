@@ -5,6 +5,6 @@ const config = {
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
     appId: process.env.REACT_APP_FIREBASE_APP_ID
   }
-}
+};
 
 export default config;

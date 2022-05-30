@@ -9,7 +9,7 @@ const wayBillNumber = ({ name1, value1, name2, value2 }, key) => {
       <td style={{ textAlign: "left", padding: "8px", border: "1px solid #000" }} colSpan={3}></td>
     </tr>
   );
-}
+};
 
 const generateTableRow = ({ c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12 }, key) => {
   return (
@@ -40,10 +40,10 @@ const wayBillLastRows = ({ c1, c2, c3, c4, c5 }, key) => {
       <td style={{ textAlign: "left", padding: "8px", border: "1px solid #000" }} colSpan={2}> {c5} </td>
     </tr>
   );
-}
+};
 
 export {
   wayBillNumber,
   generateTableRow,
   wayBillLastRows
-}
+};

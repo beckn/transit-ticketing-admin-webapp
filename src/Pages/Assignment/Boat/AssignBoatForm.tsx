@@ -5,7 +5,7 @@ import {
   Button,
   Flex,
   FormLabel,
-  Stack,
+  Stack
 } from "@chakra-ui/react";
 import { withFormik } from "formik";
 import Select, { components, StylesConfig } from "react-select";
@@ -37,13 +37,13 @@ const formikEnhancer = withFormik({
     boatNumber: Yup.object().required("Boat no. is required!"),
     boatMasterName: Yup.object().required("Boat Master Name is required!"),
     stationName: Yup.object().required("Station Name is required!"),
-    scheduleNumber: Yup.object().required("Schedule is required!"),
+    scheduleNumber: Yup.object().required("Schedule is required!")
   }),
   mapPropsToValues: (props) => ({
     boatNumber: "",
     boatMasterName: "",
     scheduleNumber: "",
-    stationName: "",
+    stationName: ""
   }),
   handleSubmit: (values, { setSubmitting }) => {
     console.log("values", values);
@@ -53,13 +53,13 @@ const formikEnhancer = withFormik({
       setSubmitting(false);
     }, 1000);
   },
-  displayName: "MyForm",
+  displayName: "MyForm"
 });
 
 const options = [
   { value: "chocolate", label: "KERALA" },
   { value: "strawberry", label: "EDATHUA" },
-  { value: "vanilla", label: "CHENNAI" },
+  { value: "vanilla", label: "CHENNAI" }
 ];
 
 function AssignBoat(props: any) {
@@ -74,7 +74,7 @@ function AssignBoat(props: any) {
     handleReset,
     setFieldValue,
     setFieldTouched,
-    isSubmitting,
+    isSubmitting
   } = props;
   const handleSubmit1 = (e: any) => {
     e.preventDefault();

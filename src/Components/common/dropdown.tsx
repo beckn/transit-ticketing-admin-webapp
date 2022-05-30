@@ -26,27 +26,27 @@ export const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     minWidth: "max-content",
     width: "12rem",
     "&:hover": {
-      borderColor: " #E79378 !important",
+      borderColor: " #E79378 !important"
     },
     "&:focus": {
       transition: "0.4 ease",
       borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #E79378 !important",
-    },
+      boxShadow: "0px 0px 0.3rem #E79378 !important"
+    }
   }),
   valueContainer: (provided) => ({
     ...provided,
     width: "90%",
     paddingTop: "0",
-    paddingBottom: "0",
+    paddingBottom: "0"
   }),
   indicatorSeparator: (provided) => ({
     ...provided,
     width: "10%",
-    minHeight: "1px",
+    minHeight: "1px"
   }),
   singleValue: () => ({
-    color: "#525c65",
+    color: "#525c65"
   }),
   option: (base, state) => ({
     ...base,
@@ -54,31 +54,31 @@ export const customStyles: StylesConfig<MyOptionType, IsMulti> = {
     backgroundColor: state.isFocused
       ? "#E79378"
       : state.isSelected
-      ? "#E79378"
-      : "white",
+        ? "#E79378"
+        : "white",
     "&:hover": {
-      borderColor: " #E79378 !important",
+      borderColor: " #E79378 !important"
     },
     "&:focus": {
       transition: "0.4 ease",
       backgroundColor: "#E79378",
       borderColor: "#E79378 !important",
-      boxShadow: "0px 0px 0.3rem #E79378 !important",
+      boxShadow: "0px 0px 0.3rem #E79378 !important"
     },
     "&:active": {
       transition: "0.4 ease",
       borderColor: "#E79378 !important",
       backgroundColor: "#E79378",
-      boxShadow: "0px 0px 0.3rem #E79378 !important",
-    },
-  }),
+      boxShadow: "0px 0px 0.3rem #E79378 !important"
+    }
+  })
 };
 
 const formattedArray = (array: Array<MyOptionType>) => {
   return array.map((item: MyOptionType) => {
     return {
       label: `${item.label}`,
-      value: `${item.value}`,
+      value: `${item.value}`
     };
   });
 };
@@ -114,8 +114,8 @@ export default function Dropdown(props: DropdownProp) {
         value={
           optionDropVal
             ? dropdownOption.find(
-                (i: string) => i.toString() === optionDropVal.toString()
-              )
+              (i: string) => i.toString() === optionDropVal.toString()
+            )
             : ""
         }
       />
