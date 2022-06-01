@@ -5,7 +5,7 @@ import { Box, Link, Divider, Stack } from "@chakra-ui/react";
 // ----------------------Opereational Boats---------------------
 
 type BoatTableData = {
-  bootNo: number;
+  boatNo: number;
   boatMaster: string;
   schedule: string;
   lastServiceDate: string;
@@ -14,40 +14,40 @@ type BoatTableData = {
   station: string;
 };
 
-export const boatData: Array<BoatTableData> = [
-  {
-    bootNo: 1102,
-    boatMaster: "Navjeet Singh",
-    schedule: "EKM-V Puzha",
-    lastServiceDate: "01/11/22",
-    newServiceDate: "02-11-22",
-    status: "Replace",
-    station: "EDATHUA",
-  },
-  {
-    bootNo: 1102,
-    boatMaster: "Navjeet Singh",
-    schedule: "EKM-V Puzha",
-    lastServiceDate: "01/11/22",
-    newServiceDate: "02-11-22",
-    status: "Servicing",
-    station: "EDATHUA",
-  },
-  {
-    bootNo: 1102,
-    boatMaster: "Navjeet Singh",
-    schedule: "EKM-V Puzha",
-    lastServiceDate: "01/11/22",
-    newServiceDate: "02-11-22",
-    status: "New",
-    station: "EDATHUA",
-  },
-];
+// export const boatData: Array<BoatTableData> = [
+//   {
+//     bootNo: 1102,
+//     boatMaster: "Navjeet Singh",
+//     schedule: "EKM-V Puzha",
+//     lastServiceDate: "01/11/22",
+//     newServiceDate: "02-11-22",
+//     status: "Replace",
+//     station: "EDATHUA",
+//   },
+//   {
+//     bootNo: 1102,
+//     boatMaster: "Navjeet Singh",
+//     schedule: "EKM-V Puzha",
+//     lastServiceDate: "01/11/22",
+//     newServiceDate: "02-11-22",
+//     status: "Servicing",
+//     station: "EDATHUA",
+//   },
+//   {
+//     bootNo: 1102,
+//     boatMaster: "Navjeet Singh",
+//     schedule: "EKM-V Puzha",
+//     lastServiceDate: "01/11/22",
+//     newServiceDate: "02-11-22",
+//     status: "New",
+//     station: "EDATHUA",
+//   },
+// ];
 
 export const boatColumns: Column<BoatTableData>[] = [
   {
     Header: "Boat Master ID",
-    accessor: "bootNo",
+    accessor: "boatNo",
   },
   {
     Header: "Boat Master",

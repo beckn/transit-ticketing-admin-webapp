@@ -4,7 +4,7 @@ import Navbar from "../Navbar/navbar";
 import { useQueryClient } from "react-query";
 import { useApi } from "../../hooks/useApi";
 import { apiUrl } from "../../Config/apiUrl";
-import { boatData, boatColumns } from "../../Pages/Home/Data/data";
+import { boatColumns } from "../../Pages/Home/Data/data";
 import OperationalBoatsTabs from "../Tabs/operationalBoatsTabs";
 import Loader from "../Loader/Loading";
 import { getWidgetData } from "../../utils/helpers";

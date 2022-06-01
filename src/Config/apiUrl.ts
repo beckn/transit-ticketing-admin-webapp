@@ -14,5 +14,7 @@ TRIPSES:"/api/v1/secure/tripses",
 PAYMENT_DETAILS:"/api/v1/secure/paymentsDetailses",
 FARE_ATTRIBUTES:"/api/v1/secure/fareAttributeses",
 OPERATIONAL_BOATS:"/api/v1/secure/boats",
+BOATS_ASSIGNMENTS:"/api/v1/secure/boat/assignments",
+
 }
 

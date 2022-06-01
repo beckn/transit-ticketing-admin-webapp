@@ -158,7 +158,7 @@ export const MySelect: any = (props: any) => {
         styles={customStyles}
       />
       {props.error && props.touched && (
-        <FormLabel color="red" mt="3" mb="3">
+        <FormLabel fontSize="12" color="red" mt="0.25" p="1">
           {props.error}
         </FormLabel>
       )}
