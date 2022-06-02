@@ -80,15 +80,28 @@ export default function WayBillReportsTabs<
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      console.log(
-        "searchData",
-        item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
-      );
-      if (
-        item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
-      ) {
-        filterData.push(item);
+      if(item.boatMasterName){
+        if (
+          item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
+        ) {
+          filterData.push(item);
+        }
       }
+      if(item.boatNumber){
+        if (
+          item.boatNumber.toLowerCase().includes(searchData.toLowerCase())
+        ) {
+          filterData.push(item);
+        }
+      }
+      if(item.wayBillNumber){
+        if (
+          item.wayBillNumber.toString().toLowerCase().includes(searchData.toLowerCase())
+        ) {
+          filterData.push(item);
+        }
+      }
+      
     });
     setSearchInput(searchData);
     setTableData(filterData);

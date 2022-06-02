@@ -44,7 +44,7 @@ export default function OperationalBoatsTabs<Data extends object>({
     tableDataCopy.map((item: any) => {
       if (
         item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
-        item.bootNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
+        item.boatNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
       ) {
         filterData.push(item);
       }
