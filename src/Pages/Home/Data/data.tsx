@@ -1,4 +1,4 @@
-/* eslint-disable react/react-in-jsx-scope */
+import React from "react";
 import { Column } from "react-table";
 // import { date } from "yup/lib/locale";
 import { Link, Divider } from "@chakra-ui/react";
