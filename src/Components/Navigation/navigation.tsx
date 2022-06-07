@@ -1,4 +1,4 @@
-import { ReactNode, ReactText } from "react";
+import { ReactChild, ReactFragment, ReactNode, ReactPortal, ReactText } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 import {
   Avatar,
@@ -26,7 +26,7 @@ import "./navigation.css";
 // import Navbar from "../Navbar/navbar";
 import { useHistory } from "react-router-dom";
 import IMAGE_PREFIX from "../../Config/image";
-import { TriangleUpIcon } from "@chakra-ui/icons";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import { auth } from "../../Config/firebase";
 import { deleteLocalStorage } from "../../utils/helpers";
 import logging from "../../Config/logging";
@@ -43,8 +43,8 @@ export default function Navigation({ children }: { children: ReactNode }) {
     onClose,
   } = useDisclosure();
 
-  const size = useWindowSize();
-
+  const size = useWindowSize();         
+  
   return (
     <Box
       minH="100vh"
@@ -73,7 +73,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
       <Box
-        ml={size.width && size.width > 1300 ? "450px" : "390px"}
+        ml={size.width && size.width > 1300 ? "390px" : "330px"} //"450px" : "390px" -60
         w={"100%"}
         p="4"
       >
@@ -91,7 +91,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const history = useHistory();
   const size = useWindowSize();
 
-  let parsedData = null;
+  let parsedData :{ photoURL: string | undefined; displayName: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; email: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; } | null = null;
   let data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
@@ -115,7 +115,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
-      w={size.width && size.width > 1300 ? "448px" : "390px"}
+      w={size.width && size.width > 1300 ? "390px" : "330px"}  //"448px" : "390px"  //-60
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -201,27 +201,29 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </div>
       </Flex>
       <HStack spacing={{ base: "0", md: "6" }} marginTop={"20px"}>
-        <Flex alignItems={"center"}>
+        <Flex alignItems={"center"}>  
           <Menu>
-            <MenuButton
+          {({ isOpen }) => (
+    <>
+    <MenuButton
               py={2}
               transition="all 0.3s"
               _focus={{ boxShadow: "none" }}
-            >
+              >
               <HStack>
-                <Avatar left="24px" size={"sm"} src={parsedData.photoURL} />
+                <Avatar left="24px" size={"sm"} src={parsedData?.photoURL} />
                 <VStack>
-                  <Text
+                  <Text 
                     fontSize="m"
                     className="footer-User-name"
                     marginLeft={"31px"}
                   >
-                    {parsedData.displayName
-                      ? parsedData.displayName
-                      : parsedData.email}
+                    {parsedData?.displayName
+                      ? parsedData?.displayName
+                      : parsedData?.email}
                   </Text>
                 </VStack>
-                <TriangleUpIcon color={"#E49076"} />
+                {isOpen ? <TriangleUpIcon color={"#E49076"} /> : <TriangleDownIcon color={"#E49076"} />}
               </HStack>
             </MenuButton>
             <MenuList
@@ -255,6 +257,8 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               </Text>
               <span className="triangle"></span>
             </MenuList>
+            </>
+        )}
           </Menu>
         </Flex>
       </HStack>
