@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -5,8 +6,7 @@ import {
   Box,
   Heading,
   Image,
-  Divider,
-  Flex
+  Divider
 } from "@chakra-ui/react";
 import AuthContainer from "../../Components/AuthRoute/index";
 import IPageProps from "../../Interfaces/page";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useEffect } from "react";
 import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import { auth } from "./Config/firebase";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { ReactElement } from "react";
 import { Box } from "@chakra-ui/react";
 import Navigation from "../../Components/Navigation/navigation";
 import Navbar from "../Navbar/navbar";
@@ -8,10 +10,10 @@ import { columnsForWayBill } from "../../Pages/Home/Data/data";
 import WayBillReportsTabs from "../Tabs/wayBillReportsTabs";
 import { getWidgetData } from "../../utils/helpers";
 import Loader from "../Loader/Loading";
-import { Server } from "http";
+// import { Server } from "http";
 import ServerError from "../../Pages/ErrorPages/ServerError";
 
-export default function WayBillReport() {
+export default function WayBillReport(): ReactElement {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.WAY_BILL_REPORTS);
 

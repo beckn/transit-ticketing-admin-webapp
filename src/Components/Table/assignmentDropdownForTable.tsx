@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ReactElement } from "react";
-import { background, useDisclosure } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 
 const AssignmentDropdownTable = ():ReactElement => {
   const { onOpen } = useDisclosure();
 
-  const handleDropdown = (e: any) => {
+  const handleDropdown = (e: any): void => {
     e.stopPropagation();
   };
 
@@ -12,7 +13,7 @@ const AssignmentDropdownTable = ():ReactElement => {
     <div style={{ display: "flex" }}>
       <select
         onClick={(e) => {handleDropdown(e);}}
-        onChange={(e) => {
+        onChange={() => {
           onOpen();
         }}
         style={{ borderStyle: "none", background: "inherit" }}

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import axios from "axios";
 // import { history } from "../index";
 import { getLocalStorage,deleteLocalStorage } from "../utils/helpers";
@@ -6,7 +8,7 @@ import logging from "../Config/logging";
 
 const baseUrl="http://ec2-3-110-177-55.ap-south-1.compute.amazonaws.com:8080/";
 
-export const logout = () => {
+export const logout = (): void => {
   auth
     .signOut()
     .then(() => {
@@ -36,7 +38,7 @@ export const request = ({ ...options }) => {
   const onSuccess= (response:any) => response;
   const onError = (error:any) => {
     if(error.response.status === 401) {
-      console.log("i am error",error);
+      // console.log("i am error",error);
       logout();
     }
     if(error.response.status === 500) {

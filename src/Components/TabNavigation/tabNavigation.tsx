@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+import React, { ReactElement } from "react";
 import {
   Box,
   Tab,
@@ -26,7 +28,7 @@ export type DataTableForBoatProps<Data extends object> = {
 export default function TabNavigation<Data extends object>({
   dataForBoat,
   columnsForBoat
-}: DataTableForBoatProps<Data>) {
+}: DataTableForBoatProps<Data>): ReactElement {
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
@@ -48,7 +50,13 @@ export default function TabNavigation<Data extends object>({
                 <Input height={"40px"} variant="outline" size="xs" placeholder={"Search"} />
               </InputGroup>
               <Stack direction="row" spacing={4}>
-                <Button _hover={{ bgColor: "#646782" }} leftIcon={<img src={Filter} alt="Filter Icon" />} bgColor="#3E4059" color={"#fff"} padding={"20px"} >
+                <Button 
+                  _hover={{ bgColor: "#646782" }} 
+                  leftIcon={<img src={Filter} alt="Filter Icon" />} 
+                  bgColor="#3E4059" 
+                  color={"#fff"} 
+                  padding={"20px"} 
+                >
                   Filter
                 </Button>
               </Stack>

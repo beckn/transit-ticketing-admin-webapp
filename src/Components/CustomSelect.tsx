@@ -1,12 +1,11 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable react/display-name */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { ReactElement } from "react";
 import Select, { StylesConfig } from "react-select";
 import {
-  Box,
-  SimpleGrid,
-  Button,
-  Flex,
-  FormLabel,
-  Stack
+  FormLabel
 } from "@chakra-ui/react";
 
 type MyOptionTypeForBoatNo = {
@@ -103,7 +102,7 @@ interface SelectCellProps {
 }
 const SelectCell = React.memo(
   ({ value, index, id, updateMyData }: SelectCellProps) => {
-    const onChange = (e: any) => {
+    const onChange = (e: any): void => {
       updateMyData(index, id, e.value);
     };
 
@@ -134,12 +133,12 @@ const CustomSelect = (props: any) => {
 export default CustomSelect;
 
 export const MySelect: any = (props: any) => {
-  const handleChange = (value: any) => {
+  const handleChange = (value: any): void => {
     // this is going to call setFieldValue and manually update values.topcis
     props.onChange(props.id, value);
   };
 
-  const handleBlur = () => {
+  const handleBlur = (): void => {
     // this is going to call setFieldTouched and manually update touched.topcis
     props.onBlur(props.id, true);
   };

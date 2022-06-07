@@ -1,3 +1,5 @@
+/* eslint-disable react/no-children-prop */
+import React, { ReactElement } from "react";
 import {
   Box,
   Tab,
@@ -10,9 +12,7 @@ import {
   Stack,
   Button,
   InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  background
+  InputRightElement
 } from "@chakra-ui/react";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
@@ -30,7 +30,7 @@ export default function StaffTabs<Data extends object>({
   dataForBoatMaster,
   columnsForBoat,
   dataForTicketMaster
-}: DataTableForBoatProps<Data>) {
+}: DataTableForBoatProps<Data>): ReactElement {
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect } from "react";
 import {
   Button,
   Checkbox,
@@ -28,7 +28,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required")
 });
 
-const LoginScreen: React.FC<IPageProps> = (props): ReactElement => {
+const LoginScreen: React.FC<IPageProps> = (): ReactElement => {
   const toast = useToast();
 
   const formik = useFormik({
@@ -56,7 +56,7 @@ const LoginScreen: React.FC<IPageProps> = (props): ReactElement => {
     }
   },[]);
 
-  const signInWithEmailAndPassword = (email: string, password: string) => {
+  const signInWithEmailAndPassword = (email: string, password: string): void => {
 
     auth.signInWithEmailAndPassword(email, password)
       .then(result => {

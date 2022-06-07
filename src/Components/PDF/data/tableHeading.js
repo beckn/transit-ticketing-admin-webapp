@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const TableWayBill = [
   { name1: "Way Bill Number", value1: 12111051, name2: "Date", value2: "05/11/2021" },
   { name1: "Boat Master Name", value1: "Salilan T.N", name2: "Schedule No", value2: "EKM-V Puzha" },

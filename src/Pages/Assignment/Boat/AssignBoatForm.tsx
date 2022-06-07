@@ -1,4 +1,6 @@
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { ReactElement } from "react";
 import {
   Box,
   SimpleGrid,
@@ -56,7 +58,7 @@ type IsMulti = false;
 
 const { ValueContainer, Placeholder } = components;
 
-const CustomValueContainer = ({ children, ...props }: any) => {
+const CustomValueContainer = ({ children, ...props }: any): ReactElement => {
   return (
     <ValueContainer {...props}>
       <Placeholder {...props} isFocused={props.isFocused}>
@@ -82,7 +84,7 @@ const formikEnhancer = withFormik({
     stationName: ""
   }),
   handleSubmit: (values, { setSubmitting }) => {
-    console.log("values", values);
+    // console.log("values", values);
 
     setTimeout(() => {
       alert(JSON.stringify(values, null, 2));
@@ -98,7 +100,7 @@ const options = [
   { value: "vanilla", label: "CHENNAI" }
 ];
 
-function AssignBoat(props: any) {
+function AssignBoat(props: any): ReactElement {
   const {
     values,
     touched,
@@ -112,9 +114,9 @@ function AssignBoat(props: any) {
     setFieldTouched,
     isSubmitting
   } = props;
-  const handleSubmit1 = (e: any) => {
+  const handleSubmit1 = (e: any): void => {
     e.preventDefault();
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.BOATS_ASSIGNMENTS);

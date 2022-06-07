@@ -1,7 +1,8 @@
+import React from "react";
 import { Center, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
-const PageNotFound = () => {
+const PageNotFound = (): React.ReactElement => {
   return (
     <Center height="100vh" display="flex" flexDirection="column">
       <Heading>404 Error</Heading>

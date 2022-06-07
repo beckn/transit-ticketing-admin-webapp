@@ -1,4 +1,8 @@
-function PrintButton({ refsToPrint }) {
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React from "react";
+
+const PrintButton = ({ refsToPrint }) => {
   const deepCloneWithStyles = (node) => {
     const style = document.defaultView.getComputedStyle(node, null);
     const clone = node.cloneNode(false);
@@ -26,6 +30,6 @@ function PrintButton({ refsToPrint }) {
   };
 
   return <button style={{ display: "block", margin: "10px auto" }} onClick={printFunction}> Print </button>;
-}
+};
 
 export default PrintButton;

@@ -1,4 +1,6 @@
-import { Heading, Box, Center, Flex, Text, Image } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { ReactElement } from "react";
+import { Box, Center, Flex, Text, Image } from "@chakra-ui/react";
 import "./navbar.css";
 import IMAGE_PREFIX from "../../Config/image";
 import { Link } from "react-router-dom";
@@ -10,7 +12,7 @@ interface NavbarProps {
   BankingReport: string;
   widgetData?: any;
 }
-export default function Navbar(props: NavbarProps) {
+export default function Navbar(props: NavbarProps): ReactElement {
   const {
     pageTitle,
     tableTitle,

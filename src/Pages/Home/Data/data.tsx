@@ -1,6 +1,7 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { Column } from "react-table";
-import { date } from "yup/lib/locale";
-import { Box, Link, Divider, Stack } from "@chakra-ui/react";
+// import { date } from "yup/lib/locale";
+import { Link, Divider } from "@chakra-ui/react";
 
 // ----------------------Opereational Boats---------------------
 
@@ -324,7 +325,7 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => {
+    Cell: () => {
       return (
         <Link href={"/pdf"} color="#EE9A7F">
           View
@@ -335,7 +336,7 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => (
+    Cell: () => (
       <Link href={"/pdf"} color="#EE9A7F">
         Download
       </Link>
@@ -427,7 +428,7 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => (
+    Cell: () => (
       <Link href={"/pdf"} color="#EE9A7F">
         View
       </Link>
@@ -436,7 +437,7 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => (
+    Cell: () => (
       <Link href={"/pdf"} color="#EE9A7F">
         Download
       </Link>

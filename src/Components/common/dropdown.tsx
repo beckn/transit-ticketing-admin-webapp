@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { ReactElement } from "react";
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 
 type MyOptionType = {
@@ -74,11 +76,12 @@ export const customStyles: StylesConfig<MyOptionType, IsMulti> = {
   })
 };
 
-const formattedArray = (array: Array<MyOptionType>) => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+const formattedArray = (array: MyOptionType[]) => {
   return array.map((item: MyOptionType) => {
     return {
-      label: `${item.label}`,
-      value: `${item.value}`
+      label: item.label,
+      value: item.value
     };
   });
 };
@@ -90,14 +93,14 @@ interface DropdownProp {
   setOptionDropVal: any;
 }
 
-export default function Dropdown(props: DropdownProp) {
+export default function Dropdown(props: DropdownProp): ReactElement {
   const { placeholder, dropdownOption, optionDropVal, setOptionDropVal } =
     props;
   // debugger;
-  console.log(
-    "optionDropVal============> ",
-    dropdownOption.find((i: string) => i === optionDropVal)
-  );
+  // console.log(
+  //   "optionDropVal============> ",
+  //   dropdownOption.find((i: string) => i === optionDropVal)
+  // );
   return (
     <Box>
       <Select

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 const wayBillNumber = ({ name1, value1, name2, value2 }, key) => {
   return (
     <tr style={{ borderBottom: "1px solid rgba(224, 224, 224, 1)" }} key={key}>

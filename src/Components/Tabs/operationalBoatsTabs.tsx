@@ -1,3 +1,6 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Box,
   Tab,
@@ -8,18 +11,15 @@ import {
   Center,
   Input,
   Stack,
-  Button,
   InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  background
+  InputRightElement
 } from "@chakra-ui/react";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./operationalBoatsTabs.css";
-import Filter from "../../Assets/Svg/filter.svg";
+// import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
@@ -29,7 +29,7 @@ export type DataTableForBoatProps<Data extends object> = {
 export default function OperationalBoatsTabs<Data extends object>({
   dataForBoat,
   columnsForBoat  
-}: DataTableForBoatProps<Data>) {
+}: DataTableForBoatProps<Data>): ReactElement {
 
   const [ wayBillReport, setWayBillReport ] = useState("");
 
@@ -39,7 +39,7 @@ export default function OperationalBoatsTabs<Data extends object>({
   const [ boatNo, setBoatNo ] = useState("");
   const [ boatMasterName, setBoatMasterName ] = useState("");
 
-  const handleSearchFilters = (searchData: string) => {
+  const handleSearchFilters = (searchData: string): void => {
     const filterData: Data[] = [];
     tableDataCopy.map((item: any) => {
       if (

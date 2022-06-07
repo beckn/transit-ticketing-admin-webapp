@@ -1,4 +1,5 @@
-import { ReactNode, ReactText } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { ReactElement, ReactNode, ReactText } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 import {
   Avatar,
@@ -41,7 +42,7 @@ interface LinkItemProps {
   icon: IconType;
 }
 
-export default function Navigation({ children }: { children: ReactNode }) {
+export default function Navigation({ children }: { children: ReactNode }): ReactElement {
   const {
     isOpen,
     // onOpen,
@@ -92,7 +93,7 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
   const history = useHistory();
   const size = useWindowSize();
 
@@ -102,7 +103,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     parsedData = JSON.parse(data);
   }
 
-  const logout = () => {
+  const logout = (): void => {
     auth
       .signOut()
       .then(() => {
@@ -365,7 +366,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 interface NavItemProps extends FlexProps {
   children: ReactText;
 }
-const NavItem = ({ children, ...rest }: NavItemProps) => {
+const NavItem = ({ children, ...rest }: NavItemProps): ReactElement => {
   return (
     <Flex
       align="center"

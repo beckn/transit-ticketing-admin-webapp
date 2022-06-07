@@ -6,6 +6,7 @@ module.exports = {
     "node": true
   },
   "extends": [
+    "react-app",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
@@ -49,7 +50,8 @@ module.exports = {
     "jest/no-focused-tests": "warn",
     "jest/no-identical-title": "error",
     "jest/valid-title": "error",
-    "jest/valid-expect": "error", "jest/valid-expect-in-promise": "error"
+    "jest/valid-expect": "error", 
+    "jest/valid-expect-in-promise": "error"
   },
   "settings": {
     "react": {

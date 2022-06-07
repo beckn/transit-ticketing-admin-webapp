@@ -1,3 +1,7 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { CSSProperties, ReactElement, useEffect, useState } from "react";
 import {
   Box,
   Tab,
@@ -27,13 +31,12 @@ import {
   HStack,
   Tag
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+// import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import DataTable from "../Table/table";
 import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 
@@ -47,7 +50,7 @@ export default function BankingReportsTabs<
 >({
   dataForBoat,
   columnsForBoat
-}: DataTableForBoatProps<BoatsConversionForBanking>) {
+}: DataTableForBoatProps<BoatsConversionForBanking>): ReactElement {
   const [ selectedLocation, setSelectedLocation ] = useState("");
   const [ selectedLocationValue, setSelectedLocationValue ] = useState("");
   const [ wayBillReport, setWayBillReport ] = useState("");
@@ -77,7 +80,7 @@ export default function BankingReportsTabs<
   //   setTableData(filterData);
   // };
   
-  const handleSearchFilters = (searchData: string) => {
+  const handleSearchFilters = (searchData: string): void => {
     const filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
@@ -95,7 +98,7 @@ export default function BankingReportsTabs<
     }
   };
 
-  const filterData = () => {
+  const filterData = (): void => {
     const filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
@@ -135,7 +138,7 @@ export default function BankingReportsTabs<
     }
   };
 
-  const getDropdownOptionForBoatNo = (dataForBoat: any) => {
+  const getDropdownOptionForBoatNo = (dataForBoat: any): void => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.bootNo, label: key.bootNo });
@@ -143,7 +146,7 @@ export default function BankingReportsTabs<
     return result;
   };
 
-  const getDropdownOptionForMasterName = (dataForBoat: any) => {
+  const getDropdownOptionForMasterName = (dataForBoat: any): void => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
@@ -151,7 +154,7 @@ export default function BankingReportsTabs<
     return result;
   };
 
-  const getOptionForWayBillNumber = (dataForBoat: any) => {
+  const getOptionForWayBillNumber = (dataForBoat: any): void => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.wayBillNo.toString());
@@ -272,7 +275,7 @@ export default function BankingReportsTabs<
                       {[ 0, 1 ].map((item) => {
                         const accordingHeading =
                           item === 0 ? "Location" : "WayBill Number";
-                        const radioData =
+                        const radioData: any =
                           item === 0
                             ? [
                               "Edathua",
@@ -351,26 +354,14 @@ export default function BankingReportsTabs<
                               >
                                 <RadioGroup value={radioValue} w="100%">
                                   <Stack spacing={2}>
-                                    {radioData &&
-                                      radioData.length > 0 &&
-                                      radioData.map(
-                                        (data: string, index: number) => (
-                                          <Stack
-                                            onClick={() =>
-                                              handleFilter(
-                                                accordingHeading,
-                                                data,
-                                                `${index + 1}`
-                                              )
-                                            }
-                                          >
-                                            <Radio value={`${index + 1}`}>
-                                              {" "}
-                                              {data}{" "}
-                                            </Radio>
-                                          </Stack>
-                                        )
-                                      )}
+                                    {radioData && radioData.length > 0 && radioData.map((data: string, index: number) => (
+                                      <Stack
+                                        key={index}
+                                        onClick={() => handleFilter(accordingHeading, data, `${index + 1}`)}
+                                      >
+                                        <Radio value={`${index + 1}`}> {data} </Radio>
+                                      </Stack>
+                                    ))}
                                   </Stack>
                                 </RadioGroup>
                               </Flex>
@@ -538,6 +529,6 @@ export default function BankingReportsTabs<
     </Center>
   );
 }
-function key(key: any) {
+function key(key: any): void {
   throw new Error("Function not implemented.");
 }

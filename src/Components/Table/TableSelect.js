@@ -1,6 +1,9 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+import React from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, chakra } from "@chakra-ui/react";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
-import { useTable, useSortBy, Column } from "react-table";
+import { useTable, useSortBy } from "react-table";
 
 
 export const  TableSelect= ({ columns, data,defaultColumn, updateMyData }) => {
@@ -27,10 +30,11 @@ export const  TableSelect= ({ columns, data,defaultColumn, updateMyData }) => {
   return (
     <Table variant="simple" {...getTableProps()}>
       <Thead>
-        {headerGroups.map((headerGroup) => (
-          <Tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
+        {headerGroups.map((headerGroup, index) => (
+          <Tr key={index} {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column, i) => (
               <Th
+                key={i}
                 {...column.getHeaderProps(column.getSortByToggleProps())}
                 isNumeric={column.isNumeric}
               >
@@ -50,12 +54,13 @@ export const  TableSelect= ({ columns, data,defaultColumn, updateMyData }) => {
         ))}
       </Thead>
       <Tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, index) => {
           prepareRow(row);
           return (
-            <Tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
+            <Tr key={index} {...row.getRowProps()}>
+              {row.cells.map((cell, i) => (
                 <Td
+                  key={i}
                   {...cell.getCellProps()}
                   isNumeric={cell.column.isNumeric}
                     

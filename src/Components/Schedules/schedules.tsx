@@ -1,18 +1,20 @@
-import { Box, Center, CircularProgress } from "@chakra-ui/react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { ReactElement } from "react";
+import { Box } from "@chakra-ui/react";
 import Navigation from "../../Components/Navigation/navigation";
 import Navbar from "../Navbar/navbar";
 import { useApi } from "../../hooks/useApi";
 import { apiUrl } from "../../Config/apiUrl";
 import { useQueryClient } from "react-query";
 import {
-  dataForScchedule,
+  // dataForScchedule,
   columnsForSchedule
 } from "../../Pages/Home/Data/data";
 import ScheduleTabs from "../Tabs/scheduleTabs";
 import Loader from "../Loader/Loading";
 import ServerError from "../../Pages/ErrorPages/ServerError";
 
-export default function Schedules() {
+export default function Schedules(): ReactElement {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.SCHEDULE);
   if (status === "error" || data?.code === 500) {

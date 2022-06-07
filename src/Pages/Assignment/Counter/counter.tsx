@@ -1,9 +1,10 @@
+import React, { ReactElement } from "react";
 import { Box, Heading, Divider } from "@chakra-ui/react";
 import Navigation from "../../../Components/Navigation/navigation";
-import Navbar from "../../../Components/Navbar/navbar";
+// import Navbar from "../../../Components/Navbar/navbar";
 import { AssignBoatsForm } from "../Boat/AssignBoatForm";
 
-export default function Counter() {
+export default function Counter(): ReactElement {
   return (
     <Box>
       <Navigation>

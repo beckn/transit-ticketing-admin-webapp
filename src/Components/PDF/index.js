@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from "react";
 import { Box } from "@chakra-ui/react";
 import PrintButton from "./reports/printButton";

@@ -1,6 +1,7 @@
+import React from "react";
 import { Center, Heading } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-const ServerError = () => {
+const ServerError = (): React.ReactElement => {
   return (
     <Center height="100vh" display="flex" flexDirection="column">
       <Heading>Oops! Something went wrong</Heading>

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-return-await */
 import { useQuery } from "react-query";
 import { request } from "../utils/request";
 
@@ -8,7 +10,7 @@ const getBoatData = async (path:string) => {
   return data;
 };
 
-export const  useApi=(path:string) => {
+export const  useApi= (path:string) => {
   return useQuery([ `${path}`, path ], async() =>  await getBoatData(path),{
     retry : 2
   });

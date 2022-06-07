@@ -1,3 +1,6 @@
+/* eslint-disable react/no-children-prop */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Box, Tab, Tabs, TabList, TabPanel,
   TabPanels, Center, Input, Stack, Button,
@@ -12,7 +15,7 @@ import { SearchIcon } from "@chakra-ui/icons";
 import "./wayBillReportsTabs.css";
 import Filter from "../../Assets/Svg/filter.svg";
 import { Column } from "react-table";
-import { useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 
@@ -26,7 +29,7 @@ export default function WayBillReportsTabs<
 >({
   dataForBoat,
   columnsForBoat
-}: DataTableForBoatProps<BoatsConversionForWayBill>) {
+}: DataTableForBoatProps<BoatsConversionForWayBill>): ReactElement {
   const [ selectedLocation, setSelectedLocation ] = useState("");
   const [ selectedLocationValue, setSelectedLocationValue ] = useState("");
   const [ wayBillReport, setWayBillReport ] = useState("");
@@ -56,13 +59,13 @@ export default function WayBillReportsTabs<
   //   setTableData(filterData);
   // };
 
-  const handleSearchFilters = (searchData: string) => {
+  const handleSearchFilters = (searchData: string): void => {
     const filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      console.log(
-        "searchData",
-        item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
-      );
+      // console.log(
+      //   "searchData",
+      //   item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
+      // );
       if (
         item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
       ) {
@@ -76,7 +79,7 @@ export default function WayBillReportsTabs<
     }
   };
 
-  const filterData = () => {
+  const filterData = (): void => {
     const filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
       if (
@@ -120,16 +123,16 @@ export default function WayBillReportsTabs<
     }
   };
 
-  const getDropdownOptionForBoatNo = (dataForBoat: any) => {
+  const getDropdownOptionForBoatNo = (dataForBoat: any): string[] => {
     const result: any = [];
-    console.log("results", dataForBoat);
+    // console.log("results", dataForBoat);
     dataForBoat.map((key: any) => {
       result.push({ value: key.boatNumber, label: key.boatNumber });
     });
     return result;
   };
 
-  const getDropdownOptionForMasterName = (dataForBoat: any) => {
+  const getDropdownOptionForMasterName = (dataForBoat: any): string[] => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push({ value: key.boatMasterName, label: key.boatMasterName });
@@ -137,7 +140,7 @@ export default function WayBillReportsTabs<
     return result;
   };
 
-  const getOptionForWayBillNumber = (dataForBoat: any) => {
+  const getOptionForWayBillNumber = (dataForBoat: any): string[] => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.wayBillNumber.toString());
@@ -145,7 +148,7 @@ export default function WayBillReportsTabs<
     return result;
   };
 
-  const getOptionForStatus = (dataForBoat: any) => {
+  const getOptionForStatus = (dataForBoat: any): string[] => {
     const result: any = [];
     dataForBoat.map((key: any) => {
       result.push(key.status);
@@ -278,7 +281,7 @@ export default function WayBillReportsTabs<
                             : item === 1
                               ? "WayBill Number"
                               : "Status";
-                        let radioData =
+                        let radioData: any =
                           item === 0
                             ? [
                               "Edathua",
@@ -290,7 +293,7 @@ export default function WayBillReportsTabs<
                             : item === 1
                               ? getOptionForWayBillNumber(dataForBoat) || []
                               : getOptionForStatus(dataForBoat) || [];
-                        const radioDataCopy =
+                        const radioDataCopy: any =
                           item === 0
                             ? [
                               "Edathua",
@@ -302,17 +305,16 @@ export default function WayBillReportsTabs<
                             : item === 1
                               ? getOptionForWayBillNumber(dataForBoat) || []
                               : getOptionForStatus(dataForBoat) || [];
-                        const radioValue =
+                        const radioValue: any =
                           item === 0
                             ? selectedLocationValue
                             : item === 1
                               ? wayBillReportValue
                               : selectedStatusValue;
 
-                        const searchData = (value: string) => {
+                        const searchData = (value: string): void => {
                           if (item === 0) {
                             radioDataCopy.filter((data: any) => {
-                              console.log(data);
                               return;
                             });
                           }
@@ -380,11 +382,11 @@ export default function WayBillReportsTabs<
                                     setFilterSearchInput(e.target.value);
                                     searchData(e.target.value);
 
-                                    console.log(
-                                      "data=====>>> ",
-                                      radioDataCopy,
-                                      radioData
-                                    );
+                                    // console.log(
+                                    //   "data=====>>> ",
+                                    //   radioDataCopy,
+                                    //   radioData
+                                    // );
                                   }}
                                 />
                               </InputGroup>
@@ -413,6 +415,7 @@ export default function WayBillReportsTabs<
                                       radioData.map(
                                         (data: string, index: number) => (
                                           <Stack
+                                            key={index}
                                             onClick={() =>
                                               handleFilter(
                                                 accordingHeading,
