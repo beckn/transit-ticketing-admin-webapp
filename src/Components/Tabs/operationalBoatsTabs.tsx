@@ -1,25 +1,21 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Center,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
   Tab,
-  Tabs,
   TabList,
   TabPanel,
   TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  background,
+  Tabs,
 } from "@chakra-ui/react";
-import DataTable from "../Table/table";
-import { SearchIcon } from "@chakra-ui/icons";
-import "./operationalBoatsTabs.css";
-import Filter from "../../Assets/Svg/filter.svg";
+import { useState } from "react";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import DataTable from "../Table/table";
+import "./operationalBoatsTabs.css";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
@@ -28,23 +24,18 @@ export type DataTableForBoatProps<Data extends object> = {
 
 export default function OperationalBoatsTabs<Data extends object>({
   dataForBoat,
-  columnsForBoat,  
+  columnsForBoat,
 }: DataTableForBoatProps<Data>) {
-
-  const [wayBillReport, setWayBillReport] = useState("");
-
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
   const [serachInput, setSearchInput] = useState<any>("");
   const [tableData, setTableData] = useState(dataForBoat || []);
-  const [boatNo, setBoatNo] = useState("");
-  const [boatMasterName, setBoatMasterName] = useState("");
 
   const handleSearchFilters = (searchData: string) => {
     let filterData: Data[] = [];
     tableDataCopy.map((item: any) => {
       if (
         item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
-        item.boatNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
+        item.boatNo.toString().toLowerCase().includes(searchData.toLowerCase())
       ) {
         filterData.push(item);
       }
@@ -55,8 +46,6 @@ export default function OperationalBoatsTabs<Data extends object>({
       setTableData(tableDataCopy);
     }
   };
-
-
 
   return (
     <Center display={"flex"} justifyContent="end">

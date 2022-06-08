@@ -1,41 +1,40 @@
+import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  Image,
-  InputRightElement,
-  HStack,
-  Tag,
-  Flex,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
+  Button,
+  Center,
+  Flex,
+  HStack,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuList,
   Radio,
   RadioGroup,
+  Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+  Tag,
   Text,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
-import DataTable from "../Table/table";
-import { SearchIcon } from "@chakra-ui/icons";
-import "./wayBillReportsTabs.css";
-import Filter from "../../Assets/Svg/filter.svg";
+import { useEffect, useState } from "react";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import Filter from "../../Assets/Svg/filter.svg";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
+import DataTable from "../Table/table";
+import "./wayBillReportsTabs.css";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
@@ -115,7 +114,7 @@ export default function WayBillReportsTabs<
     tableDataCopy.map((item: any) => {
       if (
         item.wayBillNumber === Number(wayBillReport) ||
-        item.status.toLowerCase() === selectedStatus.toLowerCase() ||
+        //item.status.toLowerCase() === selectedStatus.toLowerCase() ||
         item.boatMasterName.toLowerCase() === boatMasterName.toLowerCase() ||
         item.boatNumber === Number(boatNo)
       ) {

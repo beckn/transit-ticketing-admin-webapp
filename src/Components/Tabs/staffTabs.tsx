@@ -1,24 +1,21 @@
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Box,
+  Center,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
   Tab,
-  Tabs,
   TabList,
   TabPanel,
   TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  background,
+  Tabs,
 } from "@chakra-ui/react";
-import DataTable from "../Table/table";
-import { SearchIcon } from "@chakra-ui/icons";
-import "./staffTabs.css";
-import Filter from "../../Assets/Svg/filter.svg";
+import React, { useState } from "react";
 import { Column } from "react-table";
+import DataTable from "../Table/table";
+import "./staffTabs.css";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoatMaster: Data[];
@@ -31,10 +28,47 @@ export default function StaffTabs<Data extends object>({
   columnsForBoat,
   dataForTicketMaster,
 }: DataTableForBoatProps<Data>) {
+  // const [tabIndex, setTabIndex] = useState(0);
+  const [tableDataCopy, setTableDataCopy] = useState(dataForBoatMaster || []);
+  const [serachInput, setSearchInput] = useState<any>("");
+  const [tableData, setTableData] = useState(dataForBoatMaster || []);
+
+  const handleSearchFilters = (searchData: string) => {
+    let filterData: Data[] = [];
+    tableDataCopy.map((item: any) => {
+      if (
+        item.staffName.toLowerCase().includes(searchData.toLowerCase()) ||
+        item.boatNumber
+          .toString()
+          .toLowerCase()
+          .includes(searchData.toLowerCase())
+      ) {
+        filterData.push(item);
+      }
+    });
+    setSearchInput(searchData);
+    setTableData(filterData);
+    if (searchData === "") {
+      setTableData(tableDataCopy);
+    }
+  };
+
+  const handleChangeTabs = (index: number) => {
+    setSearchInput("");
+    if (index === 1) {
+      setTableDataCopy(dataForTicketMaster);
+      setTableData(dataForTicketMaster);
+    }
+    if (index === 0) {
+      setTableDataCopy(dataForBoatMaster);
+      setTableData(dataForBoatMaster);
+    }
+    // setTabIndex(index);
+  };
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
-        <Tabs>
+        <Tabs onChange={handleChangeTabs}>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
               <Tab
@@ -67,10 +101,13 @@ export default function StaffTabs<Data extends object>({
                   size="xs"
                   placeholder={`Search`}
                   borderRadius={"10px"}
+                  onChange={(e) => {
+                    handleSearchFilters(e.target.value);
+                  }}
                   _hover={{ borderColor: "#E79378 !important" }}
                 />
               </InputGroup>
-              <Stack direction="row" spacing={4}>
+              {/* <Stack direction="row" spacing={4}>
                 <Button
                   _hover={{ bgColor: "#646782" }}
                   leftIcon={<img src={Filter} />}
@@ -80,16 +117,16 @@ export default function StaffTabs<Data extends object>({
                 >
                   Filter
                 </Button>
-              </Stack>
+              </Stack> */}
             </Stack>
           </TabList>
 
           <TabPanels>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForBoatMaster} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable columns={columnsForBoat} data={dataForTicketMaster} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
           </TabPanels>
         </Tabs>

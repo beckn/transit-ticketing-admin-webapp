@@ -1,14 +1,14 @@
 import { Box } from "@chakra-ui/react";
-import Navigation from "../../Components/Navigation/navigation";
-import Navbar from "../Navbar/navbar";
 import { useQueryClient } from "react-query";
-import { useApi } from "../../hooks/useApi";
+import AuthContainer from "../../Components/AuthRoute/index";
+import Navigation from "../../Components/Navigation/navigation";
 import { apiUrl } from "../../Config/apiUrl";
-import { boatColumns } from "../../Pages/Home/Data/data";
-import OperationalBoatsTabs from "../Tabs/operationalBoatsTabs";
-import Loader from "../Loader/Loading";
-import { getWidgetData } from "../../utils/helpers";
+import { useApi } from "../../hooks/useApi";
 import ServerError from "../../Pages/ErrorPages/ServerError";
+import { boatColumns } from "../../Pages/Home/Data/data";
+import Loader from "../Loader/Loading";
+import Navbar from "../Navbar/navbar";
+import OperationalBoatsTabs from "../Tabs/operationalBoatsTabs";
 
 export default function OperationalBoats() {
   const queryClient = useQueryClient();
@@ -24,31 +24,33 @@ export default function OperationalBoats() {
     );
   }
   return (
-    <Box>
-      <Navigation>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            <Navbar
-              widgetData={{
-                total: data?.boatsCount,
-                remaining: data?.boatsOutOfService,
-                available: data?.boatsAvailable,
-              }}
-              pageTitle="Operational Boats"
-              tableTitle="List of operational boats :"
-              totalReport="Total Boats"
-              wayBillReport="Boats Available"
-              BankingReport="Boats Out Of Service"
-            />
-            <OperationalBoatsTabs
-              dataForBoat={data?.boats}
-              columnsForBoat={boatColumns}
-            />
-          </>
-        )}
-      </Navigation>
-    </Box>
+    <AuthContainer>
+      <Box>
+        <Navigation>
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <Navbar
+                widgetData={{
+                  total: data?.boatsCount,
+                  remaining: data?.boatsOutOfService,
+                  available: data?.boatsAvailable,
+                }}
+                pageTitle="Operational Boats"
+                tableTitle="List of operational boats :"
+                totalReport="Total Boats"
+                wayBillReport="Boats Available"
+                BankingReport="Boats Out Of Service"
+              />
+              <OperationalBoatsTabs
+                dataForBoat={data?.boats}
+                columnsForBoat={boatColumns}
+              />
+            </>
+          )}
+        </Navigation>
+      </Box>
+    </AuthContainer>
   );
 }
