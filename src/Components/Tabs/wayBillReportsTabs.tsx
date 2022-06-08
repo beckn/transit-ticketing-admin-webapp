@@ -79,28 +79,28 @@ export default function WayBillReportsTabs<
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForWayBill[] = [];
     tableDataCopy.map((item: any) => {
-      if(item.boatMasterName){
+      if (item.boatMasterName) {
         if (
           item.boatMasterName.toLowerCase().includes(searchData.toLowerCase())
         ) {
           filterData.push(item);
         }
       }
-      if(item.boatNumber){
+      if (item.boatNumber) {
+        if (item.boatNumber.toLowerCase().includes(searchData.toLowerCase())) {
+          filterData.push(item);
+        }
+      }
+      if (item.wayBillNumber) {
         if (
-          item.boatNumber.toLowerCase().includes(searchData.toLowerCase())
+          item.wayBillNumber
+            .toString()
+            .toLowerCase()
+            .includes(searchData.toLowerCase())
         ) {
           filterData.push(item);
         }
       }
-      if(item.wayBillNumber){
-        if (
-          item.wayBillNumber.toString().toLowerCase().includes(searchData.toLowerCase())
-        ) {
-          filterData.push(item);
-        }
-      }
-      
     });
     setSearchInput(searchData);
     setTableData(filterData);
@@ -116,7 +116,7 @@ export default function WayBillReportsTabs<
         item.wayBillNumber === Number(wayBillReport) ||
         //item.status.toLowerCase() === selectedStatus.toLowerCase() ||
         item.boatMasterName.toLowerCase() === boatMasterName.toLowerCase() ||
-        item.boatNumber === Number(boatNo)
+        item.boatNumber === boatNo
       ) {
         filterData.push(item);
       }
