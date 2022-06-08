@@ -521,7 +521,7 @@ export default function BankingReportsTabs<
               )}
             </Flex>
           </Stack>
-          <TabPanels>
+          <TabPanels css={{margin : "0px 0px 0px -36px"}}>
             <TabPanel>
                <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>

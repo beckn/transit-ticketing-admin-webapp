@@ -121,7 +121,7 @@ export default function StaffTabs<Data extends object>({
             </Stack>
           </TabList>
 
-          <TabPanels>
+          <TabPanels css={{margin : "0px 0px 0px -36px"}}>
             <TabPanel>
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
