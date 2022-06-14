@@ -1,41 +1,40 @@
+import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
 import {
-  Box,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Center,
-  Input,
-  Stack,
-  Button,
-  InputGroup,
-  InputRightElement,
-  Flex,
-  Menu,
-  MenuButton,
-  MenuList,
-  Text,
-  Image,
   Accordion,
   AccordionButton,
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
+  Button,
+  Center,
+  Flex,
+  HStack,
+  Image,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Menu,
+  MenuButton,
+  MenuList,
   Radio,
   RadioGroup,
-  HStack,
+  Stack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Tag,
+  Text,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
-import DataTable from "../Table/table";
-import { SearchIcon } from "@chakra-ui/icons";
-import "./wayBillReportsTabs.css";
-import Filter from "../../Assets/Svg/filter.svg";
+import { useEffect, useState } from "react";
 import { Column } from "react-table";
-import { CSSProperties, useEffect, useState } from "react";
+import Filter from "../../Assets/Svg/filter.svg";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
+import DataTable from "../Table/table";
+import "./wayBillReportsTabs.css";
 
 export type DataTableForBoatProps<Data extends object> = {
   dataForBoat: Data[];
@@ -76,15 +75,23 @@ export default function BankingReportsTabs<
 
   //   setTableData(filterData);
   // };
-  
+
   const handleSearchFilters = (searchData: string) => {
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
-        item.nameOfBoatMaster.toLowerCase().includes(searchData.toLowerCase()) || 
-        item.bootNo.toString().toLowerCase().includes(searchData.toLowerCase()) 
-        || item.wayBillNo.toString().toLowerCase().includes(searchData.toLowerCase())
-      ){
+        item.nameOfBoatMaster
+          .toLowerCase()
+          .includes(searchData.toLowerCase()) ||
+        item.bootNo
+          .toString()
+          .toLowerCase()
+          .includes(searchData.toLowerCase()) ||
+        item.wayBillNo
+          .toString()
+          .toLowerCase()
+          .includes(searchData.toLowerCase())
+      ) {
         filterData.push(item);
       }
     });
@@ -160,8 +167,8 @@ export default function BankingReportsTabs<
   };
 
   return (
-    <Center display={"flex"} justifyContent="end">
-      <Box maxW={"95%"} w={"full"}>
+    <Center display={"flex"}>
+      <Box maxW={"90%"} w={"full"}>
         <Tabs>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
@@ -521,11 +528,11 @@ export default function BankingReportsTabs<
               )}
             </Flex>
           </Stack>
-          <TabPanels css={{margin : "0px 0px 0px -36px"}}>
+          <TabPanels css={{ margin: "0px 0px 0px -36px" }}>
             <TabPanel>
-               <DataTable columns={columnsForBoat} data={tableData} />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
-             <TabPanel>
+            <TabPanel>
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>

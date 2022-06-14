@@ -1,50 +1,57 @@
-import { ReactChild, ReactFragment, ReactNode, ReactPortal, ReactText } from "react";
-import { NavLink as RouterLink } from "react-router-dom";
+import { TriangleUpIcon } from "@chakra-ui/icons";
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Avatar,
   Box,
+  BoxProps,
   CloseButton,
-  Flex,
-  useColorModeValue,
-  Image,
   Drawer,
   DrawerContent,
-  Text,
-  useDisclosure,
-  BoxProps,
+  Flex,
   FlexProps,
-  Divider,
+  // Divider,
   HStack,
-  MenuButton,
-  VStack,
+  Image,
   Menu,
+  MenuButton,
   MenuList,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
-import { FiChevronDown } from "react-icons/fi";
+import React, { ReactElement, ReactNode, ReactText } from "react";
+// import { FiChevronDown } from "react-icons/fi";
 import { IconType } from "react-icons";
-import "./navigation.css";
-// import Navbar from "../Navbar/navbar";
-import { useHistory } from "react-router-dom";
-import IMAGE_PREFIX from "../../Config/image";
-import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
+import { NavLink as RouterLink, useHistory } from "react-router-dom";
 import { auth } from "../../Config/firebase";
-import { deleteLocalStorage } from "../../utils/helpers";
+import IMAGE_PREFIX from "../../Config/image";
 import logging from "../../Config/logging";
 import useWindowSize from "../../hooks/useWidth";
+import { deleteLocalStorage } from "../../utils/helpers";
+import "./navigation.css";
 interface LinkItemProps {
   name: string;
   icon: IconType;
 }
 
-export default function Navigation({ children }: { children: ReactNode }) {
+export default function Navigation({
+  children,
+}: {
+  children: ReactNode;
+}): ReactElement {
   const {
     isOpen,
     // onOpen,
     onClose,
   } = useDisclosure();
 
-  const size = useWindowSize();         
-  
+  const size = useWindowSize();
+
   return (
     <Box
       minH="100vh"
@@ -72,11 +79,7 @@ export default function Navigation({ children }: { children: ReactNode }) {
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box
-        ml={size.width && size.width > 1300 ? "390px" : "330px"} //"450px" : "390px" -60
-        w={"100%"}
-        p="4"
-      >
+      <Box ml="30%" w="70%" p="4">
         {children}
       </Box>
     </Box>
@@ -87,17 +90,17 @@ interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
 
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
   const history = useHistory();
   const size = useWindowSize();
 
-  let parsedData :{ photoURL: string | undefined; displayName: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; email: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; } | null = null;
-  let data = localStorage.getItem("firebaseData");
+  let parsedData = null;
+  const data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
   }
 
-  const logout = () => {
+  const logout = (): void => {
     auth
       .signOut()
       .then(() => {
@@ -111,11 +114,12 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
       borderRadius="0px 24px 24px 0px"
-      transition="1s ease"
+      // transition="1s ease"
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
-      w={size.width && size.width > 1300 ? "390px" : "330px"}  //"448px" : "390px"  //-60
+      //w={size.width && size.width > 1300 ? "420px" : "390px"}
+      w="30%"
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -136,7 +140,143 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           <NavItem className="main-drawer-item">Home</NavItem>
         </RouterLink>
       </div>
-      <Text
+
+      <Accordion defaultIndex={[0]}>
+        <AccordionItem
+          style={{ border: "none", borderBottom: "1px solid #fff" }}
+        >
+          <h2>
+            <AccordionButton>
+              <Box
+                ml="4"
+                flex="1"
+                color="#FFFFFF"
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Reports
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel
+            pb={4}
+            _focus={{
+              boxShadow: "none",
+            }}
+          >
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/way_Bill_Reports"
+                >
+                  <NavItem className="sub-drawer-item">Way Bill Report</NavItem>
+                </RouterLink>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/banking_Reports"
+                >
+                  <NavItem className="sub-drawer-item">Banking Report</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem
+          style={{ border: "none", borderBottom: "1px solid #fff" }}
+        >
+          <h2>
+            <AccordionButton>
+              <Box
+                ml="4"
+                flex="1"
+                color="#FFFFFF"
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Boats
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/opBoats"
+                >
+                  <NavItem className="sub-drawer-item">
+                    Operational Boats
+                  </NavItem>
+                </RouterLink>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/schedules"
+                >
+                  <NavItem className="sub-drawer-item">Schedules</NavItem>
+                </RouterLink>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/staff"
+                >
+                  <NavItem className="sub-drawer-item">Staff</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+
+        <AccordionItem
+          style={{ border: "none", borderBottom: "1px solid #fff" }}
+        >
+          <h2>
+            <AccordionButton>
+              <Box
+                ml="4"
+                flex="1"
+                color="#FFFFFF"
+                textAlign="left"
+                fontWeight="700"
+                fontSize="24"
+              >
+                Assignments
+              </Box>
+              <AccordionIcon color="#fff" />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>
+            <Flex alignItems="center" mx="8" justifyContent="space-between">
+              <div>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/boats"
+                >
+                  <NavItem className="sub-drawer-item">Boats</NavItem>
+                </RouterLink>
+                <RouterLink
+                  exact={true}
+                  activeClassName="is-active"
+                  to="/counter"
+                >
+                  <NavItem className="sub-drawer-item">Counter</NavItem>
+                </RouterLink>
+              </div>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+      {/* <Text
         ml="8"
         fontWeight="700"
         fontSize="24"
@@ -155,7 +295,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <NavItem className="sub-drawer-item">Banking Report</NavItem>
           </RouterLink>
         </div>
-      </Flex>
+      </Flex> 
       <Text
         ml="8"
         fontWeight="700"
@@ -199,31 +339,29 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <NavItem className="sub-drawer-item">Counter</NavItem>
           </RouterLink>
         </div>
-      </Flex>
+      </Flex> */}
       <HStack spacing={{ base: "0", md: "6" }} marginTop={"20px"}>
-        <Flex alignItems={"center"}>  
+        <Flex alignItems={"center"}>
           <Menu>
-          {({ isOpen }) => (
-    <>
-    <MenuButton
+            <MenuButton
               py={2}
               transition="all 0.3s"
               _focus={{ boxShadow: "none" }}
-              >
+            >
               <HStack>
-                <Avatar left="24px" size={"sm"} src={parsedData?.photoURL} />
+                <Avatar left="24px" size={"sm"} src={parsedData.photoURL} />
                 <VStack>
-                  <Text 
+                  <Text
                     fontSize="m"
                     className="footer-User-name"
                     marginLeft={"31px"}
                   >
-                    {parsedData?.displayName
-                      ? parsedData?.displayName
-                      : parsedData?.email}
+                    {parsedData.displayName
+                      ? parsedData.displayName
+                      : parsedData.email}
                   </Text>
                 </VStack>
-                {isOpen ? <TriangleUpIcon color={"#E49076"} /> : <TriangleDownIcon color={"#E49076"} />}
+                <TriangleUpIcon color={"#E49076"} />
               </HStack>
             </MenuButton>
             <MenuList
@@ -257,8 +395,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
               </Text>
               <span className="triangle"></span>
             </MenuList>
-            </>
-        )}
           </Menu>
         </Flex>
       </HStack>
@@ -269,7 +405,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 interface NavItemProps extends FlexProps {
   children: ReactText;
 }
-const NavItem = ({ children, ...rest }: NavItemProps) => {
+const NavItem = ({ children, ...rest }: NavItemProps): ReactElement => {
   return (
     <Flex
       align="center"
@@ -279,6 +415,7 @@ const NavItem = ({ children, ...rest }: NavItemProps) => {
       role="group"
       cursor="pointer"
       fontFamily={"Roboto"}
+      whiteSpace="nowrap"
       _hover={{
         bg: "#E49076",
         color: "#fff",
