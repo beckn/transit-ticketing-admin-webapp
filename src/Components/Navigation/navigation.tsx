@@ -27,7 +27,11 @@ import {
 import React, { ReactElement, ReactNode, ReactText } from "react";
 // import { FiChevronDown } from "react-icons/fi";
 import { IconType } from "react-icons";
-import { NavLink as RouterLink, useHistory } from "react-router-dom";
+import {
+  NavLink as RouterLink,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { auth } from "../../Config/firebase";
 import IMAGE_PREFIX from "../../Config/image";
 import logging from "../../Config/logging";
@@ -79,7 +83,7 @@ export default function Navigation({
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml="30%" w="70%" p="4">
+      <Box ml="35%" w="65%" p="4" overflowX="scroll">
         {children}
       </Box>
     </Box>
@@ -89,11 +93,22 @@ export default function Navigation({
 interface SidebarProps extends BoxProps {
   onClose: () => void;
 }
-
+const accordionRouteMap: any = {
+  "/way_Bill_Reports": [0],
+  "/banking_Reports": [0],
+  "/opBoats": [1],
+  "/schedules": [1],
+  "/staff": [1],
+  "/boats": [2],
+  "/counter": [2],
+};
 const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
   const history = useHistory();
   const size = useWindowSize();
-
+  const location = useLocation();
+  const activeIndex = accordionRouteMap[location.pathname];
+  //accordionRouteMap[];
+  console.log("location", location.pathname, activeIndex);
   let parsedData = null;
   const data = localStorage.getItem("firebaseData");
   if (data) {
@@ -119,7 +134,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
       //w={size.width && size.width > 1300 ? "420px" : "390px"}
-      w="30%"
+      w="35%"
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -141,7 +156,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
         </RouterLink>
       </div>
 
-      <Accordion defaultIndex={[0]}>
+      <Accordion defaultIndex={activeIndex}>
         <AccordionItem
           style={{ border: "none", borderBottom: "1px solid #fff" }}
         >

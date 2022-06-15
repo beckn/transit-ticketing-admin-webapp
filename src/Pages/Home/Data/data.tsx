@@ -1,6 +1,5 @@
+import { Divider, Link } from "@chakra-ui/react";
 import { Column } from "react-table";
-import { date } from "yup/lib/locale";
-import { Box, Link, Divider, Stack } from "@chakra-ui/react";
 
 // ----------------------Opereational Boats---------------------
 
@@ -423,6 +422,66 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "Date",
     accessor: "date",
+  },
+  {
+    Header: "",
+    accessor: "View",
+    Cell: (props) => (
+      <Link href={"/pdf"} color="#EE9A7F">
+        View
+      </Link>
+    ),
+  },
+  {
+    Header: "",
+    accessor: "download",
+    Cell: (props) => (
+      <Link href={"/pdf"} color="#EE9A7F">
+        Download
+      </Link>
+    ),
+  },
+  // {
+  //   Header: "",
+  //   accessor: "print",
+  // },
+];
+export type BoatsConversionForBankingNew = {
+  boatMaster: string;
+  startingStage: string;
+  reportId: number;
+  boatNo: string;
+  waybillNumber: string;
+  startingTime: string;
+  View: string;
+  download: string;
+  print: string;
+};
+export const columnsForBankingNew: Column<BoatsConversionForBankingNew>[] = [
+  {
+    Header: "Name Of Boat Master",
+    accessor: "boatMaster",
+  },
+  {
+    Header: "LOCATION",
+    accessor: "startingStage",
+  },
+  {
+    Header: "Report No",
+    accessor: "reportId",
+    Cell: (props) => <span>7564</span>,
+  },
+  {
+    Header: "Boat No",
+    accessor: "boatNo",
+  },
+  {
+    Header: "Way Bill No",
+    accessor: "waybillNumber",
+  },
+  {
+    Header: "Date",
+    accessor: "startingTime",
   },
   {
     Header: "",

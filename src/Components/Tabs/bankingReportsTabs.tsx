@@ -1,4 +1,4 @@
-import { ChevronDownIcon, SearchIcon } from "@chakra-ui/icons";
+import { SearchIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   Center,
   Flex,
   HStack,
@@ -15,7 +14,6 @@ import {
   InputGroup,
   InputRightElement,
   Menu,
-  MenuButton,
   MenuList,
   Radio,
   RadioGroup,
@@ -30,7 +28,6 @@ import {
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Column } from "react-table";
-import Filter from "../../Assets/Svg/filter.svg";
 import IMAGE_PREFIX from "../../Config/image";
 import Dropdown from "../common/dropdown";
 import DataTable from "../Table/table";
@@ -60,14 +57,14 @@ export default function BankingReportsTabs<
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>();
   const [serachInput, setSearchInput] = useState<any>("");
-
+  console.log("dataForBoat", dataForBoat);
   // const handleDropDownFilters = () => {
   //   if (boatNo === "" && boatMasterName === "") return;
   //   let filterData: BoatsConversionForBanking[] = [];
   //   tableDataCopy.map((item: any) => {
-  //     if (boatNo !== "" || item.nameOfBoatMaster !== "") {
-  //       if (item.bootNo === Number(boatNo) || item.nameOfBoatMaster.toLowerCase() === boatMasterName.toLowerCase()) {
-  //       // if (item.boatNumber === Number(boatNo) || item.nameOfBoatMaster === boatMasterName) {
+  //     if (boatNo !== "" || item.boatMaster !== "") {
+  //       if (item.boatNo === Number(boatNo) || item.boatMaster.toLowerCase() === boatMasterName.toLowerCase()) {
+  //       // if (item.boatNumber === Number(boatNo) || item.boatMaster === boatMasterName) {
   //         filterData.push(item);
   //       }
   //     }
@@ -80,15 +77,9 @@ export default function BankingReportsTabs<
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
-        item.nameOfBoatMaster
-          .toLowerCase()
-          .includes(searchData.toLowerCase()) ||
-        item.bootNo
-          .toString()
-          .toLowerCase()
-          .includes(searchData.toLowerCase()) ||
-        item.wayBillNo
-          .toString()
+        item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
+        item.boatNo.toLowerCase().includes(searchData.toLowerCase()) ||
+        item.wayBillNumber.boatNo
           .toLowerCase()
           .includes(searchData.toLowerCase())
       ) {
@@ -106,9 +97,9 @@ export default function BankingReportsTabs<
     let filterData: BoatsConversionForBanking[] = [];
     tableDataCopy.map((item: any) => {
       if (
-        item.wayBillNo === Number(wayBillReport) ||
-        item.nameOfBoatMaster.toLowerCase() === boatMasterName.toLowerCase() ||
-        item.bootNo === Number(boatNo)
+        item.wayBillNumber === wayBillReport ||
+        item.boatMaster.toLowerCase() === boatMasterName.toLowerCase() ||
+        item.boatNo === boatNo
       ) {
         filterData.push(item);
       }
@@ -145,7 +136,7 @@ export default function BankingReportsTabs<
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
     dataForBoat.map((key: any) => {
-      result.push({ value: key.bootNo, label: key.bootNo });
+      result.push({ value: key.boatNo, label: key.boatNo });
     });
     return result;
   };
@@ -153,7 +144,7 @@ export default function BankingReportsTabs<
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
     let result: any = [];
     dataForBoat.map((key: any) => {
-      result.push({ value: key.nameOfBoatMaster, label: key.nameOfBoatMaster });
+      result.push({ value: key.boatMaster, label: key.boatMaster });
     });
     return result;
   };
@@ -161,7 +152,7 @@ export default function BankingReportsTabs<
   const getOptionForWayBillNumber = (dataForBoat: any) => {
     let result: any = [];
     dataForBoat.map((key: any) => {
-      result.push(key.wayBillNo.toString());
+      result.push(key.wayBillNumberboatNo);
     });
     return result;
   };
@@ -254,7 +245,7 @@ export default function BankingReportsTabs<
               </InputGroup>
               <Stack direction="row" spacing={4}>
                 <Menu>
-                  <MenuButton
+                  {/* <MenuButton
                     colorScheme="#3E4059"
                     size="md"
                     _hover={{ bgColor: "#646782" }}
@@ -266,7 +257,7 @@ export default function BankingReportsTabs<
                     rightIcon={<ChevronDownIcon />}
                   >
                     Filter
-                  </MenuButton>
+                  </MenuButton> */}
                   <MenuList
                     maxW="180px"
                     maxH="266px"

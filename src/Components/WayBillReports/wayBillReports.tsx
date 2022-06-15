@@ -34,8 +34,8 @@ export default function WayBillReport() {
             <>
               <Navbar
                 widgetData={{
-                  total: data.waybillReportsCount,
-                  remaining: 0,
+                  total: data.bankingSheetCount + data.waybillReportsCount,
+                  remaining: data.bankingSheetCount,
                   available: data.waybillReportsCount,
                 }}
                 pageTitle="Reports"
