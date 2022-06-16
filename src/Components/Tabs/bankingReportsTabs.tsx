@@ -184,8 +184,9 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
-                    setSearchInput("");
+                    setDropdownValue("");
                     setBoatNo(value);
+                    setSearchInput("");
                   }}
                 />
                 <Dropdown
@@ -193,6 +194,7 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatMasterName(value);
                     setSearchInput("");
                   }}
@@ -238,6 +240,7 @@ export default function BankingReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
+                  value={serachInput}
                   placeholder={`Search`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
@@ -270,7 +273,7 @@ export default function BankingReportsTabs<
                     borderRadius="lg"
                   >
                     <Accordion allowToggle borderRadius="lg">
-                      {[0, 1].map((item) => {
+                      {[0, 1,].map((item) => {
                         const accordingHeading =
                           item === 0 ? "Location" : "WayBill Number";
                         const radioData =

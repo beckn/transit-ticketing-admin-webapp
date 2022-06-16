@@ -390,7 +390,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
         bottom="0"
         //position="fixed"
         marginTop={"20px"}
-        mb="10"
+        mb="0"
       >
         <Flex alignItems={"center"}>
           <Menu>

@@ -225,8 +225,9 @@ export default function WayBillReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatNo(value);
-                    setSearchInput('');
+                    setSearchInput("");
                   }}
                 />
                 <Dropdown
@@ -234,10 +235,11 @@ export default function WayBillReportsTabs<
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatMasterName(value);
-                    setSearchInput('');
+                    setSearchInput("");
                   }}
-                   />
+                />
 
                 {/* <Button
                   colorScheme="#E79378"
