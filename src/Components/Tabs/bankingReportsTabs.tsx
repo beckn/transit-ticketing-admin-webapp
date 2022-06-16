@@ -79,7 +79,7 @@ export default function BankingReportsTabs<
       if (
         item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
         item.boatNo.toLowerCase().includes(searchData.toLowerCase()) ||
-        item.wayBillNumber.boatNo
+        item.waybillNumber
           .toLowerCase()
           .includes(searchData.toLowerCase())
       ) {
@@ -185,6 +185,7 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
+                    setSearchInput('');
                     setBoatNo(value);
                   }}
                 />
@@ -194,6 +195,7 @@ export default function BankingReportsTabs<
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
                     setBoatMasterName(value);
+                    setSearchInput('');
                   }}
                 />
 
@@ -236,10 +238,14 @@ export default function BankingReportsTabs<
                   borderRadius={"10px"}
                   height={"40px"}
                   variant="outline"
+                  value={serachInput}
                   size="xs"
                   placeholder={`Search`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
+                    setBoatNo("");
+                    setBoatMasterName("");
+
                   }}
                 />
               </InputGroup>

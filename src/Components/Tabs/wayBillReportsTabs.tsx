@@ -225,14 +225,18 @@ export default function WayBillReportsTabs<
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
                     setBoatNo(value);
+                    setSearchInput('');
                   }}
                 />
                 <Dropdown
                   placeholder="Boat Master Name"
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
-                  setOptionDropVal={(value: string) => setBoatMasterName(value)}
-                />
+                  setOptionDropVal={(value: string) => {
+                    setBoatMasterName(value);
+                    setSearchInput('');
+                  }}
+                   />
 
                 {/* <Button
                   colorScheme="#E79378"
@@ -274,9 +278,12 @@ export default function WayBillReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
+                  value={serachInput} 
                   placeholder={`Search`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
+                    setBoatMasterName("");
+                    setBoatNo("");
                   }}
                 />
               </InputGroup>
