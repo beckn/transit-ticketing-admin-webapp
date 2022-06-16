@@ -20,7 +20,7 @@ export default function OperationalBoats() {
               Assignment of Operational Boats:
             </Heading>
             <Divider
-              backgroundColor={"black"}
+              backgroundColor={"grey"}
               height="2px"
               m="31px 20px 56px 76px"
               width="90%"

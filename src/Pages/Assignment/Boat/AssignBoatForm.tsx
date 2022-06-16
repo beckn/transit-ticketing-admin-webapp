@@ -1,22 +1,15 @@
-import React from "react";
-import {
-  Box,
-  SimpleGrid,
-  Button,
-  Flex,
-  FormLabel,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, SimpleGrid } from "@chakra-ui/react";
 import { withFormik } from "formik";
-import Select, { components, StylesConfig } from "react-select";
+import React from "react";
+import { useQueryClient } from "react-query";
+import { components } from "react-select";
 import * as Yup from "yup";
 import { MySelect } from "../../../Components/CustomSelect";
-import { useQueryClient } from "react-query";
-import { useApi } from "../../../hooks/useApi";
-import { apiUrl } from "../../../Config/apiUrl";
-import ServerError from "../../ErrorPages/ServerError";
 import Loading from "../../../Components/Loader/Loading";
 import Navigation from "../../../Components/Navigation/navigation";
+import { apiUrl } from "../../../Config/apiUrl";
+import { useApi } from "../../../hooks/useApi";
+import ServerError from "../../ErrorPages/ServerError";
 
 const getOptions = (data: Array<Object>, type: string) => {
   let transformedData;
@@ -147,8 +140,6 @@ function AssignBoat(props: any) {
                 touched={touched.boatNumber}
               />
             </Box>
-          </SimpleGrid>
-          <SimpleGrid columns={2} spacing={10} mb="5" mt="2">
             <Box marginLeft="76" height="80px">
               <MySelect
                 id="stationName"
@@ -161,6 +152,20 @@ function AssignBoat(props: any) {
                 touched={touched.stationName}
               />
             </Box>
+          </SimpleGrid>
+          <SimpleGrid columns={2} spacing={10} mb="5" mt="2">
+            {/* <Box marginLeft="76" height="80px">
+              <MySelect
+                id="stationName"
+                options={getOptions(data.stations, "station")}
+                placeholder="Station Name :"
+                value={values.stationName}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+                error={errors.stationName}
+                touched={touched.stationName}
+              />
+            </Box> */}
             <Box ml="76" height="80px">
               <MySelect
                 id="boatMasterName"
@@ -173,8 +178,6 @@ function AssignBoat(props: any) {
                 touched={touched.boatMasterName}
               />
             </Box>
-          </SimpleGrid>
-          <SimpleGrid columns={2} spacing={10} mb="5">
             <Box ml="76" height="80px">
               <MySelect
                 id="scheduleNumber"
@@ -188,10 +191,37 @@ function AssignBoat(props: any) {
               />
             </Box>
           </SimpleGrid>
-          <Flex justifyContent={"flex-end"}>
+          <SimpleGrid columns={2} spacing={10} mb="5">
+            {/* <Box ml="76" height="80px">
+              <MySelect
+                id="scheduleNumber"
+                options={getOptions(data.schedules, "schedules")}
+                placeholder="Schedule No. :"
+                value={values.scheduleNumber}
+                onChange={setFieldValue}
+                onBlur={setFieldTouched}
+                error={errors.scheduleNumber}
+                touched={touched.scheduleNumber}
+              />
+            </Box> */}
+          </SimpleGrid>
+          <Flex justifyContent={"center"} mt="40">
             <Button
               bgColor="#3E4059"
               color={"#fff"}
+              width="150px"
+              _hover={{ bgColor: "#646782" }}
+              padding={"20px"}
+              onClick={handleReset}
+              disabled={!dirty || isSubmitting}
+            >
+              Reset
+            </Button>
+            <Button
+              bgColor="#3E4059"
+              color={"#fff"}
+              width="150px"
+              marginLeft="30"
               _hover={{ bgColor: "#646782" }}
               onSubmit={handleSubmit}
               padding={"20px"}
@@ -199,17 +229,6 @@ function AssignBoat(props: any) {
               disabled={isSubmitting}
             >
               Save
-            </Button>
-            <Button
-              bgColor="#3E4059"
-              color={"#fff"}
-              marginLeft="10"
-              _hover={{ bgColor: "#646782" }}
-              padding={"20px"}
-              onClick={handleReset}
-              disabled={!dirty || isSubmitting}
-            >
-              Reset
             </Button>
           </Flex>
         </form>

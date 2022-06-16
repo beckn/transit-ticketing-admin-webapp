@@ -408,7 +408,7 @@ export const dataForBanking: BoatsConversionForBanking[] = [
 
 export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
-    Header: "Name Of Boat Master",
+    Header: "Boat Master Name",
     accessor: "nameOfBoatMaster",
   },
   {
@@ -459,7 +459,10 @@ export type BoatsConversionForBankingNew = {
 };
 export const columnsForBankingNew: Column<BoatsConversionForBankingNew>[] = [
   {
-    Header: "Name Of Boat Master",
+    Header: " Boat Master Name",
+    minWidth: 70,
+    maxWidth: 90,
+    width: 100,
     accessor: "boatMaster",
   },
   {

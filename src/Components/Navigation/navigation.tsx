@@ -1,4 +1,4 @@
-import { TriangleUpIcon } from "@chakra-ui/icons";
+import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
 import {
   Accordion,
   AccordionButton,
@@ -24,8 +24,14 @@ import {
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
-import React, { ReactElement, ReactNode, ReactText } from "react";
-// import { FiChevronDown } from "react-icons/fi";
+import {
+  ReactChild,
+  ReactElement,
+  ReactFragment,
+  ReactNode,
+  ReactPortal,
+  ReactText,
+} from "react"; // import { FiChevronDown } from "react-icons/fi";
 import { IconType } from "react-icons";
 import {
   NavLink as RouterLink,
@@ -83,7 +89,12 @@ export default function Navigation({
       {/* mobilenav */}
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
-      <Box ml="35%" w="65%" p="4" overflowX="scroll">
+      <Box
+        ml={size.width && size.width > 1300 ? "390px" : "330px"}
+        w="100%"
+        p="4"
+        overflowX="scroll"
+      >
         {children}
       </Box>
     </Box>
@@ -109,7 +120,23 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
   const activeIndex = accordionRouteMap[location.pathname];
   //accordionRouteMap[];
   console.log("location", location.pathname, activeIndex);
-  let parsedData = null;
+  let parsedData: {
+    photoURL: string | undefined;
+    displayName:
+      | boolean
+      | ReactChild
+      | ReactFragment
+      | ReactPortal
+      | null
+      | undefined;
+    email:
+      | boolean
+      | ReactChild
+      | ReactFragment
+      | ReactPortal
+      | null
+      | undefined;
+  } | null = null;
   const data = localStorage.getItem("firebaseData");
   if (data) {
     parsedData = JSON.parse(data);
@@ -133,164 +160,167 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
       pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
       // w={{ base: "448px", md: 60 }}
-      //w={size.width && size.width > 1300 ? "420px" : "390px"}
-      w="35%"
+      w={size.width && size.width > 1300 ? "390px" : "330px"}
+      //w="30%"
       h="full"
       pos="fixed"
       overflow="scroll"
       {...rest}
     >
-      <RouterLink to="/">
-        <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" />
-      </RouterLink>
-      <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
-        <Text className="drawer-header">Government of Kerala</Text>
-        <Text className="drawer-sub-header">
-          State Water Transport Department
-        </Text>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-      </Flex>
-      <div>
-        <RouterLink exact={true} activeClassName="is-active" to="/">
-          <NavItem className="main-drawer-item">Home</NavItem>
+      <div style={{ minHeight: "calc(100vh - 80px)", marginBottom: "10px" }}>
+        <RouterLink to="/">
+          <Image className="image-logo" src={IMAGE_PREFIX.Logo} alt="logo" />
         </RouterLink>
+        <Flex h="147" alignItems="center" mx="8" justifyContent="space-between">
+          <Text className="drawer-header">Government of Kerala</Text>
+          <Text className="drawer-sub-header">
+            State Water Transport Department
+          </Text>
+          <CloseButton
+            display={{ base: "flex", md: "none" }}
+            onClick={onClose}
+          />
+        </Flex>
+        <div>
+          <RouterLink exact={true} activeClassName="is-active" to="/">
+            <NavItem className="main-drawer-item">Home</NavItem>
+          </RouterLink>
+        </div>
+
+        <Accordion defaultIndex={activeIndex} allowToggle>
+          <AccordionItem style={{ border: "none" }}>
+            <h2>
+              <AccordionButton>
+                <Box
+                  ml="4"
+                  flex="1"
+                  color="#FFFFFF"
+                  textAlign="left"
+                  fontWeight="700"
+                  fontSize="24"
+                >
+                  Reports
+                </Box>
+                <AccordionIcon color="#fff" />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel
+              pb={4}
+              _focus={{
+                boxShadow: "none",
+              }}
+            >
+              <Flex alignItems="center" mx="8" justifyContent="space-between">
+                <div>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/way_Bill_Reports"
+                  >
+                    <NavItem className="sub-drawer-item">
+                      Way Bill Report
+                    </NavItem>
+                  </RouterLink>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/banking_Reports"
+                  >
+                    <NavItem className="sub-drawer-item">
+                      Banking Report
+                    </NavItem>
+                  </RouterLink>
+                </div>
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem style={{ border: "none" }}>
+            <h2>
+              <AccordionButton>
+                <Box
+                  ml="4"
+                  flex="1"
+                  color="#FFFFFF"
+                  textAlign="left"
+                  fontWeight="700"
+                  fontSize="24"
+                >
+                  Boats
+                </Box>
+                <AccordionIcon color="#fff" />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Flex alignItems="center" mx="8" justifyContent="space-between">
+                <div>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/opBoats"
+                  >
+                    <NavItem className="sub-drawer-item">
+                      Operational Boats
+                    </NavItem>
+                  </RouterLink>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/schedules"
+                  >
+                    <NavItem className="sub-drawer-item">Schedules</NavItem>
+                  </RouterLink>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/staff"
+                  >
+                    <NavItem className="sub-drawer-item">Staff</NavItem>
+                  </RouterLink>
+                </div>
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem style={{ border: "none" }}>
+            <h2>
+              <AccordionButton>
+                <Box
+                  ml="4"
+                  flex="1"
+                  color="#FFFFFF"
+                  textAlign="left"
+                  fontWeight="700"
+                  fontSize="24"
+                >
+                  Assignments
+                </Box>
+                <AccordionIcon color="#fff" />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>
+              <Flex alignItems="center" mx="8" justifyContent="space-between">
+                <div>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/boats"
+                  >
+                    <NavItem className="sub-drawer-item">Boats</NavItem>
+                  </RouterLink>
+                  <RouterLink
+                    exact={true}
+                    activeClassName="is-active"
+                    to="/counter"
+                  >
+                    <NavItem className="sub-drawer-item">Counter</NavItem>
+                  </RouterLink>
+                </div>
+              </Flex>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </div>
-
-      <Accordion defaultIndex={activeIndex}>
-        <AccordionItem
-          style={{ border: "none", borderBottom: "1px solid #fff" }}
-        >
-          <h2>
-            <AccordionButton>
-              <Box
-                ml="4"
-                flex="1"
-                color="#FFFFFF"
-                textAlign="left"
-                fontWeight="700"
-                fontSize="24"
-              >
-                Reports
-              </Box>
-              <AccordionIcon color="#fff" />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel
-            pb={4}
-            _focus={{
-              boxShadow: "none",
-            }}
-          >
-            <Flex alignItems="center" mx="8" justifyContent="space-between">
-              <div>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/way_Bill_Reports"
-                >
-                  <NavItem className="sub-drawer-item">Way Bill Report</NavItem>
-                </RouterLink>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/banking_Reports"
-                >
-                  <NavItem className="sub-drawer-item">Banking Report</NavItem>
-                </RouterLink>
-              </div>
-            </Flex>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem
-          style={{ border: "none", borderBottom: "1px solid #fff" }}
-        >
-          <h2>
-            <AccordionButton>
-              <Box
-                ml="4"
-                flex="1"
-                color="#FFFFFF"
-                textAlign="left"
-                fontWeight="700"
-                fontSize="24"
-              >
-                Boats
-              </Box>
-              <AccordionIcon color="#fff" />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            <Flex alignItems="center" mx="8" justifyContent="space-between">
-              <div>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/opBoats"
-                >
-                  <NavItem className="sub-drawer-item">
-                    Operational Boats
-                  </NavItem>
-                </RouterLink>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/schedules"
-                >
-                  <NavItem className="sub-drawer-item">Schedules</NavItem>
-                </RouterLink>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/staff"
-                >
-                  <NavItem className="sub-drawer-item">Staff</NavItem>
-                </RouterLink>
-              </div>
-            </Flex>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem
-          style={{ border: "none", borderBottom: "1px solid #fff" }}
-        >
-          <h2>
-            <AccordionButton>
-              <Box
-                ml="4"
-                flex="1"
-                color="#FFFFFF"
-                textAlign="left"
-                fontWeight="700"
-                fontSize="24"
-              >
-                Assignments
-              </Box>
-              <AccordionIcon color="#fff" />
-            </AccordionButton>
-          </h2>
-          <AccordionPanel pb={4}>
-            <Flex alignItems="center" mx="8" justifyContent="space-between">
-              <div>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/boats"
-                >
-                  <NavItem className="sub-drawer-item">Boats</NavItem>
-                </RouterLink>
-                <RouterLink
-                  exact={true}
-                  activeClassName="is-active"
-                  to="/counter"
-                >
-                  <NavItem className="sub-drawer-item">Counter</NavItem>
-                </RouterLink>
-              </div>
-            </Flex>
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
       {/* <Text
         ml="8"
         fontWeight="700"
@@ -355,61 +385,79 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
           </RouterLink>
         </div>
       </Flex> */}
-      <HStack spacing={{ base: "0", md: "6" }} marginTop={"20px"}>
+      <HStack
+        spacing={{ base: "0", md: "6" }}
+        bottom="0"
+        //position="fixed"
+        marginTop={"20px"}
+        mb="10"
+      >
         <Flex alignItems={"center"}>
           <Menu>
-            <MenuButton
-              py={2}
-              transition="all 0.3s"
-              _focus={{ boxShadow: "none" }}
-            >
-              <HStack>
-                <Avatar left="24px" size={"sm"} src={parsedData.photoURL} />
-                <VStack>
+            {({ isOpen }) => (
+              <>
+                <MenuButton
+                  py={2}
+                  transition="all 0.3s"
+                  _focus={{ boxShadow: "none" }}
+                >
+                  <HStack>
+                    <Avatar
+                      left="24px"
+                      size={"sm"}
+                      src={parsedData?.photoURL}
+                    />
+                    <VStack>
+                      <Text
+                        fontSize="m"
+                        className="footer-User-name"
+                        marginLeft={"31px"}
+                      >
+                        {parsedData?.displayName
+                          ? parsedData.displayName
+                          : parsedData?.email}
+                      </Text>
+                    </VStack>
+                    {isOpen ? (
+                      <TriangleUpIcon color={"#E49076"} />
+                    ) : (
+                      <TriangleDownIcon color={"#E49076"} />
+                    )}{" "}
+                  </HStack>
+                </MenuButton>
+                <MenuList
+                  marginLeft={"25px"}
+                  bgColor={"#3E4059"}
+                  color={"#fff"}
+                  border={"none"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                >
                   <Text
-                    fontSize="m"
-                    className="footer-User-name"
-                    marginLeft={"31px"}
+                    onClick={() => logout()}
+                    display={"flex"}
+                    justifyContent={"left"}
+                    cursor={"pointer"}
+                    fontFamily={"Roboto"}
+                    border={"1px solid"}
+                    w={"18rem"}
+                    p={"10px"}
+                    fontWeight={"bold"}
+                    borderRadius={"20px"}
+                    _hover={{
+                      bg: "#FFFFFF",
+                      color: "#FF0000",
+                    }}
+                    color={"	#FF0000"}
+                    background={"#FFFFFF"}
+                    borderColor={"#FFFFFF"}
                   >
-                    {parsedData.displayName
-                      ? parsedData.displayName
-                      : parsedData.email}
+                    Sign Out
                   </Text>
-                </VStack>
-                <TriangleUpIcon color={"#E49076"} />
-              </HStack>
-            </MenuButton>
-            <MenuList
-              marginLeft={"25px"}
-              bgColor={"#3E4059"}
-              color={"#fff"}
-              border={"none"}
-              display={"flex"}
-              justifyContent={"center"}
-            >
-              <Text
-                onClick={() => logout()}
-                display={"flex"}
-                justifyContent={"left"}
-                cursor={"pointer"}
-                fontFamily={"Roboto"}
-                border={"1px solid"}
-                w={"18rem"}
-                p={"10px"}
-                fontWeight={"bold"}
-                borderRadius={"20px"}
-                _hover={{
-                  bg: "#FFFFFF",
-                  color: "#FF0000",
-                }}
-                color={"	#FF0000"}
-                background={"#FFFFFF"}
-                borderColor={"#FFFFFF"}
-              >
-                Sign Out
-              </Text>
-              <span className="triangle"></span>
-            </MenuList>
+                  <span className="triangle"></span>
+                </MenuList>
+              </>
+            )}
           </Menu>
         </Flex>
       </HStack>
