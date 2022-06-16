@@ -58,7 +58,7 @@ export default function WayBillReportsTabs<
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
   const [boatNo, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
-  const [dropdownValue, setDropdownValue] = useState<any>();
+  const [dropdownValue, setDropdownValue] = useState<any>("");
   const [serachInput, setSearchInput] = useState<any>("");
   const [filterSearchInput, setFilterSearchInput] = useState<any>("");
 
@@ -130,11 +130,12 @@ export default function WayBillReportsTabs<
       selectedLocation === "" &&
       selectedStatus === "" &&
       boatNo === "" &&
-      boatMasterName === ""
+      boatMasterName === "" &&
+      dropdownValue === ""
     )
       return setTableData(tableDataCopy);
     else {
-      filterData();
+      dropdownValue === "" && filterData();
     }
   }, [wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName]);
 
@@ -225,13 +226,17 @@ export default function WayBillReportsTabs<
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
                     setBoatNo(value);
+                    setSearchInput("");
                   }}
                 />
                 <Dropdown
                   placeholder="Boat Master Name"
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
-                  setOptionDropVal={(value: string) => setBoatMasterName(value)}
+                  setOptionDropVal={(value: string) => {
+                    setBoatMasterName(value);
+                    setSearchInput("");
+                  }}
                 />
 
                 {/* <Button
@@ -274,9 +279,13 @@ export default function WayBillReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
+                  value={serachInput}
                   placeholder={`Search`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
+                    setDropdownValue("no");
+                    setBoatMasterName("");
+                    setBoatNo("");
                   }}
                 />
               </InputGroup>
@@ -616,7 +625,7 @@ export default function WayBillReportsTabs<
             </Flex>
           </Stack>
 
-          <TabPanels css={{margin : "0px 0px 0px -36px"}}>
+          <TabPanels css={{ margin: "0px 0px 0px -36px" }}>
             <TabPanel>
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>

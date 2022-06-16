@@ -452,7 +452,7 @@ export type BoatsConversionForBankingNew = {
   reportId: number;
   boatNo: string;
   waybillNumber: string;
-  startingTime: string;
+  reportDate: string;
   View: string;
   download: string;
   print: string;
@@ -484,7 +484,9 @@ export const columnsForBankingNew: Column<BoatsConversionForBankingNew>[] = [
   },
   {
     Header: "Date",
-    accessor: "startingTime",
+    //accessor: "startingTime",
+    accessor: "reportDate",
+    Cell: (props) => <span>2021-12-10</span>,
   },
   {
     Header: "",

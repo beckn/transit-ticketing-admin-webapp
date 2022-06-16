@@ -55,7 +55,7 @@ export default function BankingReportsTabs<
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
   const [boatNo, setBoatNo] = useState("");
   const [boatMasterName, setBoatMasterName] = useState("");
-  const [dropdownValue, setDropdownValue] = useState<any>();
+  const [dropdownValue, setDropdownValue] = useState<any>("");
   const [serachInput, setSearchInput] = useState<any>("");
   console.log("dataForBoat", dataForBoat);
   // const handleDropDownFilters = () => {
@@ -79,9 +79,7 @@ export default function BankingReportsTabs<
       if (
         item.boatMaster.toLowerCase().includes(searchData.toLowerCase()) ||
         item.boatNo.toLowerCase().includes(searchData.toLowerCase()) ||
-        item.wayBillNumber.boatNo
-          .toLowerCase()
-          .includes(searchData.toLowerCase())
+        item.waybillNumber.toLowerCase().includes(searchData.toLowerCase())
       ) {
         filterData.push(item);
       }
@@ -112,11 +110,12 @@ export default function BankingReportsTabs<
       wayBillReport === "" &&
       selectedLocation === "" &&
       boatNo === "" &&
-      boatMasterName === ""
+      boatMasterName === "" &&
+      dropdownValue === ""
     )
       return setTableData(tableDataCopy);
     else {
-      filterData();
+      dropdownValue === "" && filterData();
     }
   }, [wayBillReport, selectedLocation, boatNo, boatMasterName]);
 
@@ -185,6 +184,7 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
+                    setSearchInput("");
                     setBoatNo(value);
                   }}
                 />
@@ -194,6 +194,7 @@ export default function BankingReportsTabs<
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
                     setBoatMasterName(value);
+                    setSearchInput("");
                   }}
                 />
 
@@ -240,6 +241,9 @@ export default function BankingReportsTabs<
                   placeholder={`Search`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
+                    setDropdownValue("no");
+                    setBoatNo("");
+                    setBoatMasterName("");
                   }}
                 />
               </InputGroup>
