@@ -99,7 +99,7 @@ export default function StaffTabs<Data extends object>({
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={`Enter Boat MAster & No`}
                   borderRadius={"10px"}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);

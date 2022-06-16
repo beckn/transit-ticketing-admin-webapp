@@ -238,7 +238,7 @@ export default function BankingReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={`Please Enter Boat Master or Boat No`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
                     setDropdownValue("no");

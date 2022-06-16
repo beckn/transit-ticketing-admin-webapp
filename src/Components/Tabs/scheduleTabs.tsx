@@ -75,7 +75,7 @@ export default function ScheduleTabs<Data extends object>({
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={`Boat master Name & No`}
                   borderRadius={"10px"}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
@@ -83,17 +83,6 @@ export default function ScheduleTabs<Data extends object>({
                   _hover={{ borderColor: "#E79378 !important" }}
                 />
               </InputGroup>
-              {/* <Stack direction="row" spacing={4}>
-                <Button
-                  _hover={{ bgColor: "#646782" }}
-                  leftIcon={<img src={Filter} />}
-                  bgColor="#3E4059"
-                  color={"#fff"}
-                  padding={"20px"}
-                >
-                  Filter
-                </Button>
-              </Stack> */}
             </Stack>
           </TabList>
 

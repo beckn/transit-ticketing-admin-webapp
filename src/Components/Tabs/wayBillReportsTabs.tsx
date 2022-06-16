@@ -279,8 +279,7 @@ export default function WayBillReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  value={serachInput}
-                  placeholder={`Search`}
+                  placeholder={`Enter Boat Master Name or No`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
                     setDropdownValue("no");
@@ -616,8 +615,20 @@ export default function WayBillReportsTabs<
                     setSelectedStatusValue("");
                     filterData();
                   }}
-                  fontSize="xl"
+                  fontSize="15px"
+                  fontWeight={"600"}
+                  padding={"5px"}
+                  borderRadius={"xl"}
+                  fontFamily={"timesNewRoman"}
                   color={"#E8947A"}
+                  border={"2px solid"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  _hover={{
+                    bg: "silver",
+                    color: "#ee4d1c",
+                  }}
                 >
                   Clear All Filters
                 </Text>
