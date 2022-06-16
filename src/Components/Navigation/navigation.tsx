@@ -186,7 +186,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
           </RouterLink>
         </div>
 
-        <Accordion defaultIndex={activeIndex} allowToggle>
+        <Accordion defaultIndex={activeIndex || 0} allowToggle>
           <AccordionItem style={{ border: "none" }}>
             <h2>
               <AccordionButton>

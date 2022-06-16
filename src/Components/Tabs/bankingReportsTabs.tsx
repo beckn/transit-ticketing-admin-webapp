@@ -184,6 +184,7 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setSearchInput("");
                     setBoatNo(value);
                   }}
@@ -193,6 +194,7 @@ export default function BankingReportsTabs<
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatMasterName(value);
                     setSearchInput("");
                   }}

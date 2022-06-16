@@ -53,7 +53,7 @@ export default function WayBillReportsTabs<
   const [wayBillReportValue, setWayBillReportValue] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedStatusValue, setSelectedStatusValue] = useState("");
-
+  const [tabIndex, setTabIndex] = useState(0);
   const [tableData, setTableData] = useState(dataForBoat || []);
   const [tableDataCopy, setTableDataCopy] = useState(dataForBoat || []);
   const [boatNo, setBoatNo] = useState("");
@@ -139,6 +139,21 @@ export default function WayBillReportsTabs<
     }
   }, [wayBillReport, selectedLocation, selectedStatus, boatNo, boatMasterName]);
 
+  useEffect(() => {
+    let filterData = dataForBoat;
+    if (tabIndex === 1) {
+      filterData = dataForBoat.filter(
+        (data: any) => data.status === "Completed"
+      );
+    }
+    if (tabIndex === 2) {
+      filterData = dataForBoat.filter((data: any) => data.status === "Pending");
+    }
+    console.log("tabIndex", filterData);
+    setTableDataCopy(filterData);
+    setTableData(filterData);
+  }, [tabIndex]);
+
   const handleFilter = (title: string, value: string, index: string): void => {
     if (title === "Location") {
       setSelectedLocation(value);
@@ -157,7 +172,7 @@ export default function WayBillReportsTabs<
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
     console.log("results", dataForBoat);
-    dataForBoat.map((key: any) => {
+    tableDataCopy.map((key: any) => {
       result.push({ value: key.boatNumber, label: key.boatNumber });
     });
     return result;
@@ -165,7 +180,7 @@ export default function WayBillReportsTabs<
 
   const getDropdownOptionForMasterName = (dataForBoat: any) => {
     let result: any = [];
-    dataForBoat.map((key: any) => {
+    tableDataCopy.map((key: any) => {
       result.push({ value: key.boatMasterName, label: key.boatMasterName });
     });
     return result;
@@ -190,7 +205,7 @@ export default function WayBillReportsTabs<
   return (
     <Center display={"flex"} justifyContent="end">
       <Box maxW={"95%"} w={"full"}>
-        <Tabs>
+        <Tabs index={tabIndex} onChange={(index) => setTabIndex(index)}>
           <TabList display={"flex"} justifyContent={"space-between"}>
             <Stack direction="row">
               <Tab
@@ -225,6 +240,7 @@ export default function WayBillReportsTabs<
                   dropdownOption={getDropdownOptionForBoatNo(dataForBoat)}
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatNo(value);
                     setSearchInput("");
                   }}
@@ -234,6 +250,7 @@ export default function WayBillReportsTabs<
                   dropdownOption={getDropdownOptionForMasterName(dataForBoat)}
                   optionDropVal={boatMasterName}
                   setOptionDropVal={(value: string) => {
+                    setDropdownValue("");
                     setBoatMasterName(value);
                     setSearchInput("");
                   }}
@@ -641,20 +658,10 @@ export default function WayBillReportsTabs<
               <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable
-                columns={columnsForBoat}
-                data={dataForBoat.filter(
-                  (data: any) => data.status === "Completed"
-                )}
-              />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
             <TabPanel>
-              <DataTable
-                columns={columnsForBoat}
-                data={dataForBoat.filter(
-                  (data: any) => data.status === "Pending"
-                )}
-              />
+              <DataTable columns={columnsForBoat} data={tableData} />
             </TabPanel>
           </TabPanels>
         </Tabs>
