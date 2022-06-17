@@ -323,9 +323,10 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => {
+    Cell: (props: any) => {
+      const wayBillId = props.row.values.wayBillNumber;
       return (
-        <Link href={"/pdf"} color="#EE9A7F">
+        <Link href={`/pdf/${wayBillId}`} color="#EE9A7F">
           View
         </Link>
       );
@@ -334,11 +335,14 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => (
-      <Link href={"/pdf"} color="#EE9A7F">
-        Download
-      </Link>
-    ),
+    Cell: (props: any) => {
+      const wayBillId = props.row.values.wayBillNumber;
+      return (
+        <Link href={`/pdf/${wayBillId}`} color="#EE9A7F">
+          Download
+        </Link>
+      );
+    },
   },
   // {
   //   Header: "",
@@ -426,17 +430,20 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => (
-      <Link href={"/pdf"} color="#EE9A7F">
-        View
-      </Link>
-    ),
+    Cell: (props: any) => {
+      console.log("pdf", props);
+      return (
+        <Link href={`/pdf`} color="#EE9A7F">
+          Download
+        </Link>
+      );
+    },
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => (
-      <Link href={"/pdf"} color="#EE9A7F">
+    Cell: (props: any) => (
+      <Link href={`/pdf/${props.wayBillNumber}`} color="#EE9A7F">
         Download
       </Link>
     ),
@@ -500,8 +507,8 @@ export const columnsForBankingNew: Column<BoatsConversionForBankingNew>[] = [
   {
     Header: "",
     accessor: "download",
-    Cell: (props) => (
-      <Link href={"/pdf"} color="#EE9A7F">
+    Cell: (props: any) => (
+      <Link href={`/pdf/${props.wayBillNumber}`} color="#EE9A7F">
         Download
       </Link>
     ),

@@ -1,15 +1,15 @@
-import IRoute from "../Interfaces/route";
-import LoginScreen from "../Pages/Auth/login";
-import HomeScreen from "../Pages/Home/home";
-import Dashboard from "../Pages/Dashboard/Dashboard";
+import BankingReports from "../Components/BankingReports/bankingReports";
 import OperationalBoats from "../Components/OperationalBoats/operationalBoats";
+import PdfComponent from "../Components/PDF/index";
 import Schedules from "../Components/Schedules/schedules";
 import Staff from "../Components/Staff/staff";
 import WayBillReport from "../Components/WayBillReports/wayBillReports";
-import BankingReports from "../Components/BankingReports/bankingReports";
-import Boats from '../Pages/Assignment/Boat/boats'
+import IRoute from "../Interfaces/route";
+import Boats from '../Pages/Assignment/Boat/boats';
 import Counter from "../Pages/Assignment/Counter/counter";
-import PdfComponent from "../Components/PDF/index";
+import LoginScreen from "../Pages/Auth/login";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import HomeScreen from "../Pages/Home/home";
 
 const routes: IRoute[] = [
   {
@@ -83,7 +83,7 @@ const routes: IRoute[] = [
   protected: false
 },
 {
-  path: "/pdf",
+  path: "/pdf/:id",
   exact: true, 
   component: PdfComponent,
   name: "PDF",

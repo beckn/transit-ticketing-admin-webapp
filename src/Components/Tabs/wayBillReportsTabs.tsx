@@ -296,6 +296,7 @@ export default function WayBillReportsTabs<
                   height={"40px"}
                   variant="outline"
                   size="xs"
+                  value={serachInput}
                   placeholder={`Enter Boat Master Name or No`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
