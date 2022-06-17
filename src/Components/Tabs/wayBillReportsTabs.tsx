@@ -149,7 +149,6 @@ export default function WayBillReportsTabs<
     if (tabIndex === 2) {
       filterData = dataForBoat.filter((data: any) => data.status === "Pending");
     }
-    console.log("tabIndex", filterData);
     setTableDataCopy(filterData);
     setTableData(filterData);
   }, [tabIndex]);
@@ -171,7 +170,6 @@ export default function WayBillReportsTabs<
 
   const getDropdownOptionForBoatNo = (dataForBoat: any) => {
     let result: any = [];
-    console.log("results", dataForBoat);
     tableDataCopy.map((key: any) => {
       result.push({ value: key.boatNumber, label: key.boatNumber });
     });
@@ -370,7 +368,6 @@ export default function WayBillReportsTabs<
                         const searchData = (value: string) => {
                           if (item === 0) {
                             radioDataCopy.filter((data: any) => {
-                              console.log(data);
                               return;
                             });
                           }
@@ -437,12 +434,6 @@ export default function WayBillReportsTabs<
                                   onChange={(e) => {
                                     setFilterSearchInput(e.target.value);
                                     searchData(e.target.value);
-
-                                    console.log(
-                                      "data=====>>> ",
-                                      radioDataCopy,
-                                      radioData
-                                    );
                                   }}
                                 />
                               </InputGroup>

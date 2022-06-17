@@ -34,7 +34,6 @@ const PdfComponent = () => {
     if (id && wayBillReportsData) {
       let filterData = [];
       filterData = wayBillReportsData.waybillReports.filter((data) => {
-        console.log(data.wayBillNumber, id);
         return data.wayBillNumber == id;
       });
       setWayBillData(filterData);

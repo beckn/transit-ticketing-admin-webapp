@@ -57,7 +57,6 @@ export default function BankingReportsTabs<
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>("");
   const [serachInput, setSearchInput] = useState<any>("");
-  console.log("dataForBoat", dataForBoat);
   // const handleDropDownFilters = () => {
   //   if (boatNo === "" && boatMasterName === "") return;
   //   let filterData: BoatsConversionForBanking[] = [];

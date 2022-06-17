@@ -431,7 +431,6 @@ export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
     Header: "",
     accessor: "View",
     Cell: (props: any) => {
-      console.log("pdf", props);
       return (
         <Link href={`/pdf`} color="#EE9A7F">
           Download

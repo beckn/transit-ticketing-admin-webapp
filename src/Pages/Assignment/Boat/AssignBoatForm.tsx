@@ -37,8 +37,13 @@ const getOptions = (data: Array<Object>, type: string) => {
       });
   }
 
-  console.log("data", transformedData);
-  return transformedData || [];
+  return (
+    transformedData || [
+      { label: 12, value: 12 },
+      { label: 14, value: 14 },
+      { label: 15, value: 15 },
+    ]
+  );
 };
 type MyOptionTypeForBoatNo = {
   label: string;
@@ -61,35 +66,6 @@ const CustomValueContainer = ({ children, ...props }: any) => {
     </ValueContainer>
   );
 };
-const formikEnhancer = withFormik({
-  validationSchema: Yup.object().shape({
-    boatNumber: Yup.object().required("Boat no. is required!"),
-    boatMasterName: Yup.object().required("Boat Master Name is required!"),
-    stationName: Yup.object().required("Station Name is required!"),
-    scheduleNumber: Yup.object().required("Schedule is required!"),
-  }),
-  mapPropsToValues: (props) => ({
-    boatNumber: "",
-    boatMasterName: "",
-    scheduleNumber: "",
-    stationName: "",
-  }),
-  handleSubmit: (values, { setSubmitting }) => {
-    console.log("values", values);
-
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 1000);
-  },
-  displayName: "MyForm",
-});
-
-const options = [
-  { value: "chocolate", label: "KERALA" },
-  { value: "strawberry", label: "EDATHUA" },
-  { value: "vanilla", label: "CHENNAI" },
-];
 
 function AssignBoat(props: any) {
   const {
@@ -104,14 +80,13 @@ function AssignBoat(props: any) {
     setFieldValue,
     setFieldTouched,
     isSubmitting,
+    onOpen,
+    onClose,
+    isOpen,
   } = props;
-  const handleSubmit1 = (e: any) => {
-    e.preventDefault();
-    console.log(e.target.value);
-  };
   const queryClient = useQueryClient();
+
   const { status, data, error, isLoading } = useApi(apiUrl.BOATS_ASSIGNMENTS);
-  console.log("assignment data", data);
   if (status === "error") {
     return (
       <Box>
@@ -154,18 +129,6 @@ function AssignBoat(props: any) {
             </Box>
           </SimpleGrid>
           <SimpleGrid columns={2} spacing={10} mb="5" mt="2">
-            {/* <Box marginLeft="76" height="80px">
-              <MySelect
-                id="stationName"
-                options={getOptions(data.stations, "station")}
-                placeholder="Station Name :"
-                value={values.stationName}
-                onChange={setFieldValue}
-                onBlur={setFieldTouched}
-                error={errors.stationName}
-                touched={touched.stationName}
-              />
-            </Box> */}
             <Box ml="76" height="80px">
               <MySelect
                 id="boatMasterName"
@@ -181,7 +144,12 @@ function AssignBoat(props: any) {
             <Box ml="76" height="80px">
               <MySelect
                 id="scheduleNumber"
-                options={getOptions(data.schedules, "schedules")}
+                //options={getOptions(data.schedules, "schedules")}
+                options={[
+                  { label: 12, value: 12 },
+                  { label: 14, value: 14 },
+                  { label: 15, value: 15 },
+                ]}
                 placeholder="Schedule No. :"
                 value={values.scheduleNumber}
                 onChange={setFieldValue}
@@ -191,20 +159,7 @@ function AssignBoat(props: any) {
               />
             </Box>
           </SimpleGrid>
-          <SimpleGrid columns={2} spacing={10} mb="5">
-            {/* <Box ml="76" height="80px">
-              <MySelect
-                id="scheduleNumber"
-                options={getOptions(data.schedules, "schedules")}
-                placeholder="Schedule No. :"
-                value={values.scheduleNumber}
-                onChange={setFieldValue}
-                onBlur={setFieldTouched}
-                error={errors.scheduleNumber}
-                touched={touched.scheduleNumber}
-              />
-            </Box> */}
-          </SimpleGrid>
+          <SimpleGrid columns={2} spacing={10} mb="5"></SimpleGrid>
           <Flex justifyContent={"center"} mt="40">
             <Button
               bgColor="#3E4059"
@@ -236,5 +191,32 @@ function AssignBoat(props: any) {
     </Box>
   );
 }
+export const AssignBoatsForm = (props: any) => {
+  const { isOpen, onOpen, onClose } = props.dataModal;
 
-export const AssignBoatsForm = formikEnhancer(AssignBoat);
+  const MyFormWithFormik = withFormik({
+    validationSchema: Yup.object().shape({
+      boatNumber: Yup.object().required("Boat no. is required!"),
+      boatMasterName: Yup.object().required("Boat Master Name is required!"),
+      stationName: Yup.object().required("Station Name is required!"),
+      scheduleNumber: Yup.object().required("Schedule is required!"),
+    }),
+    mapPropsToValues: (props) => ({
+      boatNumber: "",
+      boatMasterName: "",
+      scheduleNumber: "",
+      stationName: "",
+    }),
+    handleSubmit: (values, { setSubmitting }) => {
+      onOpen();
+      setTimeout(() => {
+        //alert(JSON.stringify(values, null, 2));
+        setSubmitting(false);
+      }, 1000);
+    },
+    displayName: "MyForm",
+  })(AssignBoat);
+
+  return <MyFormWithFormik />;
+};
+//export const AssignBoatsForm = formikEnhancer(AssignBoat);

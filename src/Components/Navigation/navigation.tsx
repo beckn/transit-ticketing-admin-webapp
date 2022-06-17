@@ -114,13 +114,22 @@ const accordionRouteMap: any = {
   "/boats": [2],
   "/counter": [2],
 };
+
+const iconMap: any = {
+  "Banking Report": IMAGE_PREFIX.BankIcon,
+  "Way Bill Report": IMAGE_PREFIX.BillIcon,
+  "Operational Boats": IMAGE_PREFIX.HomeBoatIcon,
+  Staff: IMAGE_PREFIX.StaffIcon,
+  Schedule: IMAGE_PREFIX.TimerIcon,
+  Boats: IMAGE_PREFIX.HomeBoatIcon,
+  Counter: IMAGE_PREFIX.HomeBoatIcon,
+};
 const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
   const history = useHistory();
   const size = useWindowSize();
   const location = useLocation();
   const activeIndex = accordionRouteMap[location.pathname];
   //accordionRouteMap[];
-  console.log("location", location.pathname, activeIndex);
   let parsedData: {
     photoURL: string | undefined;
     displayName:
@@ -216,7 +225,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                     activeClassName="is-active"
                     to="/way_Bill_Reports"
                   >
-                    <NavItem className="sub-drawer-item">
+                    <NavItem className="sub-drawer-item" type="Way Bill Report">
                       Way Bill Report
                     </NavItem>
                   </RouterLink>
@@ -225,7 +234,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                     activeClassName="is-active"
                     to="/banking_Reports"
                   >
-                    <NavItem className="sub-drawer-item">
+                    <NavItem className="sub-drawer-item" type="Banking Report">
                       Banking Report
                     </NavItem>
                   </RouterLink>
@@ -258,7 +267,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                     activeClassName="is-active"
                     to="/opBoats"
                   >
-                    <NavItem className="sub-drawer-item">
+                    <NavItem
+                      className="sub-drawer-item"
+                      type="Operational Boats"
+                    >
                       Operational Boats
                     </NavItem>
                   </RouterLink>
@@ -267,14 +279,18 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                     activeClassName="is-active"
                     to="/schedules"
                   >
-                    <NavItem className="sub-drawer-item">Schedules</NavItem>
+                    <NavItem className="sub-drawer-item" type="Schedule">
+                      Schedules
+                    </NavItem>
                   </RouterLink>
                   <RouterLink
                     exact={true}
                     activeClassName="is-active"
                     to="/staff"
                   >
-                    <NavItem className="sub-drawer-item">Staff</NavItem>
+                    <NavItem className="sub-drawer-item" type="Staff">
+                      Staff
+                    </NavItem>
                   </RouterLink>
                 </div>
               </Flex>
@@ -305,14 +321,18 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                     activeClassName="is-active"
                     to="/boats"
                   >
-                    <NavItem className="sub-drawer-item">Boats</NavItem>
+                    <NavItem className="sub-drawer-item" type="Boats">
+                      Boats
+                    </NavItem>
                   </RouterLink>
                   <RouterLink
                     exact={true}
                     activeClassName="is-active"
                     to="/counter"
                   >
-                    <NavItem className="sub-drawer-item">Counter</NavItem>
+                    <NavItem className="sub-drawer-item" type="Counter">
+                      Counter
+                    </NavItem>
                   </RouterLink>
                 </div>
               </Flex>
@@ -348,7 +368,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                         marginLeft={"31px"}
                       >
                         {parsedData?.displayName
-                          ? parsedData.displayName
+                          ? parsedData?.displayName
                           : parsedData?.email}
                       </Text>
                     </VStack>
@@ -401,13 +421,15 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
 
 interface NavItemProps extends FlexProps {
   children: ReactText;
+  type?: string;
 }
-const NavItem = ({ children, ...rest }: NavItemProps): ReactElement => {
+const NavItem = ({ children, type, ...rest }: NavItemProps): ReactElement => {
   return (
     <Flex
       align="center"
       p="4"
       mx="4"
+      gap="2"
       borderRadius="24px"
       role="group"
       cursor="pointer"
@@ -419,6 +441,15 @@ const NavItem = ({ children, ...rest }: NavItemProps): ReactElement => {
       }}
       {...rest}
     >
+      {type && (
+        <Image
+          boxSize="30px"
+          //objectFit="cover"
+          src={iconMap[type]}
+          alt={type}
+        />
+      )}
+
       {children}
     </Flex>
   );
