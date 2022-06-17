@@ -77,7 +77,7 @@ export default function OperationalBoatsTabs<Data extends object>({
                   height={"40px"}
                   variant="outline"
                   size="xs"
-                  placeholder={`Search`}
+                  placeholder={`Boat Master & Id...`}
                   borderRadius={"10px"}
                   _hover={{ borderColor: "#E79378 !important" }}
                   onChange={(e) => {
@@ -85,17 +85,6 @@ export default function OperationalBoatsTabs<Data extends object>({
                   }}
                 />
               </InputGroup>
-              {/* <Stack direction="row" spacing={4}>
-                <Button
-                  _hover={{ bgColor: "#646782" }}
-                  leftIcon={<img src={Filter} />}
-                  bgColor="#3E4059"
-                  color={"#fff"}
-                  padding={"20px"}
-                >
-                  Filter
-                </Button>
-              </Stack> */}
             </Stack>
           </TabList>
 

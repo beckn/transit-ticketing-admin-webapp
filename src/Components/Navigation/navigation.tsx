@@ -90,7 +90,8 @@ export default function Navigation({
       {/* <MobileNav onOpen={onOpen} /> */}
       {/* <Navbar/> */}
       <Box
-        ml={size.width && size.width > 1300 ? "390px" : "330px"}
+        // ml={size.width && size.width > 1300 ? "392px" : "330px"}
+        ml={"392px"}
         w="100%"
         p="4"
         overflowX="scroll"
@@ -156,12 +157,10 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
     <Box
       boxShadow="12px 12px 24px rgb(0 0 0 / 25%)"
       borderRadius="0px 24px 24px 0px"
-      // transition="1s ease"
-      pb="12"
+      // pb="12"
       bg={useColorModeValue("#3E4059", "gray.900")}
-      // w={{ base: "448px", md: 60 }}
-      w={size.width && size.width > 1300 ? "390px" : "330px"}
-      //w="30%"
+      // w={size.width && size.width > 1300 ? "392px" : "330px"}
+      w={"392px"}
       h="full"
       pos="fixed"
       overflow="scroll"
@@ -187,7 +186,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
           </RouterLink>
         </div>
 
-        <Accordion defaultIndex={activeIndex} allowToggle>
+        <Accordion defaultIndex={activeIndex || 0} allowToggle>
           <AccordionItem style={{ border: "none" }}>
             <h2>
               <AccordionButton>
@@ -321,74 +320,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
           </AccordionItem>
         </Accordion>
       </div>
-      {/* <Text
-        ml="8"
-        fontWeight="700"
-        fontSize="24"
-        color="#FFFFFF"
-        fontFamily={"Roboto"}
-      >
-        Reports
-      </Text>
-      <Divider mb="3" />
-      <Flex alignItems="center" mx="14" justifyContent="space-between">
-        <div>
-          <RouterLink exact={true} activeClassName="is-active" to="/way_Bill_Reports">
-            <NavItem className="sub-drawer-item">Way Bill Report</NavItem>
-          </RouterLink>
-          <RouterLink exact={true} activeClassName="is-active" to="/banking_Reports">
-            <NavItem className="sub-drawer-item">Banking Report</NavItem>
-          </RouterLink>
-        </div>
-      </Flex> 
-      <Text
-        ml="8"
-        fontWeight="700"
-        fontSize="24"
-        color="#FFFFFF"
-        fontFamily={"Roboto"}
-      >
-        Boats
-      </Text>
-      <Divider mb="3" />
-      <Flex alignItems="center" mx="14" justifyContent="space-between">
-        <div>
-          <RouterLink exact={true} activeClassName="is-active" to="/opBoats">
-            <NavItem className="sub-drawer-item">Operational Boats</NavItem>
-          </RouterLink>
-          <RouterLink exact={true} activeClassName="is-active" to="/schedules">
-            <NavItem className="sub-drawer-item">Schedules</NavItem>
-          </RouterLink>
-          <RouterLink exact={true} activeClassName="is-active" to="/staff">
-            <NavItem className="sub-drawer-item">Staff</NavItem>
-          </RouterLink>
-        </div>
-      </Flex>
-      <Text
-        ml="8"
-        fontWeight="700"
-        fontSize="24"
-        color="#FFF"
-        fontFamily={"Roboto"}
-        marginTop={"20px"}
-      >
-        Assignments
-      </Text>
-      <Divider mb="3" />
-      <Flex alignItems="center" mx="14" justifyContent="space-between">
-        <div>
-          <RouterLink exact={true} activeClassName="is-active" to="/boats">
-            <NavItem className="sub-drawer-item">Boats</NavItem>
-          </RouterLink>
-          <RouterLink exact={true} activeClassName="is-active" to="/counter">
-            <NavItem className="sub-drawer-item">Counter</NavItem>
-          </RouterLink>
-        </div>
-      </Flex> */}
       <HStack
         spacing={{ base: "0", md: "6" }}
         bottom="0"
-        //position="fixed"
         marginTop={"20px"}
         mb="0"
       >

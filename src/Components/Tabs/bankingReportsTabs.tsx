@@ -185,6 +185,7 @@ export default function BankingReportsTabs<
                   optionDropVal={boatNo}
                   setOptionDropVal={(value: string) => {
                     setDropdownValue("");
+                    setSearchInput("");
                     setBoatNo(value);
                     setSearchInput("");
                   }}
@@ -241,7 +242,7 @@ export default function BankingReportsTabs<
                   variant="outline"
                   size="xs"
                   value={serachInput}
-                  placeholder={`Search`}
+                  placeholder={`Please Enter Boat Master or Boat No`}
                   onChange={(e) => {
                     handleSearchFilters(e.target.value);
                     setDropdownValue("no");
