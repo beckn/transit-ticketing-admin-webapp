@@ -1,20 +1,15 @@
 import { Box, Center, CircularProgress } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { apiUrl } from "../../Config/apiUrl";
-import { useApi } from "../../hooks/useApi";
+import { apiUrl } from "../../../Config/apiUrl";
+import { useApi } from "../../../hooks/useApi";
+import { getBankingTableHeading } from "../data/bankingTableHeading";
+import PrintButton from "./printButton";
 import {
-  getTableHeading, getTableWayBill, TableHeading2,
-  TableLastData
-} from "./data/tableHeading";
-import PrintButton from "./reports/printButton";
-import {
-  generateTableRow,
-  wayBillLastRows,
-  wayBillNumber
-} from "./reports/waybillNumber";
+  generateTableRow
+} from "./waybillNumber";
 
-const PdfComponent = () => {
+const BankingPdfComponent = () => {
   const tableRef = React.useRef();
   let { id } = useParams();
   const history = useHistory();
@@ -25,6 +20,7 @@ const PdfComponent = () => {
     isLoading,
   } = useApi(apiUrl.WAY_BILL_REPORTS);
   const [wayBillData, setWayBillData] = useState({});
+  //console.log("sunny",wayBillData,id, wayBillReportsData?.bankingSheets[0].sheets)
 
   useEffect(() => {
     if (!id) {
@@ -32,21 +28,23 @@ const PdfComponent = () => {
     }
     if (id && wayBillReportsData ) {
       
-      const filterData = wayBillReportsData &&  wayBillReportsData?.waybillReports.filter((data) => {
-        return data.wayBillNumber == id;
+      const filterData = wayBillReportsData &&  wayBillReportsData?.bankingSheets[0]?.sheets.filter((data) => {
+        return data.waybillNumber == id;
       });
+
       filterData.length > 0 && setWayBillData(filterData[0]);
     }
   }, [id, wayBillReportsData]);
+
   return (
     <Box>
-      {isLoading && !wayBillData ? (
+      {isLoading && !wayBillReportsData ? (
         <Center h="100vh">
           <CircularProgress isIndeterminate color="#D27F65" />
         </Center>
       ) : (
         <>
-        {wayBillData?.trips &&
+        {wayBillData &&
           <table
             style={{
               borderColor: "grey",
@@ -105,11 +103,11 @@ const PdfComponent = () => {
                   }}
                   colSpan={4}
                 >
-                  Way Bill Report
+                  Banking sheet
                 </th>
               </tr>
 
-              {wayBillData && getTableWayBill(wayBillData).map((item, key) => wayBillNumber(item, key))}
+              {/* {wayBillData && getTableWayBill(wayBillData).map((item, key) => wayBillNumber(item, key))} */}
 
               <tr>
                 <td
@@ -118,20 +116,50 @@ const PdfComponent = () => {
                 ></td>
               </tr>
 
-              {wayBillData && getTableHeading(wayBillData).map((item, key) => generateTableRow(item, key))}
+              {wayBillData && getBankingTableHeading(wayBillReportsData?.bankingSheets[0]?.sheets).map((item, key) => generateTableRow(item, key))}
 
               <tr>
                 <td style={{ padding: "8px", border: "1px solid #000" }}>
                   {" "}
-                  Rack Amount:{" "}
+                  Total + Rack Amount	:{" "}
                 </td>
                 <td
                   style={{ padding: "8px", border: "1px solid #000" }}
                   colSpan={11}
                 >785</td>
               </tr>
-
               <tr>
+                <td style={{ padding: "8px", border: "1px solid #000" }}>
+                  {" "}
+                  Total CR Amount	:{" "}
+                </td>
+                <td
+                  style={{ padding: "8px", border: "1px solid #000" }}
+                  colSpan={11}
+                >12</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "8px", border: "1px solid #000" }}>
+                  {" "}
+                  Total Card Amount	:{" "}
+                </td>
+                <td
+                  style={{ padding: "8px", border: "1px solid #000" }}
+                  colSpan={11}
+                >0</td>
+              </tr>
+              <tr>
+                <td style={{ padding: "8px", border: "1px solid #000" }}>
+                  {" "}
+                  Net Amount	{" "}
+                </td>
+                <td
+                  style={{ padding: "8px", border: "1px solid #000" }}
+                  colSpan={11}
+                >1234</td>
+              </tr>
+
+              {/* <tr>
                 <td style={{ padding: "8px", border: "1px solid #000" }}>
                   {" "}
                   Machine Collection:{" "}
@@ -140,9 +168,9 @@ const PdfComponent = () => {
                   style={{ padding: "8px", border: "1px solid #000" }}
                   colSpan={11}
                 ></td>
-              </tr>
+              </tr> */}
 
-              <tr>
+              {/* <tr>
                 <td style={{ padding: "8px", border: "1px solid #000" }}> </td>
                 <td style={{ padding: "8px", border: "1px solid #000" }}>
                   {" "}
@@ -163,8 +191,8 @@ const PdfComponent = () => {
                   {" "}
                   For Office Use Only{" "}
                 </td>
-              </tr>
-
+              </tr> */}
+{/* 
               {TableHeading2.map((item, key) => generateTableRow(item, key))}
 
               <tr>
@@ -199,8 +227,8 @@ const PdfComponent = () => {
                   style={{ padding: "8px", border: "1px solid #000" }}
                   colSpan={2}
                 ></td>
-              </tr>
-
+              </tr> */}
+{/* 
               <tr>
                 <td style={{ padding: "8px", border: "1px solid #000" }}>
                   {" "}
@@ -241,9 +269,9 @@ const PdfComponent = () => {
                   colSpan={3}
                   rowSpan={6}
                 ></td>
-              </tr>
+              </tr> */}
 
-              {TableLastData.map((item, key) => wayBillLastRows(item, key))}
+              {/* {TableLastData.map((item, key) => wayBillLastRows(item, key))} */}
             </tbody>
           </table>
 }
@@ -254,4 +282,4 @@ const PdfComponent = () => {
   );
 };
 
-export default PdfComponent;
+export default BankingPdfComponent;

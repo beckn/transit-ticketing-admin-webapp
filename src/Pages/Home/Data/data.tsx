@@ -352,106 +352,6 @@ export const columnsForWayBill: Column<BoatsConversionForWayBill>[] = [
 
 // ----------------------------BANKING REPORTS----------------------------
 
-export type BoatsConversionForBanking = {
-  nameOfBoatMaster: string;
-  bootNo: number;
-  wayBillNo: number;
-  date: string;
-  View: string;
-  download: string;
-  print: string;
-};
-
-export const dataForBanking: BoatsConversionForBanking[] = [
-  {
-    nameOfBoatMaster: "Navjeet Singh",
-    bootNo: 1102,
-    wayBillNo: 10101,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Rahul Ranjan",
-    bootNo: 1106,
-    wayBillNo: 10101,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Deepak Singh",
-    bootNo: 1112,
-    wayBillNo: 10101,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Varun Dev",
-    bootNo: 1321,
-    wayBillNo: 10101,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-  {
-    nameOfBoatMaster: "Narendra Singh",
-    bootNo: 1152,
-    wayBillNo: 10101,
-    date: "01/11",
-    View: "View",
-    download: "Download",
-    print: "Print",
-  },
-];
-
-export const columnsForBanking: Column<BoatsConversionForBanking>[] = [
-  {
-    Header: "Boat Master Name",
-    accessor: "nameOfBoatMaster",
-  },
-  {
-    Header: "Boat No",
-    accessor: "bootNo",
-  },
-  {
-    Header: "Way Bill No",
-    accessor: "wayBillNo",
-  },
-  {
-    Header: "Date",
-    accessor: "date",
-  },
-  {
-    Header: "",
-    accessor: "View",
-    Cell: (props: any) => {
-      return (
-        <Link href={`/pdf`} color="#EE9A7F">
-          Download
-        </Link>
-      );
-    },
-  },
-  {
-    Header: "",
-    accessor: "download",
-    Cell: (props: any) => (
-      <Link href={`/pdf/${props.wayBillNumber}`} color="#EE9A7F">
-        Download
-      </Link>
-    ),
-  },
-  // {
-  //   Header: "",
-  //   accessor: "print",
-  // },
-];
 export type BoatsConversionForBankingNew = {
   boatMaster: string;
   startingStage: string;
@@ -497,20 +397,26 @@ export const columnsForBankingNew: Column<BoatsConversionForBankingNew>[] = [
   {
     Header: "",
     accessor: "View",
-    Cell: (props) => (
-      <Link href={"/pdf"} color="#EE9A7F">
-        View
-      </Link>
-    ),
+    Cell: (props: any) => {
+      const wayBillId = props.row.values.waybillNumber;
+      return (
+        <Link href={`/bankingSheetpdf/${wayBillId}`} color="#EE9A7F">
+          View
+        </Link>
+      );
+    },
   },
   {
     Header: "",
     accessor: "download",
-    Cell: (props: any) => (
-      <Link href={`/pdf/${props.wayBillNumber}`} color="#EE9A7F">
-        Download
-      </Link>
-    ),
+    Cell: (props: any) => {
+      const wayBillId = props.row.values.waybillNumber;
+      return (
+        <Link href={`/bankingSheetpdf/${wayBillId}`} color="#EE9A7F">
+          Download
+        </Link>
+      );
+    },
   },
   // {
   //   Header: "",

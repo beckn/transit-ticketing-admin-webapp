@@ -1,5 +1,4 @@
 import { Box } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
 import Select, { StylesConfig } from "react-select";
 
 type MyOptionType = {
@@ -94,10 +93,10 @@ export default function Dropdown(props: DropdownProp) {
   const { placeholder, dropdownOption, optionDropVal, setOptionDropVal } =
     props;
   // debugger;
-  console.log(
-    "optionDropVal============> ",
-    dropdownOption.find((i: string) => i === optionDropVal)
-  );
+  // console.log(
+  //   "optionDropVal============> ",
+  //   dropdownOption.find((i: string) => i === optionDropVal)
+  // );
   return (
     <Box>
       <Select

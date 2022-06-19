@@ -36,39 +36,52 @@ const TableWayBill = [
   { name1: "Boat Master Id", value1: 363, name2: "", value2: "" },
 ];
 
-const getTableHeading = (data) => {
- const {trips} = data
-  const headingTable = [{
-    c1: "Trip No",
-    c2: "Boat No",
-    c3: "Route No",
-    c4: "Starting Time",
-    c5: "Starting stage",
-    c6: "Ending Time",
-    c7: "Ending Stage",
-    c8: "Start Ticket No",
-    c9: "End Ticket No",
-    c10: "Total passengers",
-    c11: "Income(Rs)",
-    c12: "Income(Ps)",
+const getBankingTableHeading = (data) => {
+  const headingTable = [
+    {
+      c1: "Station Code",
+      c2: ":1",
+      c3: "",
+      c4: "",
+      c5: "Station Name",
+      c6: "Ernakulam",
+      c7: "",
+      c8: "",
+      c9: "",
+      c10: "",
+      c11: "Date",
+      c12: ":4/11/2022",
+    },
+    {
+    c1: "Boat No",
+    c2: "Starting Time",
+    c3: "Waybill No",
+    c4: "Starting Stage",
+    c5: "Ending stage",
+    c6: "Boatmaster",
+    c7: "Total Collection(Rs.)",
+    c8: "Total Collection(Ps.)",
+    c9: "Batta",
+    c10: "Warrant",
+    c11: "Others",
+    c12: "Total Amount deducted",
   }];
-  const tableData = trips && trips.map((trip) => {
+  const tableData = data.map((wayBill) => {
     return {
-      c1: trip.trip_id || 1768,
-      c2: data?.boatNumber,
-      c3: data?.routes.route_id,
-      c4: data?.startingTime,
-      c5: data?.startingStage,
-      c6: data?.endingTime,
-      c7: data?.endingStage,
-      c8: data?.startTicketNumber,
-      c9: data?.endTicketNumber,
-      c10: data?.totalPassengers,
-      c11: data?.totalIncome,
-      c12: "",
+      c1: wayBill?.boatNo,
+      c2: wayBill?.startingTime,
+      c3: wayBill?.waybillNumber,
+      c4: wayBill?.startingStage,
+      c5: wayBill?.endingStage,
+      c6: wayBill?.boatMaster,
+      c7: wayBill?.endingStage,
+      c8: wayBill?.totalCollection.rupees,
+      c9: wayBill?.totalCollection.paise,
+      c10: wayBill?.warrant,
+      c11: wayBill?.others,
+      c12: wayBill?.totalAmountDeducted,
     };
   });
-  console.log(data.trips,tableData);
 
   return [...headingTable, ...tableData];
 };
@@ -201,9 +214,10 @@ const TableLastData = [
 
 export {
   getTableWayBill,
+  getBankingTableHeading,
   TableWayBill,
   TableHeading,
   TableHeading2,
   TableLastData,
-  getTableHeading,
+  //getTableHeading,
 };
