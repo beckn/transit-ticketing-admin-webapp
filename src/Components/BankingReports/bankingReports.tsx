@@ -24,7 +24,6 @@ export default function BankingReports() {
       </Box>
     );
   }
-  console.log("dataForBoat", data?.bankingSheets[0]?.sheets);
 
   return (
     <AuthContainer>

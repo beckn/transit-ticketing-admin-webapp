@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import {request } from "../utils/request";
+import { request } from "../utils/request";
 
 
 const getBoatData = async (path:string) => {

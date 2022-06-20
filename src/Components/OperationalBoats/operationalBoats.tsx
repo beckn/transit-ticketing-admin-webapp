@@ -13,7 +13,6 @@ import OperationalBoatsTabs from "../Tabs/operationalBoatsTabs";
 export default function OperationalBoats() {
   const queryClient = useQueryClient();
   const { status, data, error, isLoading } = useApi(apiUrl.OPERATIONAL_BOATS);
-  console.log(status, data, error, isLoading);
   if (status === "error") {
     return (
       <Box>

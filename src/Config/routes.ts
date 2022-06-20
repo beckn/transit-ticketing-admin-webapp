@@ -1,6 +1,7 @@
 import BankingReports from "../Components/BankingReports/bankingReports";
 import OperationalBoats from "../Components/OperationalBoats/operationalBoats";
 import PdfComponent from "../Components/PDF/index";
+import BankingPdfComponent from "../Components/PDF/reports/bankingPdf";
 import Schedules from "../Components/Schedules/schedules";
 import Staff from "../Components/Staff/staff";
 import WayBillReport from "../Components/WayBillReports/wayBillReports";
@@ -86,6 +87,13 @@ const routes: IRoute[] = [
   path: "/pdf/:id",
   exact: true, 
   component: PdfComponent,
+  name: "PDF",
+  protected: false
+},
+{
+  path: "/bankingSheetpdf/:id",
+  exact: true, 
+  component: BankingPdfComponent,
   name: "PDF",
   protected: false
 },

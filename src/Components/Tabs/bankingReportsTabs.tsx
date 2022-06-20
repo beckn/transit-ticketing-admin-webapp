@@ -57,7 +57,6 @@ export default function BankingReportsTabs<
   const [boatMasterName, setBoatMasterName] = useState("");
   const [dropdownValue, setDropdownValue] = useState<any>("");
   const [serachInput, setSearchInput] = useState<any>("");
-  console.log("dataForBoat", dataForBoat);
   // const handleDropDownFilters = () => {
   //   if (boatNo === "" && boatMasterName === "") return;
   //   let filterData: BoatsConversionForBanking[] = [];
@@ -462,7 +461,7 @@ export default function BankingReportsTabs<
                     size="lg"
                     variant="solid"
                     h="43px"
-                    bg="#f0f0f0"
+                    bg="#C4C4C4"
                     color="#3E4059"
                     colorScheme="#3E4059"
                   >
@@ -484,7 +483,7 @@ export default function BankingReportsTabs<
                     size="lg"
                     variant="solid"
                     h="43px"
-                    bg="#f0f0f0"
+                    bg="#C4C4C4"
                     color="#3E4059"
                     colorScheme="#3E4059"
                   >
@@ -519,8 +518,20 @@ export default function BankingReportsTabs<
                     setSelectedStatus("");
                     setSelectedStatusValue("");
                   }}
-                  fontSize="xl"
+                  fontSize="15px"
+                  fontWeight={"600"}
+                  padding={"5px"}
+                  borderRadius={"xl"}
+                  fontFamily={"timesNewRoman"}
                   color={"#E8947A"}
+                  border={"2px solid"}
+                  display={"flex"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  _hover={{
+                    bg: "silver",
+                    color: "#ee4d1c",
+                  }}
                 >
                   Clear All Filters
                 </Text>

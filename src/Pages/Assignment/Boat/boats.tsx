@@ -1,9 +1,22 @@
-import { Box, Divider, Heading } from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
+import {
+  Box,
+  Center,
+  Divider,
+  Heading,
+  Modal,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import AuthContainer from "../../../Components/AuthRoute";
 import Navigation from "../../../Components/Navigation/navigation";
 import { AssignBoatsForm } from "./AssignBoatForm";
 
 export default function OperationalBoats() {
+  const dataModal = useDisclosure();
   return (
     <AuthContainer>
       <Box>
@@ -25,9 +38,27 @@ export default function OperationalBoats() {
               m="31px 20px 56px 76px"
               width="90%"
             />
-            <AssignBoatsForm />
+            <AssignBoatsForm dataModal={dataModal} />
           </>
         </Navigation>
+        <Modal
+          onClose={dataModal.onClose}
+          isOpen={dataModal.isOpen}
+          isCentered
+          size="md"
+        >
+          <ModalOverlay />
+          <ModalContent h="300">
+            <ModalCloseButton />
+            <Center mt="10" alignItems="center" flexDirection="column">
+              <CheckCircleIcon color="#648A4C" mt="30" boxSize="38" />
+              <Text mt="10" fontSize="2xl" textAlign="center">
+                Boat A102 Assigned <br />
+                Successfully!
+              </Text>
+            </Center>
+          </ModalContent>
+        </Modal>
       </Box>
     </AuthContainer>
   );
