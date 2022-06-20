@@ -413,15 +413,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                         className="footer-User-name"
                         marginLeft={"31px"}
                       >
-<<<<<<< HEAD
                         {parsedData?.displayName 
                           ? parsedData.displayName 
                           : (parsedData?.email ? parsedData?.email : parsedDataNew?.user?.email )}
-=======
-                        {parsedData?.displayName
-                          ? parsedData?.displayName
-                          : parsedData?.email}
->>>>>>> 7da10053ed3a2e19971c66f3b65a92f25b5c714a
                       </Text>
                     </VStack>
                     {isOpen ? (
