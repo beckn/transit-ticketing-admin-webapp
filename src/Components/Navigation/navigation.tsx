@@ -138,10 +138,56 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
       | null
       | undefined;
   } | null = null;
+
+
   const data = localStorage.getItem("firebaseData");
+
+  console.log(data);
+  // if (data) {
+  //   parsedData = JSON.parse(data);
+  //   console.log(parsedData);
+  // }
+  
+
+  let userEmail = null;
+  // new token parsing
+  let parsedDataNew:{
+
+    user : {
+      photoURL: string | undefined;
+      displayName:
+        | boolean
+        | ReactChild
+        | ReactFragment
+        | ReactPortal
+        | null
+        | undefined;
+      email:
+        | boolean
+        | ReactChild
+        | ReactFragment
+        | ReactPortal
+        | null
+        | undefined;
+    }
+    | null
+    ;
+
+  } | null = null;
+  // if (!parsedData?.email) {
+  //   //userEmail = parsedData.Use
+  //   parsedDataNew = JSON.parse(data);
+  //   console.log(parsedDataNew);
+  // }
   if (data) {
     parsedData = JSON.parse(data);
+    parsedDataNew = JSON.parse(data);
+    console.log(parsedData);
+    console.log(parsedDataNew);
+    console.log(parsedDataNew?.user?.email + " " + " new email data");
+    console.log("user email "+ parsedData?.displayName + " " + parsedData?.email);
   }
+
 
   const logout = (): void => {
     auth
@@ -347,9 +393,9 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps): ReactElement => {
                         className="footer-User-name"
                         marginLeft={"31px"}
                       >
-                        {parsedData?.displayName
-                          ? parsedData.displayName
-                          : parsedData?.email}
+                        {parsedData?.displayName 
+                          ? parsedData.displayName 
+                          : (parsedData?.email ? parsedData?.email : parsedDataNew?.user?.email )}
                       </Text>
                     </VStack>
                     {isOpen ? (
